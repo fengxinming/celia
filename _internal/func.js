@@ -40,6 +40,6 @@ function fnForEach(value, iterator, context) {
 module.exports = {
   objForEach: objForEach,
   arrForEach: arrForEach,
-  fnforEach: fnforEach,
+  fnForEach: fnForEach,
   newIterator: newIterator
 };
