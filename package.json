@@ -1,7 +1,7 @@
 {
   "name": "celia",
-  "version": "1.0.0",
-  "description": "make a collection package for coding",
+  "version": "1.0.1",
+  "description": "A modern JavaScript utility library delivering modularity, performance, & extras.",
   "main": "index.js",
   "directories": {
     "lib": "lib"
