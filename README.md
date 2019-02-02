@@ -10,9 +10,6 @@
 
 ```bash
 
-// const { type, common, array } = require('celia');
-const type = require('celia/lib/type');
-const common = require('celia/lib/common');
-const array = require('celia/lib/array');
+
 
 ```

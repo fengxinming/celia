@@ -10,4 +10,7 @@
 config.gypi
 CVS
 npm-debug.log
+coverage/
 examples/
+scripts/
+test/
