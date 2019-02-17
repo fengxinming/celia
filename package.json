@@ -2,13 +2,13 @@
   "name": "celia",
   "version": "2.0.0",
   "description": "A modern JavaScript utility library delivering modularity, performance, & extras.",
-  "main": "index.js",
+  "main": "./celia.common.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
     "create": "NODE_ENV=production node ./scripts/create.js",
-    "build": "NODE_ENV=production node ./scripts/build.js",
+    "build": "npm run create && node ./scripts/build.js",
     "test": "jest --detectOpenHandles --config jest.config.js",
     "dev": "NODE_ENV=development node ./scripts/watch.js"
   },
@@ -34,6 +34,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "babel-jest": "^24.0.0",
+    "chalk": "^2.4.2",
     "corie-utils": "^3.0.2",
     "eslint": "^5.12.0",
     "eslint-config-standard": "^12.0.0",

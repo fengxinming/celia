@@ -1,4 +1,4 @@
-import isFunction from '../utils/isFunction';
+import isFunction from './isFunction';
 
 export default function (value) {
   return value && isFunction(value.then);

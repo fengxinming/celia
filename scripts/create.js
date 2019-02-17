@@ -1,36 +1,43 @@
 'use strict';
 
 const { EOL } = require('os');
-const fs = require('fs');
-const path = require('path');
+const { promisify } = require('util');
+const { writeFile, readdirSync } = require('fs');
+const { relative, join } = require('path');
 const chalk = require('chalk');
+const { resolve } = require('./config/_util');
+
+const writeFileify = promisify(writeFile);
 
 function getSize(code) {
   return (code.length / 1024).toFixed(2) + 'kb';
 }
 
-const resolve = p => path.resolve(__dirname, '../', p);
-
-function dir2file(dir, dest) {
-  if (typeof dir === 'string') {
-    dir = [dir];
-  }
-  let exportString = `'use strict';${EOL}`;
-  dir.forEach((dirname) => {
-    const fns = fs.readdirSync(resolve(dirname));
-    fns.forEach((file) => {
-      file = file.slice(0, -3);
-      exportString += `exports.${file} = require('./${dir}/${file}');${EOL}`;
-    });
+async function createFile(files, parent, dest) {
+  let importString = '';
+  let exportString = `export default {${EOL}`;
+  files.forEach((file) => {
+    const name = file.slice(0, -3);
+    importString += `import ${name} from '.${parent}/${file}';${EOL}`;
+    exportString += `  ${name},${EOL}`;
   });
-  dest = resolve(dest);
-  fs.writeFile(dest, exportString, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(chalk.green('%s %s'), path.relative(process.cwd(), dest), getSize(exportString));
-    }
+  exportString = `${exportString.slice(0, -2)}${EOL}};${EOL}`;
+  await writeFileify(dest, importString + exportString).then(() => {
+    console.log(chalk.green('%s %s'), relative(process.cwd(), dest), getSize(exportString));
+  }, (err) => {
+    console.log(err);
   });
 }
 
-dir2file('utils', 'utils.js');
+async function createIndex(srcDir) {
+  const files = readdirSync(srcDir);
+  const promises = files
+    .filter(file => file.lastIndexOf('.js') === -1 && file.indexOf('_'))
+    .map(dir => createFile(readdirSync(join(srcDir, dir)), `/${dir}`, join(srcDir, `${dir}.js`)));
+  await Promise.all(promises);
+
+  const jses = files.filter(file => file !== 'index.js' && file.lastIndexOf('.js') > 0);
+  await createFile(jses, '', join(srcDir, 'index.js'));
+}
+
+createIndex(resolve('src'));
