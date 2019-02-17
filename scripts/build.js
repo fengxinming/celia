@@ -5,8 +5,8 @@ const util = require('util');
 const rollup = require('rollup');
 const zlib = require('zlib');
 const rimraf = require('rimraf');
-const { exec } = require('child_process');
 const { getConsole } = require('corie-logger');
+const cp = require('./cp');
 
 let builds = require('./config').getAllBuilds();
 const { resolve } = require('./config/_util');
@@ -48,6 +48,7 @@ async function buildSrc(config) {
 async function build(builds) {
   rimraf.sync(resolve('dist/**'));
   rimraf.sync(resolve('legacy/**'));
+  cp();
   const total = builds.length;
   for (let i = 0; i < total; i++) {
     try {
@@ -57,8 +58,6 @@ async function build(builds) {
       break;
     }
   }
-  copyFile(`cp ${resolve('package.json')} ${resolve('dist/package.json')}`);
-  copyFile(`cp -r ${resolve('src/')} ${resolve('dist/src/')}`);
 }
 
 build(builds);
@@ -71,15 +70,4 @@ async function print(file, code, isProd) {
 
 function getSize(code) {
   return (code.length / 1024).toFixed(2) + 'kb';
-}
-
-function copyFile(command) {
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      logger.error(error);
-      throw error;
-    }
-    logger.info(stdout);
-    logger.warn(stderr);
-  });
 }
