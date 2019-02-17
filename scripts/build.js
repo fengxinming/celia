@@ -1,16 +1,18 @@
 'use strict';
 
 const path = require('path');
-const fs = require('fs');
 const util = require('util');
 const rollup = require('rollup');
 const zlib = require('zlib');
-const chalk = require('chalk');
 const rimraf = require('rimraf');
-
-const gzip = util.promisify(zlib.gzip);
+const { exec } = require('child_process');
+const { getConsole } = require('corie-logger');
 
 let builds = require('./config').getAllBuilds();
+const { resolve } = require('./config/_util');
+
+const gzip = util.promisify(zlib.gzip);
+const logger = getConsole('celia');
 
 if (process.argv[2]) {
   const filters = process.argv[2].split(',');
@@ -44,39 +46,40 @@ async function buildSrc(config) {
 }
 
 async function build(builds) {
-  rimraf.sync(path.join(process.cwd(), 'dist/**'));
-  rimraf.sync(path.join(process.cwd(), 'legacy/**'));
+  rimraf.sync(resolve('dist/**'));
+  rimraf.sync(resolve('legacy/**'));
   const total = builds.length;
   for (let i = 0; i < total; i++) {
     try {
       await buildSrc(builds[i]);
     } catch (e) {
-      logError(e);
+      logger.error(e);
       break;
     }
   }
-  const distDir = path.join(__dirname, '..', 'dist');
-  if (!fs.existsSync(distDir)) {
-    fs.mkdirSync(distDir);
-  }
-  fs.copyFileSync(
-    path.join(__dirname, '..', 'package.json'),
-    path.join(__dirname, '..', 'dist', 'package.json')
-  );
+  copyFile(`cp ${resolve('package.json')} ${resolve('dist/package.json')}`);
+  copyFile(`cp -r ${resolve('src/')} ${resolve('dist/src/')}`);
 }
 
 build(builds);
 
 async function print(file, code, isProd) {
   const zipped = await gzip(code);
-  const extra = isProd ? ` (gzipped: ${getSize(zipped)})` : '';
-  console.log(chalk.green('%s %s%s'), path.relative(process.cwd(), file), getSize(code), extra || '');
+  const extra = isProd ? `(gzipped: ${getSize(zipped)})` : '';
+  logger.info(path.relative(process.cwd(), file), getSize(code), extra || '');
 }
 
 function getSize(code) {
   return (code.length / 1024).toFixed(2) + 'kb';
 }
 
-function logError(e) {
-  console.log(chalk.red(e));
+function copyFile(command) {
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      logger.error(error);
+      throw error;
+    }
+    logger.info(stdout);
+    logger.warn(stderr);
+  });
 }

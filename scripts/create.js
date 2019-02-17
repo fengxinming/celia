@@ -4,9 +4,10 @@ const { EOL } = require('os');
 const { promisify } = require('util');
 const { writeFile, readdirSync } = require('fs');
 const { relative, join } = require('path');
-const chalk = require('chalk');
 const { resolve } = require('./config/_util');
+const { getConsole } = require('corie-logger');
 
+const logger = getConsole('celia');
 const writeFileify = promisify(writeFile);
 
 function getSize(code) {
@@ -23,7 +24,7 @@ async function createFile(files, parent, dest) {
   });
   exportString = `${exportString.slice(0, -2)}${EOL}};${EOL}`;
   await writeFileify(dest, importString + exportString).then(() => {
-    console.log(chalk.green('%s %s'), relative(process.cwd(), dest), getSize(exportString));
+    logger.info(relative(process.cwd(), dest), getSize(exportString));
   }, (err) => {
     console.log(err);
   });
