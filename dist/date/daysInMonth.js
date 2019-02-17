@@ -6,7 +6,7 @@
 'use strict';
 
 require('./isLeapYear.js');
-var __chunk_2 = require('./chunk-3a10f6a8.js');
+var __chunk_2 = require('./chunk-3a6d201e.js');
 
 function daysInMonth (date) {
   return __chunk_2.daysInYear(date)[date.getMonth()];

@@ -5,7 +5,7 @@
  */
 'use strict';
 
-var __chunk_5 = require('./chunk-77777e75.js');
+var __chunk_5 = require('./chunk-2a5631bb.js');
 
 function camelCase (value) {
   return value.replace(__chunk_5.DASH_ALPHA_REGEX, function (val, letter) {

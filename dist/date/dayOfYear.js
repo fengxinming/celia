@@ -6,9 +6,9 @@
 'use strict';
 
 require('./isLeapYear.js');
-var __chunk_2 = require('./chunk-3a10f6a8.js');
-var __chunk_5 = require('./chunk-e9478a8f.js');
-var __chunk_6 = require('./chunk-404b929f.js');
+var __chunk_2 = require('./chunk-3a6d201e.js');
+var __chunk_5 = require('./chunk-deaeaac8.js');
+var __chunk_6 = require('./chunk-e2de1293.js');
 
 function dayOfYear (date, val) {
   var arr = __chunk_2.daysInYear(date);
