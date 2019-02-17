@@ -1,14 +1,15 @@
 'use strict';
 
-const { resolve, DIST_FILENAME } = require('./_util');
+const { matches } = require('corie-utils');
+const { resolve } = require('./_util');
 
 function configure(input, output) {
   return {
     inputOptions: {
-      input: resolve(input)
+      input: matches(resolve(input))
     },
     outputOptions: {
-      file: resolve(output),
+      dir: resolve(output),
       format: 'cjs',
       legacy: false,
       esModule: false
@@ -17,5 +18,7 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('src/index.js', `dist/${DIST_FILENAME}.common.js`)
+  configure('src/*.js', 'dist'),
+  configure('src/date/*.js', 'dist/date'),
+  configure('src/array/*.js', 'dist/array')
 ];

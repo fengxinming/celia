@@ -10,6 +10,13 @@
 
 ```bash
 
+// es6
+import celia from 'celia/src';
 
+// node
+const celia = require('celia');
+
+// modularity
+const isDate = require('celia/dist/isDate');
 
 ```

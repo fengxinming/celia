@@ -5,243 +5,17 @@
  */
 'use strict';
 
-function isLeapYear (date) {
-  var year = date.getFullYear();
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
-
-var toString = Object.prototype.toString;
-
-function newIterator(iterator, context) {
-  return context ? iterator.bind(context) : iterator;
-}
-function getRawType(value) {
-  return toString.call(value);
-}
-var arr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-var arr2 = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-function daysInYear(date) {
-  return isLeapYear(date) ? arr2 : arr;
-}
-
-function forEach (value, iterator, context) {
-  var cb = newIterator(iterator, context);
-  for (var i = 0, len = value.length, returnValue = (void 0); returnValue !== false && i < len; i++) {
-    returnValue = cb(value[i], i, value);
-  }
-}
-
-function forEach$1 (value, iterator, context) {
-  return value && forEach(value, iterator, context);
-}
-
-function grep (elems, callback, invert) {
-  var matches = [];
-  var i = 0;
-  var length = elems.length;
-  var isOpposite = !invert; // 是否取反向结果
-
-  for (; i < length; i++) {
-    if (!callback(elems[i], i) !== isOpposite) {
-      matches.push(elems[i]);
-    }
-  }
-  return matches;
-}
-
-function inArray (elem, arr, fromIndex) {
-  if (arr) {
-    if (arr.indexOf) {
-      return arr.indexOf(elem, fromIndex);
-    }
-    var len = arr.length;
-    var i = fromIndex ? fromIndex < 0 ? Math.max(0, len + fromIndex) : fromIndex : 0;
-    for (; i < len; i++) {
-      if (i in arr && arr[i] === elem) {
-        return i;
-      }
-    }
-  }
-  return -1;
-}
-
-function includes (elems, value) {
-  return inArray(value, elems) !== -1;
-}
-
-function isNumber (value) {
-  return typeof value === 'number';
-}
-
-function isUndefined (value) {
-  return typeof value === 'undefined';
-}
-
-function merge (first, second) {
-  var len = +second.length;
-  var j = 0;
-  var i = first.length;
-  // 处理ArrayLike,例如:NodeLists
-  if (isNumber(len)) {
-    while (j < len) {
-      first[i++] = second[j++];
-    }
-  } else {
-    while (!isUndefined(second[j])) {
-      first[i++] = second[j++];
-    }
-  }
-  first.length = i;
-  return first;
-}
-
-function isNil (value) {
-  /* eslint eqeqeq: 0 */
-  return value == null;
-}
-
-function isFunction (value) {
-  return typeof value === 'function';
-}
-
-var isArray = Array.isArray;
-
-function isArrayLike (value) {
-  if (isNil(value) || isFunction(value)) {
-    return false;
-  }
-  var length = value.length;
-  return isArray(value) || length === 0 || (+length > 0 && (length - 1) in value);
-}
-
-function isString (value) {
-  return typeof value === 'string';
-}
-
-var ref = Array.prototype;
-var push = ref.push;
-
-function makeArray (arr, results) {
-  var ret = results || [];
-  if (arr) {
-    if (isArrayLike(Object(arr))) {
-      merge(ret, isString(arr) ? [arr] : arr);
-    } else {
-      push.call(ret, arr);
-    }
-  }
-  return ret;
-}
-
-function forIn (value, iterator, context) {
-  var cb = newIterator(iterator, context);
-  for (var key in value) {
-    if (cb(value[key], key, value) === false) {
-      break;
-    }  }
-}
-
-function forNumber (value, iterator, context) {
-  var cb = newIterator(iterator, context);
-  for (var i = 0, returnValue = (void 0); returnValue !== false && i < value; i++) {
-    returnValue = cb(i, i, i);
-  }
-}
-
-function each (arr, cb, context) {
-  if (arr) {
-    if (isArrayLike(arr)) {
-      forEach(arr, cb, context);
-    } else if (isNumber(arr)) {
-      forNumber(arr, cb, context);
-    } else {
-      forIn(arr, cb, context);
-    }
-  }
-}
-
-function map (elems, callback, context) {
-  var ret = [];
-  var cb = newIterator(callback, context);
-  each(elems, function (elem) {
-    elem = cb(elem);
-    if (!isNil(elem)) {
-      ret[ret.length] = elem;
-    }
-  });
-  return ret;
-}
-
-function remove (elems, value) {
-  var index = inArray(value, elems);
-  if (index >= 0) {
-    elems.splice(index, 1);
-  }
-  return value;
-}
-
-function toArray (arrLike) {
-  return arrLike && [].concat( arrLike );
-  // return arrLike && slice.call(arrLike, 0);
-}
-
-var array = {
-  forEach: forEach$1,
-  grep: grep,
-  inArray: inArray,
-  includes: includes,
-  makeArray: makeArray,
-  map: map,
-  merge: merge,
-  remove: remove,
-  toArray: toArray
-};
-
-var ASP_NET_JSON_REGEX = /^\/?Date\((-?\d+)/i;
-
-var BASIC_ISO_REGEX = /^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)\s*([+-]\d\d(?::?\d\d)?|\s*Z)?)?$/;
-
-var DATES_REGEX = [
-  ['YYYY-MM-DD', /(\d{4})-(\d\d)-(\d\d)/],
-  ['YYYY-MM', /(\d{4})-(\d\d)/, false],
-  // ['MM/DD/YYYY', /(\d\d)\/(\d\d)\/(\d{4})/],
-  ['YYYYMMDD', /(\d{4})(\d\d)(\d\d)/],
-  ['YYYYMM', /(\d{4})(\d\d)/, false],
-  ['YYYY', /\d{4}/, false]
-];
-
-var EXTENDED_ISO_REGEX = /^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)\s*([+-]\d\d(?::?\d\d)?|\s*Z)?)?$/;
-
-// export const COMPAT_NON_ISO_REGEX = /^\s*((?:\d\d[-/]\d\d|W\d\d[-/]\d|W\d\d|\d\d\d|\d\d)[-/](?:\d{6}|\d{4}))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)\s*([+-]\d\d(?::?\d\d)?|\s*Z)?)?$/;
-
-var FORMAT_REGEX = /\[.*?\]|Y{2,4}|y{2,4}|M{1,2}|D{1,2}|d{1,2}|H{1,2}|h{1,2}|m{1,2}|s{1,2}|SSS|Z{1,2}/g;
-
-var TIMES_REGEX = [
-  ['HH:mm:ss.SSSS', /(\d\d):(\d\d):(\d\d)\.(\d+)/],
-  ['HH:mm:ss,SSSS', /(\d\d):(\d\d):(\d\d),(\d+)/],
-  ['HH:mm:ss', /(\d\d):(\d\d):(\d\d)/],
-  ['HH:mm', /(\d\d):(\d\d)/],
-  ['HHmmss.SSSS', /(\d\d)(\d\d)(\d\d)\.(\d+)/],
-  ['HHmmss,SSSS', /(\d\d)(\d\d)(\d\d),(\d+)/],
-  ['HHmmss', /(\d\d)(\d\d)(\d\d)/],
-  ['HHmm', /(\d\d)(\d\d)/],
-  ['HH', /\d\d/]
-];
-
-var TZ_REGEX = /(Z)|[+-](\d\d)(?::?(\d\d))?/;
-
-var DASH_ALPHA_REGEX = /-([a-z])/g;
-
-function camelCase (value) {
-  return value.replace(DASH_ALPHA_REGEX, function (val, letter) {
-    return letter.toUpperCase();
-  });
-}
-
-function isObject (value) {
-  return !isNil(value) && typeof value === 'object';
-}
+var __chunk_1 = require('./chunk-f7046d4d.js');
+var __chunk_2 = require('./chunk-45a38186.js');
+var isNumber = require('./isNumber.js');
+var isUndefined = require('./isUndefined.js');
+var isNil = require('./isNil.js');
+var isString = require('./isString.js');
+var __chunk_3 = require('./chunk-5ca5f7da.js');
+var __chunk_4 = require('./chunk-a45738ca.js');
+var __chunk_5 = require('./chunk-77777e75.js');
+var isObject = require('./isObject.js');
+var isDate = require('./isDate.js');
 
 /**
  * 将数组解析成date
@@ -291,7 +65,7 @@ var UNIT = ({
 });
 
 var UNITS = {};
-forIn(UNIT, function (val) {
+__chunk_3.forIn(UNIT, function (val) {
   UNITS[val] = UNITS[val.slice(0, -1)] = UNITS[val.slice(0, 1)] = val;
 });
 UNITS.M = MONTH;
@@ -327,7 +101,7 @@ function add (date, num, units) {
     date.getMilliseconds()
   ];
   if (isObject(num)) {
-    forIn(num, function (val, key) {
+    __chunk_3.forIn(num, function (val, key) {
       var index = getIndex(key);
       arr[index] += val;
     });
@@ -344,10 +118,10 @@ function clone (date) {
 }
 
 function dayOfYear (date, val) {
-  var arr = daysInYear(date);
+  var arr = __chunk_1.daysInYear(date);
   var month = date.getMonth();
   var count = 0;
-  forNumber(month, function (i) {
+  __chunk_4.forNumber(month, function (i) {
     count += arr[i];
   });
   count += date.getDate();
@@ -360,14 +134,10 @@ function dayOfYear (date, val) {
 }
 
 function daysInMonth (date) {
-  return daysInYear(date)[date.getMonth()];
+  return __chunk_1.daysInYear(date)[date.getMonth()];
 }
 
 var TIMEZONE_OFFSET = (new Date()).getTimezoneOffset();
-
-function isDate (value) {
-  return getRawType(value) === '[object Date]';
-}
 
 /**
  * 智能提取年月日时分秒
@@ -376,12 +146,12 @@ function isDate (value) {
 function extractFrom(input) {
   var allowTime, matches;
   var dateArr = [];
-  var match = EXTENDED_ISO_REGEX.exec(input) || BASIC_ISO_REGEX.exec(input);
+  var match = __chunk_5.EXTENDED_ISO_REGEX.exec(input) || __chunk_5.BASIC_ISO_REGEX.exec(input);
   if (match) {
     // 解析YYYY-MM-DD
-    forEach(DATES_REGEX, function (item, i) {
+    __chunk_2.forEach(__chunk_5.DATES_REGEX, function (item, i) {
       if ((matches = item[1].exec(match[1]))) {
-        forNumber(3, function (i) {
+        __chunk_4.forNumber(3, function (i) {
           dateArr[i] = parseInt(matches[i + 1] || 1, 10);
         });
         dateArr[1] -= 1;
@@ -398,7 +168,7 @@ function extractFrom(input) {
     // 解析hh:mm:ss
     matches = null;
     if (match[3]) {
-      forEach(TIMES_REGEX, function (item) {
+      __chunk_2.forEach(__chunk_5.TIMES_REGEX, function (item) {
         if ((matches = item[1].exec(match[3]))) {
           dateArr = dateArr.concat(matches.slice(1).map(function (n) { return parseInt(n, 10); }));
           return false;
@@ -414,7 +184,7 @@ function extractFrom(input) {
     matches = null;
     // 时区问题
     if (match[4]) {
-      matches = TZ_REGEX.exec(match[4]);
+      matches = __chunk_5.TZ_REGEX.exec(match[4]);
       // 时区
       var offset = TIMEZONE_OFFSET;
       // 匹配到+08:00
@@ -428,7 +198,7 @@ function extractFrom(input) {
     return dateArr;
   } else {
     // 再试一次
-    if (input.length === 4 && DATES_REGEX[4][1].test(input)) {
+    if (input.length === 4 && __chunk_5.DATES_REGEX[4][1].test(input)) {
       dateArr = [parseInt(input, 10), 0, 1];
       dateArr.isUTC = true;
       return dateArr;
@@ -446,7 +216,7 @@ function parseFromFormat(input, format) {
   var len = format.length;
   var arr = [];
   var isUTC = false;
-  forNumber(len, function (i) {
+  __chunk_4.forNumber(len, function (i) {
     var ii = input.charAt(i);
     switch (format.charAt(i)) {
       case 'Y':
@@ -483,7 +253,7 @@ function parseFromFormat(input, format) {
   if (isUTC) {
     var matches;
     // 解析秒后面的时区
-    if ((matches = TZ_REGEX.exec(input.slice(format.indexOf('ZZ') > -1 ? -5 : -6)))) {
+    if ((matches = __chunk_5.TZ_REGEX.exec(input.slice(format.indexOf('ZZ') > -1 ? -5 : -6)))) {
       // 时区
       var offset = TIMEZONE_OFFSET;
       // 匹配到类似+08:00
@@ -526,7 +296,7 @@ function parseStringOrArray(input, format, isUTC) {
   } else {
     return parseArray(input, format === true);
   }
-  var matched = ASP_NET_JSON_REGEX.exec(input);
+  var matched = __chunk_5.ASP_NET_JSON_REGEX.exec(input);
   return new Date(matched !== null ? +matched[1] : input);
 }
 
@@ -660,7 +430,7 @@ function format (date, inputString) {
   if (!inputString) {
     return date.toISOString();
   }
-  return inputString.replace(FORMAT_REGEX, function (matched) {
+  return inputString.replace(__chunk_5.FORMAT_REGEX, function (matched) {
     switch (matched) {
       case 'YY':
         return String(date.getFullYear()).slice(-2);
@@ -777,7 +547,7 @@ var date = {
   isAfter: isAfter,
   isBefore: isBefore,
   isBetween: isBetween,
-  isLeapYear: isLeapYear,
+  isLeapYear: __chunk_1.isLeapYear,
   isSame: isSame,
   isSameOrAfter: isSameOrAfter,
   isSameOrBefore: isSameOrBefore,
@@ -787,57 +557,4 @@ var date = {
   subtract: subtract
 };
 
-function forIn$1 (value, iterator, context) {
-  return value && forIn(value, iterator, context);
-}
-
-function forNumber$1 (value, iterator, context) {
-  return value && forNumber(value, iterator, context);
-}
-
-function isAsyncFunction (value) {
-  return getRawType(value) === '[object AsyncFunction]';
-}
-
-function isBoolean (value) {
-  return typeof value === 'boolean';
-}
-
-function isPromiseLike (value) {
-  return value && isFunction(value.then);
-}
-
-var RAW_DATA_TYPES = {};
-'Boolean,Number,String,Function,Array,Date,RegExp,Object,Error,Symbol'.split(',').forEach(function (name) {
-  RAW_DATA_TYPES[("[object " + name + "]")] = name.toLowerCase();
-});
-
-function type (value) {
-  if (isNil(value)) {
-    return value + '';
-  }
-  return (isObject(value) || isFunction(value)) ? (RAW_DATA_TYPES[getRawType(value)] || 'object') : typeof value;
-}
-
-var index = {
-  array: array,
-  camelCase: camelCase,
-  date: date,
-  each: each,
-  forIn: forIn$1,
-  forNumber: forNumber$1,
-  isArrayLike: isArrayLike,
-  isAsyncFunction: isAsyncFunction,
-  isBoolean: isBoolean,
-  isDate: isDate,
-  isFunction: isFunction,
-  isNil: isNil,
-  isNumber: isNumber,
-  isObject: isObject,
-  isPromiseLike: isPromiseLike,
-  isString: isString,
-  isUndefined: isUndefined,
-  type: type
-};
-
-module.exports = index;
+module.exports = date;
