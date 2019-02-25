@@ -1,5 +1,5 @@
-import parse from '../src/date/parse';
-import format from '../src/date/format';
+import parse from '../../src/date/parse';
+import format from '../../src/date/format';
 import moment from 'moment';
 
 it('测试 parse 方法', () => {
