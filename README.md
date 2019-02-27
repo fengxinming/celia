@@ -118,7 +118,7 @@ const isDate = require('celia/isDate');
   - renamed `merge` to `join`
   - modularity `remove` will return null when anything can be removed
 
-### 2.1.0
+### 2.1.0-0
 
   - added api
     - dom/after

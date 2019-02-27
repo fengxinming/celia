@@ -1,6 +1,6 @@
 /*!
- * celia.js v2.0.1
+ * celia.js v2.1.0-0
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
-"use strict";require("./chunk-efa63cae.js"),require("./add.js"),require("./chunk-ad3cda5b.js"),require("./chunk-92d3ccdf.js"),require("./chunk-cd54bf0a.js"),require("./clone.js"),require("./chunk-da58865f.js"),require("./chunk-24d9c897.js"),require("./chunk-804c5eff.js"),require("./parse.js"),require("./startOf.js"),require("./endOf.js"),require("./chunk-ca1471ed.js");var isBefore=require("./isBefore.js");function isSameOrAfter(e,r,u){return!isBefore(e,r,u)}module.exports=isSameOrAfter;
+"use strict";require("./chunk-78a5d470.js"),require("./add.js"),require("./chunk-9356120a.js"),require("./chunk-1af9fb56.js"),require("./chunk-55ad1914.js"),require("./clone.js"),require("./chunk-d25e655c.js"),require("./chunk-d01286bf.js"),require("./chunk-3705080c.js"),require("./parse.js"),require("./startOf.js"),require("./endOf.js"),require("./chunk-2a4b214f.js");var isBefore=require("./isBefore.js");function isSameOrAfter(e,r,u){return!isBefore(e,r,u)}module.exports=isSameOrAfter;
