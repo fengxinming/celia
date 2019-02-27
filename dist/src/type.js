@@ -1,4 +1,4 @@
-import { getRawType } from './_internal/func';
+import toString from './_internal/_toString';
 import isNil from './isNil';
 import isObject from './isObject';
 import isFunction from './isFunction';
@@ -12,5 +12,5 @@ export default function (value) {
   if (isNil(value)) {
     return value + '';
   }
-  return (isObject(value) || isFunction(value)) ? (RAW_DATA_TYPES[getRawType(value)] || 'object') : typeof value;
+  return (isObject(value) || isFunction(value)) ? (RAW_DATA_TYPES[toString(value)] || 'object') : typeof value;
 };

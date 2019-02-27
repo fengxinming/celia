@@ -5,12 +5,12 @@ import {
   TIMES_REGEX,
   ASP_NET_JSON_REGEX,
   TZ_REGEX
-} from '../_internal/REGEX';
-import { TIMEZONE_OFFSET } from '../_internal/constants';
-import parseArray from '../_internal/parseArray';
+} from '../_internal/_dateRegex';
+import { TIMEZONE_OFFSET } from '../_internal/_dateConsts';
+import parseArray from '../_internal/_parseArray';
 import isString from '../isString';
-import forEach from '../_internal/forEach';
-import forNumber from '../_internal/forNumber';
+import forEach from '../_internal/_forEach';
+import forNumber from '../_internal/_forNumber';
 import isNil from '../isNil';
 import isNumber from '../isNumber';
 import isDate from '../isDate';

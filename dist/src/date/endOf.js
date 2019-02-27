@@ -1,5 +1,5 @@
-import normalizeUnit from '../_internal/normalizeUnit';
-import { MILLISECOND } from '../_internal/UNIT';
+import normalizeUnit from '../_internal/_normalizeUnit';
+import { MILLISECOND } from '../_internal/_dateConsts';
 import startOf from './startOf';
 import add from './add';
 

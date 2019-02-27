@@ -2,7 +2,7 @@ import isSameOrAfter from '../../src/date/isSameOrAfter';
 import moment from 'moment';
 import {
   DAY
-} from '../../src/_internal/UNIT';
+} from '../../src/_internal/_dateConsts';
 
 it('测试 isSameOrAfter 方法', () => {
   const date1 = new Date();

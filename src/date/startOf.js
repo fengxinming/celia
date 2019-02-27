@@ -1,4 +1,4 @@
-import normalizeUnit from '../_internal/normalizeUnit';
+import normalizeUnit from '../_internal/_normalizeUnit';
 import {
   YEAR,
   MONTH,
@@ -6,7 +6,7 @@ import {
   HOUR,
   MINUTE,
   SECOND
-} from '../_internal/UNIT';
+} from '../_internal/_dateConsts';
 
 export default function (date, units) {
   units = normalizeUnit(units);

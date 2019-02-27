@@ -1,7 +1,6 @@
-import array from './array.js';
 import camelCase from './camelCase.js';
-import date from './date.js';
 import each from './each.js';
+import forEach from './forEach.js';
 import forIn from './forIn.js';
 import forNumber from './forNumber.js';
 import isArrayLike from './isArrayLike.js';
@@ -17,10 +16,9 @@ import isString from './isString.js';
 import isUndefined from './isUndefined.js';
 import type from './type.js';
 export default {
-  array,
   camelCase,
-  date,
   each,
+  forEach,
   forIn,
   forNumber,
   isArrayLike,

@@ -1,12 +1,6 @@
 /*!
- * celia.js v2.0.0
+ * celia.js v2.0.1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
-'use strict';
-
-function isUndefined (value) {
-  return typeof value === 'undefined';
-}
-
-module.exports = isUndefined;
+"use strict";function isUndefined(e){return void 0===e}module.exports=isUndefined;

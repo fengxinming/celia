@@ -1,16 +1,6 @@
 /*!
- * celia.js v2.0.0
+ * celia.js v2.0.1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
-'use strict';
-
-var __chunk_5 = require('./chunk-2a5631bb.js');
-
-function camelCase (value) {
-  return value.replace(__chunk_5.DASH_ALPHA_REGEX, function (val, letter) {
-    return letter.toUpperCase();
-  });
-}
-
-module.exports = camelCase;
+"use strict";var DASH_ALPHA_REGEX=/-([a-z])/g;function camelCase(e){return e.replace(DASH_ALPHA_REGEX,function(e,r){return r.toUpperCase()})}module.exports=camelCase;

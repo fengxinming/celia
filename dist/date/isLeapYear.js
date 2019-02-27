@@ -1,13 +1,6 @@
 /*!
- * celia.js v2.0.0
+ * celia.js v2.0.1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
-'use strict';
-
-function isLeapYear (date) {
-  var year = date.getFullYear();
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
-
-module.exports = isLeapYear;
+"use strict";function isLeapYear(e){var r=e.getFullYear();return r%4==0&&r%100!=0||r%400==0}module.exports=isLeapYear;

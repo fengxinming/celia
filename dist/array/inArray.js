@@ -1,24 +1,6 @@
 /*!
- * celia.js v2.0.0
+ * celia.js v2.0.1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
-'use strict';
-
-function inArray (elem, arr, fromIndex) {
-  if (arr) {
-    if (arr.indexOf) {
-      return arr.indexOf(elem, fromIndex);
-    }
-    var len = arr.length;
-    var i = fromIndex ? fromIndex < 0 ? Math.max(0, len + fromIndex) : fromIndex : 0;
-    for (; i < len; i++) {
-      if (i in arr && arr[i] === elem) {
-        return i;
-      }
-    }
-  }
-  return -1;
-}
-
-module.exports = inArray;
+"use strict";function inArray(r,n,i){if(n){if(n.indexOf)return n.indexOf(r,i);for(var e=n.length,t=i?i<0?Math.max(0,e+i):i:0;t<e;t++)if(t in n&&n[t]===r)return t}return-1}module.exports=inArray;

@@ -1,25 +1,6 @@
 /*!
- * celia.js v2.0.0
+ * celia.js v2.0.1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
-'use strict';
-
-var __chunk_1 = require('./chunk-bdd0d3b2.js');
-var isNil = require('./isNil.js');
-var isFunction = require('./isFunction.js');
-var isObject = require('./isObject.js');
-
-var RAW_DATA_TYPES = {};
-'Boolean,Number,String,Function,Array,Date,RegExp,Object,Error,Symbol'.split(',').forEach(function (name) {
-  RAW_DATA_TYPES[("[object " + name + "]")] = name.toLowerCase();
-});
-
-function type (value) {
-  if (isNil(value)) {
-    return value + '';
-  }
-  return (isObject(value) || isFunction(value)) ? (RAW_DATA_TYPES[__chunk_1.getRawType(value)] || 'object') : typeof value;
-}
-
-module.exports = type;
+"use strict";var isNil=require("./isNil.js"),isFunction=require("./isFunction.js"),isObject=require("./isObject.js"),__chunk_6=require("./chunk-00205651.js"),RAW_DATA_TYPES={};function type(e){return isNil(e)?e+"":isObject(e)||isFunction(e)?RAW_DATA_TYPES[__chunk_6.toString(e)]||"object":typeof e}"Boolean,Number,String,Function,Array,Date,RegExp,Object,Error,Symbol".split(",").forEach(function(e){RAW_DATA_TYPES["[object "+e+"]"]=e.toLowerCase()}),module.exports=type;

@@ -1,10 +1,11 @@
 'use strict';
 
 const { matches } = require('corie-utils');
-const { resolve } = require('./_util');
+const { resolve, sourceDir } = require('./_util');
 
 function configure(input, output) {
   return {
+    compress: true,
     inputOptions: {
       input: matches(resolve(input))
     },
@@ -18,7 +19,5 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('src/*.js', 'dist'),
-  configure('src/date/*.js', 'dist/date'),
-  configure('src/array/*.js', 'dist/array')
-];
+  configure('src/*.js', 'dist')
+].concat(sourceDir.map(dirname => configure(`src/${dirname}/*.js`, `dist/${dirname}`)));

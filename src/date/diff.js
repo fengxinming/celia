@@ -1,7 +1,7 @@
 import parse from './parse';
 import add from './add';
 import clone from './clone';
-import normalizeUnit from '../_internal/normalizeUnit';
+import normalizeUnit from '../_internal/_normalizeUnit';
 import {
   YEAR,
   MONTH,
@@ -9,7 +9,7 @@ import {
   HOUR,
   MINUTE,
   SECOND
-} from '../_internal/UNIT';
+} from '../_internal/_dateConsts';
 
 function monthDiff(a, b) {
   const wholeMonthDiff = ((b.getFullYear() - a.getFullYear()) * 12) + (b.getMonth() - a.getMonth());

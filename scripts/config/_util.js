@@ -1,5 +1,6 @@
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 const buble = require('rollup-plugin-buble');
 const alias = require('rollup-plugin-alias');
@@ -24,13 +25,17 @@ const resolve = exports.resolve = p => path.resolve(__dirname, '..', '..', p);
 
 const DIST_FILENAME = exports.DIST_FILENAME = 'celia';
 
+exports.sourceDir = fs
+  .readdirSync(resolve('src'))
+  .filter(file => file.indexOf('_') && file.lastIndexOf('.js') === -1);
+
 exports.genConfig = function (name, opts) {
   const {
     inputOptions,
     outputOptions,
     aliases,
     replaceAll,
-    isProd = false
+    compress = false
   } = opts;
   inputOptions.plugins = [
     replace(Object.assign({
@@ -47,7 +52,7 @@ exports.genConfig = function (name, opts) {
       main: true
     }),
     cjs(),
-    isProd && uglify({
+    compress && uglify({
       output: {
         ascii_only: true,
         preamble: banner

@@ -1,3 +1,4 @@
+import append from './array/append.js';
 import forEach from './array/forEach.js';
 import grep from './array/grep.js';
 import inArray from './array/inArray.js';
@@ -9,6 +10,7 @@ import remove from './array/remove.js';
 import removeAt from './array/removeAt.js';
 import toArray from './array/toArray.js';
 export default {
+  append,
   forEach,
   grep,
   inArray,

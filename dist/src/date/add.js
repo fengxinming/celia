@@ -1,7 +1,7 @@
 import isObject from '../isObject';
-import forIn from '../_internal/forIn';
-import parseArray from '../_internal/parseArray';
-import normalizeUnit from '../_internal/normalizeUnit';
+import forIn from '../_internal/_forIn';
+import parseArray from '../_internal/_parseArray';
+import normalizeUnit from '../_internal/_normalizeUnit';
 import {
   YEAR,
   MONTH,
@@ -10,7 +10,7 @@ import {
   MINUTE,
   SECOND,
   MILLISECOND
-} from '../_internal/UNIT';
+} from '../_internal/_dateConsts';
 
 const indexOfUnits = {
   [YEAR]: 0,

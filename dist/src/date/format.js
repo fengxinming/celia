@@ -1,4 +1,4 @@
-import { FORMAT_REGEX } from '../_internal/REGEX';
+import { FORMAT_REGEX } from '../_internal/_dateRegex';
 
 function padLeft(val, len = 2) {
   return `000000${val}`.slice(-len);

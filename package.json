@@ -4,8 +4,7 @@
   "description": "A modern JavaScript utility library delivering modularity, performance, & extras.",
   "main": "./index.js",
   "scripts": {
-    "create": "NODE_ENV=production node ./scripts/create.js",
-    "build": "npm run create && node ./scripts/build.js",
+    "build": "node ./scripts/build.js",
     "test": "jest --detectOpenHandles --config jest.config.js",
     "dev": "NODE_ENV=development node ./scripts/watch.js"
   },
@@ -52,6 +51,7 @@
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-uglify": "^6.0.2",
+    "uglify-js": "^3.4.9",
     "zlib": "^1.0.5"
   }
 }

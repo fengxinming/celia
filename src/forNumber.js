@@ -1,4 +1,4 @@
-import forNumber from './_internal/forNumber';
+import forNumber from './_internal/_forNumber';
 
 export default function (value, iterator, context) {
   return value && forNumber(value, iterator, context);

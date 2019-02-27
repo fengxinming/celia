@@ -1,12 +1,14 @@
-export default function (elems, callback, invert) {
+export default function (elems, callback, isOpposite) {
   let matches = [];
-  let i = 0;
-  const length = elems.length;
-  const isOpposite = !invert; // 是否取反向结果
+  if (elems) {
+    let i = 0;
+    const length = elems.length;
+    isOpposite = !!isOpposite;
 
-  for (; i < length; i++) {
-    if (!callback(elems[i], i) !== isOpposite) {
-      matches.push(elems[i]);
+    for (; i < length; i++) {
+      if (!callback(elems[i], i) === isOpposite) {
+        matches[matches.length] = elems[i];
+      }
     }
   }
   return matches;

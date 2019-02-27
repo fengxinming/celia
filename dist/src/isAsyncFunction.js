@@ -1,5 +1,5 @@
-import { getRawType } from './_internal/func';
+import toString from './_internal/_toString';
 
 export default function (value) {
-  return getRawType(value) === '[object AsyncFunction]';
+  return toString(value) === '[object AsyncFunction]';
 }

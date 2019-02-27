@@ -12,8 +12,8 @@ function copyFile(command) {
       logger.error(error);
       throw error;
     }
-    logger.info(stdout);
-    logger.warn(stderr);
+    stdout && logger.info(stdout);
+    stderr && logger.warn(stderr);
   });
 }
 

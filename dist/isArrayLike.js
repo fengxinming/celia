@@ -1,21 +1,6 @@
 /*!
- * celia.js v2.0.0
+ * celia.js v2.0.1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
-'use strict';
-
-var isNil = require('./isNil.js');
-var isFunction = require('./isFunction.js');
-
-var isArray = Array.isArray;
-
-function isArrayLike (value) {
-  if (isNil(value) || isFunction(value)) {
-    return false;
-  }
-  var length = value.length;
-  return isArray(value) || length === 0 || (+length > 0 && (length - 1) in value);
-}
-
-module.exports = isArrayLike;
+"use strict";var isNil=require("./isNil.js"),isFunction=require("./isFunction.js"),isArray=Array.isArray;function isArrayLike(i){if(isNil(i)||isFunction(i))return!1;var r=i.length;return isArray(i)||0===r||0<+r&&r-1 in i}module.exports=isArrayLike;

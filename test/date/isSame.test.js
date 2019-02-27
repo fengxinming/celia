@@ -4,7 +4,7 @@ import {
   YEAR,
   MONTH,
   DAY
-} from '../../src/_internal/UNIT';
+} from '../../src/_internal/_dateConsts';
 
 it('测试 isSame 方法', () => {
   const date1 = new Date(2018, 7, 5);

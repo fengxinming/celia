@@ -5,7 +5,8 @@ module.exports = {
     'test'
   ],
   verbose: false,
-  testEnvironment: 'node',
+  // testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   testRegex: 'test/(.*/)*.*test.js$',
   coverageDirectory: './coverage/',
   collectCoverage: true,

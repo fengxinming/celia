@@ -1,10 +1,10 @@
 'use strict';
 
-const { resolve, DIST_FILENAME } = require('./_util');
+const { resolve, DIST_FILENAME, sourceDir } = require('./_util');
 
 function configure(input, output) {
   return {
-    isProd: output.lastIndexOf('min.js') > -1,
+    isProd: true,
     inputOptions: {
       input: resolve(input)
     },
@@ -18,6 +18,5 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('src/index.js', `dist/${DIST_FILENAME}.js`),
-  configure('src/index.js', `dist/${DIST_FILENAME}.min.js`)
-];
+  configure('src/index.js', `dist/${DIST_FILENAME}.js`)
+].concat(sourceDir.map(dir => configure(`src/${dir}.js`, `dist/${dir}.js`)));

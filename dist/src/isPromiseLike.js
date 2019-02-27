@@ -1,5 +1,5 @@
 import isFunction from './isFunction';
 
 export default function (value) {
-  return value && isFunction(value.then);
+  return !!value && isFunction(value.then);
 }

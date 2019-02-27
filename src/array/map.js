@@ -1,14 +1,15 @@
 import each from '../each';
 import isNil from '../isNil';
-import { newIterator } from '../_internal/func';
+import iteratorCallback from '../_internal/_iteratorCB';
+import append from '../_internal/_append';
 
 export default function (elems, callback, context) {
   const ret = [];
-  const cb = newIterator(callback, context);
+  const cb = iteratorCallback(callback, context);
   each(elems, (elem) => {
     elem = cb(elem);
     if (!isNil(elem)) {
-      ret[ret.length] = elem;
+      append(ret, elem);
     }
   });
   return ret;
