@@ -172,6 +172,9 @@ async function createIndex(srcDir) {
     .map(dir => createFile(readdirSync(join(srcDir, dir)), `/${dir}`, join(srcDir, `${dir}.js`)));
   await Promise.all(promises);
 
-  const jses = files.filter(file => file !== 'index.js' && file.lastIndexOf('.js') > 0);
+  const jses = readdirSync(srcDir).filter(file =>
+    file !== 'index.js' &&
+    file !== 'dom.js' &&
+    file.lastIndexOf('.js') > 0);
   await createFile(jses, '', join(srcDir, 'index.js'));
 }

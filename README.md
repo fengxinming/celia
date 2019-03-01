@@ -129,3 +129,7 @@ const isDate = require('celia/isDate');
     - dom/on
     - dom/prepend
     - error/NotImplementedError
+
+### 2.1.0-1
+
+  - rebuild
