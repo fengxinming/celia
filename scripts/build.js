@@ -31,7 +31,6 @@ if (process.argv[2]) {
  */
 async function build(builds) {
   rimraf.sync(resolve('dist/**'));
-  rimraf.sync(resolve('legacy/**'));
   sourceDir.concat('index').forEach((mod) => {
     mod = resolve(`src/${mod}.js`);
     rimraf.sync(mod);
@@ -168,10 +167,15 @@ async function createFile(files, parent, dest) {
 async function createIndex(srcDir) {
   const files = readdirSync(srcDir);
   const promises = files
-    .filter(file => file.lastIndexOf('.js') === -1 && file.indexOf('_'))
+    .filter(file =>
+      file.lastIndexOf('.js') === -1 &&
+      file.indexOf('_'))
     .map(dir => createFile(readdirSync(join(srcDir, dir)), `/${dir}`, join(srcDir, `${dir}.js`)));
   await Promise.all(promises);
 
-  const jses = files.filter(file => file !== 'index.js' && file.lastIndexOf('.js') > 0);
+  const jses = readdirSync(srcDir).filter(file =>
+    file !== 'index.js' &&
+    file !== 'dom.js' &&
+    file.lastIndexOf('.js') > 0);
   await createFile(jses, '', join(srcDir, 'index.js'));
 }

@@ -1,7 +1,7 @@
 'use strict';
 
 const { matches } = require('corie-utils');
-const { resolve, sourceDir } = require('./_util');
+const { resolve, sourceDir, DIST_FILENAME } = require('./_util');
 
 function configure(input, output) {
   return {
@@ -19,5 +19,5 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('src/*.js', 'dist')
-].concat(sourceDir.map(dirname => configure(`src/${dirname}/*.js`, `dist/${dirname}`)));
+  configure('src/index.js', `dist/${DIST_FILENAME}.common.js`)
+].concat(sourceDir.map(dir => configure(`src/${dir}.js`, `dist/${dir}.common.js`)));

@@ -1,13 +1,4 @@
 import add from '../../src/date/add';
-import {
-  YEAR,
-  MONTH,
-  DAY,
-  HOUR,
-  MINUTE,
-  SECOND,
-  MILLISECOND
-} from '../../src/_internal/_dateConsts';
 import moment from 'moment';
 
 it('测试 add 方法', () => {
@@ -17,41 +8,41 @@ it('测试 add 方法', () => {
   expect(+add(date1, 1)).toBe(+date2.add(1));
 
   expect(+add(date1, {
-    [YEAR]: 1,
-    [MONTH]: 1,
-    [DAY]: 2,
-    [HOUR]: 3,
-    [MINUTE]: 4,
-    [SECOND]: 5,
-    [MILLISECOND]: 6
+    year: 1,
+    month: 1,
+    day: 2,
+    hour: 3,
+    minute: 4,
+    second: 5,
+    millisecond: 6
   })).toBe(+date2.add({
-    [YEAR]: 1,
-    [MONTH]: 1,
-    [DAY]: 2,
-    [HOUR]: 3,
-    [MINUTE]: 4,
-    [SECOND]: 5,
-    [MILLISECOND]: 6
+    year: 1,
+    month: 1,
+    day: 2,
+    hour: 3,
+    minute: 4,
+    second: 5,
+    millisecond: 6
   }));
 
-  expect(+add(date1, 1, YEAR)).toBe(+date2.add(1, YEAR));
-  expect(+add(date1, -1, YEAR)).toBe(+date2.add(-1, YEAR));
+  expect(+add(date1, 1, 'year')).toBe(+date2.add(1, 'year'));
+  expect(+add(date1, -1, 'year')).toBe(+date2.add(-1, 'year'));
 
-  expect(+add(date1, 1, MONTH)).toBe(+date2.add(1, MONTH));
-  expect(+add(date1, -1, MONTH)).toBe(+date2.add(-1, MONTH));
+  expect(+add(date1, 1, 'month')).toBe(+date2.add(1, 'month'));
+  expect(+add(date1, -1, 'month')).toBe(+date2.add(-1, 'month'));
 
-  expect(+add(date1, 1, DAY)).toBe(+date2.add(1, DAY));
-  expect(+add(date1, -1, DAY)).toBe(+date2.add(-1, DAY));
+  expect(+add(date1, 1, 'day')).toBe(+date2.add(1, 'day'));
+  expect(+add(date1, -1, 'day')).toBe(+date2.add(-1, 'day'));
 
-  expect(+add(date1, 1, HOUR)).toBe(+date2.add(1, HOUR));
-  expect(+add(date1, -1, HOUR)).toBe(+date2.add(-1, HOUR));
+  expect(+add(date1, 1, 'hour')).toBe(+date2.add(1, 'hour'));
+  expect(+add(date1, -1, 'hour')).toBe(+date2.add(-1, 'hour'));
 
-  expect(+add(date1, 1, MINUTE)).toBe(+date2.add(1, MINUTE));
-  expect(+add(date1, -1, MINUTE)).toBe(+date2.add(-1, MINUTE));
+  expect(+add(date1, 1, 'minute')).toBe(+date2.add(1, 'minute'));
+  expect(+add(date1, -1, 'minute')).toBe(+date2.add(-1, 'minute'));
 
-  expect(+add(date1, 1, SECOND)).toBe(+date2.add(1, SECOND));
-  expect(+add(date1, -1, SECOND)).toBe(+date2.add(-1, SECOND));
+  expect(+add(date1, 1, 'second')).toBe(+date2.add(1, 'second'));
+  expect(+add(date1, -1, 'second')).toBe(+date2.add(-1, 'second'));
 
-  expect(+add(date1, 1, MILLISECOND)).toBe(+date2.add(1, MILLISECOND));
-  expect(+add(date1, -1, MILLISECOND)).toBe(+date2.add(-1, MILLISECOND));
+  expect(+add(date1, 1, 'millisecond')).toBe(+date2.add(1, 'millisecond'));
+  expect(+add(date1, -1, 'millisecond')).toBe(+date2.add(-1, 'millisecond'));
 });

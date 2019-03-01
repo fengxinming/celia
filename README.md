@@ -112,20 +112,3 @@ const isDate = require('celia/isDate');
 
 ## Release History
 
-### 2.0.1
-
-  - added unit tests
-  - renamed `merge` to `join`
-  - modularity `remove` will return null when anything can be removed
-
-### 2.1.0-0
-
-  - added api
-    - dom/after
-    - dom/append
-    - dom/before
-    - dom/data
-    - dom/off
-    - dom/on
-    - dom/prepend
-    - error/NotImplementedError

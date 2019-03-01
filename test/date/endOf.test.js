@@ -1,13 +1,4 @@
 import endOf from '../../src/date/endOf';
-import {
-  YEAR,
-  MONTH,
-  DAY,
-  HOUR,
-  MINUTE,
-  SECOND,
-  MILLISECOND
-} from '../../src/_internal/_dateConsts';
 import moment from 'moment';
 
 it('测试 endOf 方法', () => {
@@ -15,12 +6,12 @@ it('测试 endOf 方法', () => {
   const date2 = moment(+date1);
 
   expect(+endOf(date1)).toBe(+date2.endOf());
-  expect(+endOf(date1, YEAR)).toBe(+date2.endOf(YEAR));
-  expect(+endOf(date1, MONTH)).toBe(+date2.endOf(MONTH));
-  expect(+endOf(date1, DAY)).toBe(+date2.endOf(DAY));
-  expect(+endOf(date1, HOUR)).toBe(+date2.endOf(HOUR));
-  expect(+endOf(date1, MINUTE)).toBe(+date2.endOf(MINUTE));
-  expect(+endOf(date1, SECOND)).toBe(+date2.endOf(SECOND));
-  expect(+endOf(date1, MILLISECOND)).toBe(+date2.endOf(MILLISECOND));
+  expect(+endOf(date1, 'year')).toBe(+date2.endOf('year'));
+  expect(+endOf(date1, 'month')).toBe(+date2.endOf('month'));
+  expect(+endOf(date1, 'day')).toBe(+date2.endOf('day'));
+  expect(+endOf(date1, 'hour')).toBe(+date2.endOf('hour'));
+  expect(+endOf(date1, 'minute')).toBe(+date2.endOf('minute'));
+  expect(+endOf(date1, 'second')).toBe(+date2.endOf('second'));
+  expect(+endOf(date1, 'millisecond')).toBe(+date2.endOf('millisecond'));
 
 });

@@ -24,5 +24,5 @@ module.exports = () => {
   }
   copyFile(`cp ${resolve('package.json')} ${resolve('dist/package.json')}`);
   copyFile(`cp ${resolve('README.md')} ${resolve('dist/README.md')}`);
-  copyFile(`cp -r ${resolve('src/')} ${resolve('dist/src/')}`);
+  copyFile(`cp -r ${resolve('src/')} ${resolve('dist/es/')}`);
 };

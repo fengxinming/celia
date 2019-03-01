@@ -1,0 +1,45 @@
+import {
+  each,
+  isObject,
+  isUndefined
+} from '../utils';
+
+export function access(list, key, val, getter, setter) {
+  if (isUndefined(val)) {
+    if (isObject(key)) {
+      each(list, (dom) => {
+        each(key, (n, k) => {
+          setter(dom, k, n);
+        });
+      });
+    } else {
+      const dom = list[0];
+      return dom && getter(dom, key);
+    }
+  } else {
+    each(list, (dom) => {
+      setter(dom, key, val);
+    });
+  }
+  return list;
+}
+
+export default function (proto) {
+  proto.css = function (key, val) {
+    return access(this, key, val, () => {
+      throw new Error('Not implement');
+    }, (dom, k, v) => {
+      dom.style[k] = v;
+    });
+  };
+  each({
+    show: 'block',
+    hide: 'none'
+  }, (val, method) => {
+    proto[method] = function () {
+      return this.each((dom) => {
+        dom.style.display = val;
+      });
+    };
+  });
+}
