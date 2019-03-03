@@ -40,13 +40,13 @@ npm install celia --save
 // es6
 import celia from 'celia';
 // or
-import celia from 'celia/src';
+import celia from 'celia/celia.es';
+
+// modularity
+import isDate from 'celia/es/isDate';
 
 // node
 const celia = require('celia');
-
-// modularity
-const isDate = require('celia/isDate');
 
 ```
 
