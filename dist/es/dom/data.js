@@ -37,4 +37,5 @@ export default function (dom, key, value) {
       }
     }
   });
+  return dom;
 }

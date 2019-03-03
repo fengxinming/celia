@@ -36,12 +36,12 @@ async function build(builds) {
     rimraf.sync(mod);
     logger.info(`remove a file: ${mod}`);
   });
-  cp();
   const srcDir = resolve('src');
   // 把单独的文件夹打包成js
   if (!existsSync(join(srcDir, 'index.js'))) {
     await createIndex(srcDir);
   }
+  cp();
   const total = builds.length;
   for (let i = 0; i < total; i++) {
     try {

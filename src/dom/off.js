@@ -1,6 +1,6 @@
 import isUndefined from '../isUndefined';
 import expandoStore from '../_internal/_dom/_expandoStore';
-import checkDom from '../_internal/_checkDom';
+import checkDom from '../_internal/_dom/_checkDom';
 import forEach from '../forEach';
 import remove from '../array/remove';
 

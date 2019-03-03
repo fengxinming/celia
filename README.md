@@ -101,14 +101,33 @@ const isDate = require('celia/isDate');
   - date/parse
   - date/startOf
   - date/subtract
+  - dom/addClass
   - dom/after
   - dom/append
+  - dom/attr
   - dom/before
+  - dom/children
+  - dom/css
   - dom/data
+  - dom/empty
+  - dom/hasClass
+  - dom/hide
+  - dom/html
+  - dom/next
+  - dom/nextAll
   - dom/off
   - dom/on
+  - dom/parent
   - dom/prepend
-  - error/NotImplementedError
+  - dom/prev
+  - dom/prevAll
+  - dom/prop
+  - dom/remove
+  - dom/removeAttr
+  - dom/removeClass
+  - dom/removeProp
+  - dom/show
+  - dom/wrap
 
 ## Release History
 

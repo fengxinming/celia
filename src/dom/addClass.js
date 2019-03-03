@@ -1,5 +1,5 @@
 import classesToArray from '../_internal/_dom/_classesToArray';
-import classListSupported from '../_internal/_dom/_domConsts';
+import { classListSupported } from '../_internal/_dom/_domConsts';
 import checkDom from '../_internal/_dom/_checkDom';
 
 const addClass = classListSupported ? (dom, classes) => {

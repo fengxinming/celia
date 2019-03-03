@@ -1,8 +1,8 @@
 import classesToArray from '../_internal/_dom/_classesToArray';
-import checkDom from '../_internal/_checkDom';
+import checkDom from '../_internal/_dom/_checkDom';
 import forEach from '../_internal/_forEach';
 
-const hasClass = (dom, classes) => {
+function hasClass(dom, classes) {
   let exists = false;
   let curClasses = classesToArray(dom.className);
   forEach(classes, (cls) => {

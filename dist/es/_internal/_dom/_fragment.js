@@ -4,8 +4,7 @@ import {
 } from './_domRegex';
 import forIn from '../../forIn';
 import childNodes from './_childNodes';
-
-const fragDiv = document.createElement('div');
+import { testEl } from './_domConsts';
 
 export default function (html, props, fn) {
   let matches = html.match(singleTagRE);
@@ -16,7 +15,7 @@ export default function (html, props, fn) {
     });
     fn(dom);
   } else if (fragmentRE.test(html)) {
-    fragDiv.innerHTML = html;
-    childNodes(fragDiv, fn);
+    testEl.innerHTML = html;
+    childNodes(testEl, fn);
   }
 }

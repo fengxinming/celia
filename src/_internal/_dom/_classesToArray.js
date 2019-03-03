@@ -1,4 +1,4 @@
-import rnothtmlwhiteRE from '../_internal/_dom/_domRegex';
+import { rnothtmlwhiteRE } from './_domRegex';
 import isString from '../../isString';
 
 export default function (value) {

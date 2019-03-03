@@ -10,7 +10,7 @@ function configure(input, output) {
       // experimentalCodeSplitting: true
     },
     outputOptions: {
-      dir: resolve(output),
+      file: resolve(output),
       format: 'cjs',
       legacy: true,
       esModule: false
@@ -19,5 +19,6 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('src/index.js', `dist/${DIST_FILENAME}.legacy.js`)
-].concat(sourceDir.map(dir => configure(`src/${dir}.js`, `dist/${dir}.legacy.js`)));
+  configure('src/index.js', `dist/${DIST_FILENAME}.legacy.js`),
+  ...sourceDir.map(dir => configure(`src/${dir}.js`, `dist/${dir}.legacy.js`))
+];

@@ -1,4 +1,4 @@
-import forEach from './_forEach';
+import forEach from '../_forEach';
 
 export function firstNode(dom) {
   return dom && (dom.length > -1 ? dom[0] : dom);

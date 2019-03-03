@@ -4,13 +4,14 @@ const { matches } = require('corie-utils');
 const { resolve, sourceDir, DIST_FILENAME } = require('./_util');
 
 function configure(input, output) {
+  const isDIR = input.indexOf('*') > -1;
   return {
-    compress: true,
     inputOptions: {
-      input: matches(resolve(input))
+      input: isDIR ? matches(resolve(input)) : resolve(input)
     },
     outputOptions: {
-      dir: resolve(output),
+      dir: isDIR ? resolve(output) : undefined,
+      file: isDIR ? undefined : resolve(output),
       format: 'cjs',
       legacy: false,
       esModule: false
@@ -19,5 +20,6 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('src/index.js', `dist/${DIST_FILENAME}.common.js`)
-].concat(sourceDir.map(dir => configure(`src/${dir}.js`, `dist/${dir}.common.js`)));
+  configure('src/index.js', `dist/${DIST_FILENAME}.common.js`),
+  ...sourceDir.map(dir => configure(`src/${dir}.js`, `dist/${dir}.common.js`))
+];

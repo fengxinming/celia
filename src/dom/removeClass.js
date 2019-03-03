@@ -1,6 +1,6 @@
 import classesToArray from '../_internal/_dom/_classesToArray';
-import classListSupported from '../_internal/_dom/_domConsts';
-import checkDom from '../_internal/_checkDom';
+import { classListSupported } from '../_internal/_dom/_domConsts';
+import checkDom from '../_internal/_dom/_checkDom';
 import prop from './prop';
 
 const removeClass = classListSupported ? (dom, classes) => {
