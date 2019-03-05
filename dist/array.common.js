@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.0-beta.2
+ * celia.js v3.0.0-beta.3
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -86,11 +86,15 @@ function isFunction (value) {
 }
 
 function isNumber (value) {
-  return typeof value === 'string';
+  return typeof value === 'number';
 }
 
 function isArrayLike (value) {
   return !isNil(value) && isNumber(value.length) && !isFunction(value);
+}
+
+function isString (value) {
+  return typeof value === 'string';
 }
 
 var ref = Array.prototype;
@@ -100,16 +104,12 @@ function makeArray (arr, results) {
   var ret = results || [];
   if (arr) {
     if (isArrayLike(Object(arr))) {
-      join(ret, isNumber(arr) ? [arr] : arr);
+      join(ret, isString(arr) ? [arr] : arr);
     } else {
       ret.push ? ret.push(arr) : push.call(ret, arr);
     }
   }
   return ret;
-}
-
-function isNumber$1 (value) {
-  return typeof value === 'number';
 }
 
 function forIn (value, iterator, context) {
@@ -131,7 +131,7 @@ function each (arr, cb, context) {
   if (arr) {
     if (isArrayLike(arr)) {
       forEach(arr, cb, context);
-    } else if (isNumber$1(arr)) {
+    } else if (isNumber(arr)) {
       forNumber(arr, cb, context);
     } else {
       forIn(arr, cb, context);

@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.0-beta.2
+ * celia.js v3.0.0-beta.3
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -13,14 +13,14 @@
   var singleTagRE = /^<(\w+)\s*\/?>(?:<\/\1>|)$/;
   var rnothtmlwhiteRE = /[^\x20\t\r\n\f]+/g;
 
-  function isNumber (value) {
+  function isString (value) {
     return typeof value === 'string';
   }
 
   function classesToArray (value) {
     if (Array.isArray(value)) {
       return value;
-    } else if (isNumber(value)) {
+    } else if (isString(value)) {
       return value.match(rnothtmlwhiteRE) || [];
     }
     return [];
@@ -142,6 +142,10 @@
     return typeof value === 'function';
   }
 
+  function isNumber (value) {
+    return typeof value === 'number';
+  }
+
   function isArrayLike (value) {
     return !isNil(value) && isNumber(value.length) && !isFunction(value);
   }
@@ -194,7 +198,7 @@
       // Node
       if (content.nodeType === 1) {
         frag.appendChild(content);
-      } else if (!isNumber(content) && isArrayLike(content)) {
+      } else if (!isString(content) && isArrayLike(content)) {
         forEach(content, function (elem) {
           frag.appendChild(elem);
         });

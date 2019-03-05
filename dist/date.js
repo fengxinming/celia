@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.0-beta.2
+ * celia.js v3.0.0-beta.3
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -509,7 +509,7 @@
   }
 
   function format (date, inputString) {
-    if (!inputString) {
+    if (!inputString || inputString === 'UTC') {
       return date.toISOString();
     }
     return inputString.replace(FORMAT_REGEX, function (matched) {

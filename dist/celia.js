@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.0-beta.2
+ * celia.js v3.0.0-beta.3
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -89,12 +89,16 @@
     return typeof value === 'function';
   }
 
-  function isString (value) {
-    return typeof value === 'string';
+  function isNumber (value) {
+    return typeof value === 'number';
   }
 
   function isArrayLike (value) {
-    return !isNil(value) && isString(value.length) && !isFunction(value);
+    return !isNil(value) && isNumber(value.length) && !isFunction(value);
+  }
+
+  function isString (value) {
+    return typeof value === 'string';
   }
 
   var ref = Array.prototype;
@@ -110,10 +114,6 @@
       }
     }
     return ret;
-  }
-
-  function isNumber (value) {
-    return typeof value === 'number';
   }
 
   function forIn (value, iterator, context) {
@@ -662,7 +662,7 @@
   }
 
   function format (date, inputString) {
-    if (!inputString) {
+    if (!inputString || inputString === 'UTC') {
       return date.toISOString();
     }
     return inputString.replace(FORMAT_REGEX, function (matched) {
