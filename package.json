@@ -1,6 +1,6 @@
 {
   "name": "celia",
-  "version": "3.0.0-beta.2",
+  "version": "3.0.0-beta.3",
   "description": "A modern JavaScript utility library delivering modularity, performance, & extras.",
   "main": "./celia.common.js",
   "module": "./celia.es.js",
