@@ -22,7 +22,7 @@ function h12(hours) {
 }
 
 export default function (date, inputString) {
-  if (!inputString) {
+  if (!inputString || inputString === 'UTC') {
     return date.toISOString();
   }
   return inputString.replace(FORMAT_REGEX, (matched) => {

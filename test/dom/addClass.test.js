@@ -13,7 +13,8 @@ it('测试 addClass', () => {
   addClass($div2, 'class1 class2');
   forEach($div2, (el) => {
     expect(el.className).toEqual(
-      expect.stringContaining('class1 class2')
+      expect.stringContaining('class1'),
+      expect.stringContaining('class2')
     );
   });
 });

@@ -25,4 +25,5 @@ it('测试 format 方法', () => {
   expect(format(date1, 'YYYY-MM-DD hh:mm:ss ZZ')).toBe(date2.format('YYYY-MM-DD hh:mm:ss ZZ'));
   expect(format(date1, '+YYYY-MM-DD HH:mm:ss')).toBe(date2.format('+YYYY-MM-DD HH:mm:ss'));
   expect(format(date1)).toBe(date2.toISOString());
+  expect(format(date1, 'UTC')).toBe(date2.toISOString());
 });
