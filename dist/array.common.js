@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.0-beta.0
+ * celia.js v3.0.0-beta.1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -85,18 +85,12 @@ function isFunction (value) {
   return typeof value === 'function';
 }
 
-var isArray = Array.isArray;
-
-function isArrayLike (value) {
-  if (isNil(value) || isFunction(value)) {
-    return false;
-  }
-  var length = value.length;
-  return isArray(value) || length === 0 || (+length > 0 && (length - 1) in value);
+function isNumber (value) {
+  return typeof value === 'string';
 }
 
-function isString (value) {
-  return typeof value === 'string';
+function isArrayLike (value) {
+  return !isNil(value) && isNumber(value.length) && !isFunction(value);
 }
 
 var ref = Array.prototype;
@@ -106,7 +100,7 @@ function makeArray (arr, results) {
   var ret = results || [];
   if (arr) {
     if (isArrayLike(Object(arr))) {
-      join(ret, isString(arr) ? [arr] : arr);
+      join(ret, isNumber(arr) ? [arr] : arr);
     } else {
       ret.push ? ret.push(arr) : push.call(ret, arr);
     }
@@ -114,7 +108,7 @@ function makeArray (arr, results) {
   return ret;
 }
 
-function isNumber (value) {
+function isNumber$1 (value) {
   return typeof value === 'number';
 }
 
@@ -137,7 +131,7 @@ function each (arr, cb, context) {
   if (arr) {
     if (isArrayLike(arr)) {
       forEach(arr, cb, context);
-    } else if (isNumber(arr)) {
+    } else if (isNumber$1(arr)) {
       forNumber(arr, cb, context);
     } else {
       forIn(arr, cb, context);

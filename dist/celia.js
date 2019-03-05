@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.0-beta.0
+ * celia.js v3.0.0-beta.1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -89,18 +89,12 @@
     return typeof value === 'function';
   }
 
-  var isArray = Array.isArray;
-
-  function isArrayLike (value) {
-    if (isNil(value) || isFunction(value)) {
-      return false;
-    }
-    var length = value.length;
-    return isArray(value) || length === 0 || (+length > 0 && (length - 1) in value);
-  }
-
   function isString (value) {
     return typeof value === 'string';
+  }
+
+  function isArrayLike (value) {
+    return !isNil(value) && isString(value.length) && !isFunction(value);
   }
 
   var ref = Array.prototype;
@@ -818,6 +812,12 @@
     return !!value && isFunction(value.then);
   }
 
+  function sleep (ms) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, ms);
+    });
+  }
+
   var RAW_DATA_TYPES = {};
   'Boolean,Number,String,Function,Array,Date,RegExp,Object,Error,Symbol'.split(',').forEach(function (name) {
     RAW_DATA_TYPES[("[object " + name + "]")] = name.toLowerCase();
@@ -849,6 +849,7 @@
     isPromiseLike: isPromiseLike,
     isString: isString,
     isUndefined: isUndefined,
+    sleep: sleep,
     type: type
   };
 

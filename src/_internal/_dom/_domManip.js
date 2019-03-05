@@ -1,19 +1,20 @@
 import forEach from '../_forEach';
 import isArrayLike from '../../isArrayLike';
+import isString from '../../isString';
 import fragment from './_fragment';
 
 function fragmentForList(arr) {
   const frag = document.createDocumentFragment();
   forEach(arr, (content) => {
-    // NodeElement
-    if (content && content.nodeType === 1) {
+    // Node
+    if (content.nodeType === 1) {
       frag.appendChild(content);
-    } else if (isArrayLike(content)) {
+    } else if (!isString(content) && isArrayLike(content)) {
       forEach(content, (elem) => {
         frag.appendChild(elem);
       });
     } else {
-      fragment(String(content), null, (elem) => {
+      fragment(content, null, (elem) => {
         frag.appendChild(elem);
       });
     }
@@ -38,10 +39,11 @@ export default function (list, arr, method, fallback) {
     const frag = fragmentForList(arr);
     const len = list.length;
     if (len) {
-      for (let i = 0, j = len - 2; i < j; i++) {
+      const last = len - 1;
+      for (let i = 0, j = last; i < j; i++) {
         fallback(list[i], frag.cloneNode(true));
       }
-      fallback(list[len - 1], frag);
+      fallback(list[last], frag);
     } else {
       fallback(list, frag);
     }

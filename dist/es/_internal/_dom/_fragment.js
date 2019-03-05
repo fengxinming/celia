@@ -17,5 +17,7 @@ export default function (html, props, fn) {
   } else if (fragmentRE.test(html)) {
     testEl.innerHTML = html;
     childNodes(testEl, fn);
+  } else {
+    fn(document.createTextNode(html));
   }
 }

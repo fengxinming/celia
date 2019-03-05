@@ -1,6 +1,7 @@
 import classesToArray from '../_internal/_dom/_classesToArray';
 import { classListSupported } from '../_internal/_dom/_domConsts';
 import checkDom from '../_internal/_dom/_checkDom';
+import append from '../_internal/_array/_append';
 
 const addClass = classListSupported ? (dom, classes) => {
   classes.forEach((cls) => {
@@ -11,7 +12,7 @@ const addClass = classListSupported ? (dom, classes) => {
   let oprClasses = curClasses.slice(0);
   classes.forEach((cls) => {
     if (oprClasses.indexOf(cls) === -1) {
-      oprClasses.append(cls);
+      append(oprClasses, cls);
     }
   });
   curClasses = curClasses.join(' ');

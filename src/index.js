@@ -16,6 +16,7 @@ import isObject from './isObject.js';
 import isPromiseLike from './isPromiseLike.js';
 import isString from './isString.js';
 import isUndefined from './isUndefined.js';
+import sleep from './sleep.js';
 import type from './type.js';
 export default {
   array,
@@ -36,5 +37,6 @@ export default {
   isPromiseLike,
   isString,
   isUndefined,
+  sleep,
   type
 };

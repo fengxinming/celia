@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.0-beta.0
+ * celia.js v3.0.0-beta.1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -13,14 +13,14 @@
   var singleTagRE = /^<(\w+)\s*\/?>(?:<\/\1>|)$/;
   var rnothtmlwhiteRE = /[^\x20\t\r\n\f]+/g;
 
-  function isString (value) {
+  function isNumber (value) {
     return typeof value === 'string';
   }
 
   function classesToArray (value) {
     if (Array.isArray(value)) {
       return value;
-    } else if (isString(value)) {
+    } else if (isNumber(value)) {
       return value.match(rnothtmlwhiteRE) || [];
     }
     return [];
@@ -97,6 +97,10 @@
     return dom;
   }
 
+  function append (arr, obj) {
+    arr[arr.length] = obj;
+  }
+
   var addClass = classListSupported ? function (dom, classes) {
     classes.forEach(function (cls) {
       dom.classList.add(cls);
@@ -106,7 +110,7 @@
     var oprClasses = curClasses.slice(0);
     classes.forEach(function (cls) {
       if (oprClasses.indexOf(cls) === -1) {
-        oprClasses.append(cls);
+        append(oprClasses, cls);
       }
     });
     curClasses = curClasses.join(' ');
@@ -138,14 +142,8 @@
     return typeof value === 'function';
   }
 
-  var isArray = Array.isArray;
-
   function isArrayLike (value) {
-    if (isNil(value) || isFunction(value)) {
-      return false;
-    }
-    var length = value.length;
-    return isArray(value) || length === 0 || (+length > 0 && (length - 1) in value);
+    return !isNil(value) && isNumber(value.length) && !isFunction(value);
   }
 
   function forIn (value, iterator, context) {
@@ -158,10 +156,6 @@
 
   function forIn$1 (value, iterator, context) {
     return value && forIn(value, iterator, context);
-  }
-
-  function append (arr, obj) {
-    arr[arr.length] = obj;
   }
 
   function childNodes (dom, cb) {
@@ -189,21 +183,23 @@
     } else if (fragmentRE.test(html)) {
       testEl.innerHTML = html;
       childNodes(testEl, fn);
+    } else {
+      fn(document.createTextNode(html));
     }
   }
 
   function fragmentForList(arr) {
     var frag = document.createDocumentFragment();
     forEach(arr, function (content) {
-      // NodeElement
-      if (content && content.nodeType === 1) {
+      // Node
+      if (content.nodeType === 1) {
         frag.appendChild(content);
-      } else if (isArrayLike(content)) {
+      } else if (!isNumber(content) && isArrayLike(content)) {
         forEach(content, function (elem) {
           frag.appendChild(elem);
         });
       } else {
-        fragment(String(content), null, function (elem) {
+        fragment(content, null, function (elem) {
           frag.appendChild(elem);
         });
       }
@@ -228,10 +224,11 @@
       var frag = fragmentForList(arr);
       var len = list.length;
       if (len) {
-        for (var i = 0, j = len - 2; i < j; i++) {
+        var last = len - 1;
+        for (var i = 0, j = last; i < j; i++) {
           fallback(list[i], frag.cloneNode(true));
         }
-        fallback(list[len - 1], frag);
+        fallback(list[last], frag);
       } else {
         fallback(list, frag);
       }
@@ -241,7 +238,7 @@
 
   /**
    * 在node节点之后添加新元素
-   * @param {Node|Node} dom
+   * @param {Node|NodeList} dom
    * @param  {...any} args
    */
   function after (dom) {

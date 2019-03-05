@@ -19,14 +19,9 @@
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/celia/celia.min.js"></script>
-```
-
-### Load `celia` via AMD (requirejs)
-
-```javascript
-define(['celia'], function(corieDate) {
-  // your code
-});
+<script src="https://cdn.jsdelivr.net/npm/celia/date.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/array.min.js"></script>
 ```
 
 ### CommonJS style with npm
@@ -44,9 +39,16 @@ import celia from 'celia/celia.es';
 
 // modularity
 import isDate from 'celia/es/isDate';
+import append from 'celia/es/dom/append';
+import add from 'celia/es/date/add';
+import remove from 'celia/es/array/remove';
 
 // node
 const celia = require('celia');
+const { isDate } = celia;
+const { append } = celia.dom;
+const { add } = celia.date;
+const { remove } = celia.array;
 
 ```
 
@@ -71,6 +73,7 @@ const celia = require('celia');
   - isPromiseLike
   - isString
   - isUndefined
+  - sleep
   - type
   - array/append
   - array/forEach

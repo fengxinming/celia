@@ -45,6 +45,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.0.0",
     "moment": "^2.24.0",
+    "pug": "^2.0.3",
     "rimraf": "^2.6.3",
     "rollup": "^1.1.2",
     "rollup-plugin-alias": "^1.5.1",
