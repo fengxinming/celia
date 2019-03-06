@@ -128,6 +128,7 @@ const { remove } = celia.array;
   - dom/remove
   - dom/removeAttr
   - dom/removeClass
+  - dom/removeData
   - dom/removeProp
   - dom/show
   - dom/wrap
