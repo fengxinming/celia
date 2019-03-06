@@ -331,7 +331,7 @@
 
   function children (dom) {
     return dir(dom, '', function (elem, method, cb) {
-      childNodes(cb);
+      childNodes(elem, cb);
     });
   }
 
@@ -365,7 +365,7 @@
 
   function curCSS (elem, name, computed) {
     computed = computed || getStyles(elem);
-    var ret;
+    var ret = '';
     if (computed) {
       ret = computed.getPropertyValue(name) || computed[name];
     }
@@ -428,36 +428,36 @@
    * 缓存数据
    * @param {Node|NodeList} dom
    * @param {String} key
-   * @param {*} val
+   * @param {*} value
    */
   function data (dom, key, value) {
-    checkDom(dom, function (element) {
-      var data = expandoStore(element, 'data');
-      var isSetter = !isUndefined(value);
-      var keyDefined = !isSetter && !isUndefined(key);
-      var isSimpleGetter = keyDefined && !isObject(key);
-
-      if (!data && !isSimpleGetter) {
-        expandoStore(element, 'data', data = {});
-      }
-
-      if (isSetter) {
-        data[key] = value;
-      } else {
-        if (keyDefined) {
-          if (isSimpleGetter) {
-            return data && data[key];
-          } else {
-            forIn$1(key, function (n, k) {
-              data[k] = n;
-            });
-          }
-        } else {
-          return data;
+    if (isObject(key)) { // setter
+      checkDom(dom, function (element) {
+        var data = expandoStore(element, 'data');
+        if (!data) {
+          expandoStore(dom, 'data', data = {});
         }
-      }
-    });
-    return dom;
+        forIn(key, function (n, k) {
+          data[k] = n;
+        });
+      });
+      return dom;
+    } else if (isNil(key)) { // get all
+      dom = firstNode(dom);
+      return dom && expandoStore(dom, 'data');
+    } else if (isUndefined(value)) { // getter
+      var data = expandoStore(dom, 'data');
+      return data && data[key];
+    } else {
+      checkDom(dom, function (element) {
+        var data = expandoStore(element, 'data');
+        if (!data) {
+          expandoStore(element, 'data', data = {});
+        }
+        data[key] = value;
+      });
+      return dom;
+    }
   }
 
   function empty () {
@@ -852,6 +852,10 @@
     return dom;
   }
 
+  function removeData () {
+
+  }
+
   /**
    * 删除属性
    * @param {Node|NodeList} dom
@@ -921,6 +925,7 @@
     remove: remove$1,
     removeAttr: removeAttr,
     removeClass: removeClass$1,
+    removeData: removeData,
     removeProp: removeProp,
     show: show,
     wrap: wrap

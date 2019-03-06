@@ -22,6 +22,7 @@ import prop from './dom/prop.js';
 import remove from './dom/remove.js';
 import removeAttr from './dom/removeAttr.js';
 import removeClass from './dom/removeClass.js';
+import removeData from './dom/removeData.js';
 import removeProp from './dom/removeProp.js';
 import show from './dom/show.js';
 import wrap from './dom/wrap.js';
@@ -50,6 +51,7 @@ export default {
   remove,
   removeAttr,
   removeClass,
+  removeData,
   removeProp,
   show,
   wrap

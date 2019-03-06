@@ -3,6 +3,6 @@ import childNodes from '../_internal/_dom/_childNodes';
 
 export default function (dom) {
   return dir(dom, '', (elem, method, cb) => {
-    childNodes(cb);
+    childNodes(elem, cb);
   });
 }
