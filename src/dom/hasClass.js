@@ -17,9 +17,9 @@ function hasClass(dom, classes) {
 /**
  * 判断节点是否包含指定className
  * @param {Node|NodeList} dom
- * @param {String|Array} args
+ * @param  {...any} args
  */
-export default function (dom, args) {
+export default function (dom, ...args) {
   let exists = false;
   checkDom(dom, (elem) => {
     if (hasClass(elem, args)) {

@@ -1,7 +1,7 @@
 import html from '../prepare/html';
 import data from '../../src/dom/data';
 
-it('测试 css', () => {
+it('测试 data', () => {
   document.body.innerHTML = html;
   let $div = document.querySelector('.test-after');
 

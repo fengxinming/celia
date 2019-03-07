@@ -1,4 +1,4 @@
-import checkDom from '../_internal/_dom/_checkDom';
+import checkDom, { firstNode } from '../_internal/_dom/_checkDom';
 import isNil from '../isNil';
 import empty from './empty';
 import append from './append';
@@ -12,6 +12,9 @@ export default function (dom, val) {
       elem.innerHTML = String(val);
     };
     checkDom(dom, callback);
+    return dom;
+  } else {
+    dom = firstNode(dom);
+    return dom && dom.innerHTML;
   }
-  return dom;
 }

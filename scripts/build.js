@@ -63,6 +63,7 @@ async function build(builds) {
   sourceDir
     .forEach((dir) => {
       readdirSync(join(srcDir, dir))
+        .filter(file => file !== 'index.js')
         .forEach((file) => {
           console.log('-', `${dir}/${file.slice(0, -3)}`);
         });
