@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.0-beta.4
+ * celia.js v3.0.0-beta.5
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -312,6 +312,7 @@ function before (dom) {
 function append$2 (arr, obj) {
   if (arr) {
     arr[arr.length] = obj;
+    return obj;
   }
 }
 
@@ -456,8 +457,19 @@ function data (dom, key, value) {
   }
 }
 
-function empty () {
-
+function empty (dom) {
+  checkDom(dom, function (elem) {
+    if (elem.nodeType === 1) {
+      if ('textContent' in elem) {
+        elem.textContent = '';
+      } else {
+        var firstChild;
+        while ((firstChild = elem.firstChild)) {
+          elem.removeChild(firstChild);
+        }
+      }
+    }
+  });
 }
 
 function hasClass(dom, classes) {
@@ -474,9 +486,12 @@ function hasClass(dom, classes) {
 /**
  * 判断节点是否包含指定className
  * @param {Node|NodeList} dom
- * @param {String|Array} args
+ * @param  {...any} args
  */
-function hasClass$1 (dom, args) {
+function hasClass$1 (dom) {
+  var args = [], len = arguments.length - 1;
+  while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+
   var exists = false;
   checkDom(dom, function (elem) {
     if (hasClass(elem, args)) {
@@ -522,13 +537,17 @@ function hide (dom) {
 function html (dom, val) {
   if (!isNil(val)) {
     var callback = val.nodeType === 1 ? function (elem) {
+      empty(elem);
       append$1(elem, val);
     } : function (elem) {
       elem.innerHTML = String(val);
     };
     checkDom(dom, callback);
+    return dom;
+  } else {
+    dom = firstNode(dom);
+    return dom && dom.innerHTML;
   }
-  return dom;
 }
 
 function sibling (dom, method, fn) {

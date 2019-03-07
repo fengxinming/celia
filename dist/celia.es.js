@@ -1,11 +1,12 @@
 /*!
- * celia.js v3.0.0-beta.4
+ * celia.js v3.0.0-beta.5
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
 function append (arr, obj) {
   if (arr) {
     arr[arr.length] = obj;
+    return obj;
   }
 }
 
