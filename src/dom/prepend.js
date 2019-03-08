@@ -7,8 +7,8 @@ import domManip from '../_internal/_dom/_domManip';
  */
 export default function (dom, ...args) {
   return domManip(dom, args, 'prepend', (elem, node) => {
-    if (elem.nodeType === 1 || elem.nodeType === 11 || elem.nodeType === 9) {
-      elem.insertBefore(node, elem.firstChild);
-    }
+    // if ([1, 11, 9].indexOf() > -1) {
+    elem.insertBefore(node, elem.firstChild);
+    // }
   });
 }

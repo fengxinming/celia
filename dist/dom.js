@@ -768,9 +768,9 @@
     while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
 
     return domManip(dom, args, 'prepend', function (elem, node) {
-      if (elem.nodeType === 1 || elem.nodeType === 11 || elem.nodeType === 9) {
-        elem.insertBefore(node, elem.firstChild);
-      }
+      // if ([1, 11, 9].indexOf() > -1) {
+      elem.insertBefore(node, elem.firstChild);
+      // }
     });
   }
 
