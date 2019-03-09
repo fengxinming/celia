@@ -12,7 +12,7 @@ const { minify } = require('uglify-js');
 const cp = require('./cp');
 
 let builds = require('./config').getAllBuilds();
-const { resolve, sourceDir } = require('./config/_util');
+const { resolve, sourceDir, banner } = require('./config/_util');
 
 const gzip = promisify(zlib.gzip);
 const writeFileify = promisify(writeFile);
@@ -121,7 +121,16 @@ async function write(file, code, isProd) {
   await print(file, code, isProd);
   if (isProd) {
     file = file.replace('.js', '.min.js');
-    code = minify(code).code;
+    code = minify(code, {
+      toplevel: true,
+      output: {
+        ascii_only: true,
+        preamble: banner
+      },
+      compress: {
+        pure_funcs: ['makeMap']
+      }
+    }).code;
     writeFile(file, code, (err) => {
       if (err) {
         throw err;

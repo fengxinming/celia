@@ -27,19 +27,18 @@ function forEach$1 (value, iterator, context) {
   return value && forEach(value, iterator, context);
 }
 
+function append$1 (arr, obj) {
+  arr[arr.length] = obj;
+}
+
 function grep (elems, callback, isOpposite) {
   var matches = [];
-  if (elems) {
-    var i = 0;
-    var length = elems.length;
-    isOpposite = !!isOpposite;
-
-    for (; i < length; i++) {
-      if (!callback(elems[i], i) === isOpposite) {
-        matches[matches.length] = elems[i];
-      }
+  isOpposite = !!isOpposite;
+  forEach$1(elems, function (elem, i) {
+    if (!callback(elem, i) === isOpposite) {
+      append$1(matches, elem);
     }
-  }
+  });
   return matches;
 }
 
@@ -64,12 +63,11 @@ function includes (elems, value) {
 }
 
 function join (first, second) {
-  var len = +second.length;
   var i = first.length;
 
-  for (var j = 0; j < len; j++) {
-    first[i++] = second[j];
-  }
+  forEach$1(second, function (elem) {
+    first[i++] = elem;
+  });
 
   // 如果first是arrayLike, 那就需要手动更新长度
   first.length = i;
@@ -138,10 +136,6 @@ function each (arr, cb, context) {
       forIn(arr, cb, context);
     }
   }
-}
-
-function append$1 (arr, obj) {
-  arr[arr.length] = obj;
 }
 
 function map (elems, callback, context) {

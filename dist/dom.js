@@ -27,6 +27,7 @@
   }
 
   var classListSupported = 'classList' in document.body;
+  // export const classListSupported = false;
   var firstElementChildSupported = 'firstElementChild' in document.body;
 
   var propFix = {
@@ -193,6 +194,13 @@
     }
   }
 
+  function forNumber (value, iterator, context) {
+    var cb = iteratorCallback(iterator, context);
+    for (var i = 0, returnValue = (void 0); returnValue !== false && i < value; i++) {
+      returnValue = cb(i, i, i);
+    }
+  }
+
   function fragmentForList(arr) {
     var frag = document.createDocumentFragment();
     forEach(arr, function (content) {
@@ -228,15 +236,15 @@
       }
       var frag = fragmentForList(arr);
       var len = list.length;
+      var elem;
       if (len) {
         var last = len - 1;
-        for (var i = 0, j = last; i < j; i++) {
-          fallback(list[i], frag.cloneNode(true));
-        }
-        fallback(list[last], frag);
+        forNumber(last, function (i) { return fallback(list[i], frag.cloneNode(true)); });
+        elem = list[last];
       } else {
-        fallback(list, frag);
+        elem = list;
       }
+      fallback(elem, frag);
     }
     return list;
   }
@@ -267,7 +275,9 @@
     var args = [], len = arguments.length - 1;
     while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
 
-    return domManip(dom, args, 'appendChild');
+    return domManip(dom, args, 'appendChild'/*, (el, child) => {
+      el.appendChild(child);
+    } */);
   }
 
   function isUndefined (value) {
@@ -914,7 +924,6 @@
     return showHide(dom, true);
   }
 
-  console.log('firstElementChildSupported', firstElementChildSupported);
   var firstElementChild = firstElementChildSupported ? function (elem) {
     return elem.firstElementChild;
   } : function (elem) {

@@ -1,11 +1,11 @@
 import isUndefined from '../isUndefined';
 import checkDom, { firstNode } from '../_internal/_dom/_checkDom';
 
-export function getAttribute(dom, k) {
+function getAttribute(dom, k) {
   dom = firstNode(dom);
   return dom && dom.getAttribute(k);
 }
-export function setAttribute(dom, k, v) {
+function setAttribute(dom, k, v) {
   checkDom(dom, (elem) => {
     elem.setAttribute(k, v);
   });

@@ -4,12 +4,12 @@ import checkDom, { firstNode } from '../_internal/_dom/_checkDom';
 import style from '../_internal/_dom/_style';
 import curCSS from '../_internal/_dom/_curCSS';
 
-export function getter(dom, k) {
+function getter(dom, k) {
   dom = firstNode(dom);
   return dom ? curCSS(dom, k) : '';
 }
 
-export function setter(dom, k, v) {
+function setter(dom, k, v) {
   checkDom(dom, (elem) => {
     style(elem, k, v);
   });

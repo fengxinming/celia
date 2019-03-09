@@ -1,7 +1,7 @@
 import checkDom from '../_internal/_dom/_checkDom';
 import fragment from '../_internal/_dom/_fragment';
 import { firstElementChildSupported } from '../_internal/_dom/_domConsts';
-console.log('firstElementChildSupported', firstElementChildSupported);
+
 const firstElementChild = firstElementChildSupported ? function (elem) {
   return elem.firstElementChild;
 } : function (elem) {
