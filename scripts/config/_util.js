@@ -14,7 +14,7 @@ const {
   version
 } = require('../../package.json');
 
-const banner =
+const banner = exports.banner =
   '/*!\n' +
   ' * celia.js v' + version + '\n' +
   ' * (c) 2018-' + new Date().getFullYear() + ' Jesse Feng\n' +

@@ -21,4 +21,4 @@ function configure(input, output) {
 
 module.exports = [
   configure('src/*.js', 'dist')
-].concat(sourceDir.map(dirname => configure(`src/${dirname}/*.js`, `legacy/${dirname}`)));
+].concat(sourceDir.map(dirname => configure(`src/${dirname}/*.js`, `dist/legacy/${dirname}`)));
