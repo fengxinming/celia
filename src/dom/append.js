@@ -1,5 +1,10 @@
-import domManip from '../_internal/_domManip';
+import domManip from '../_internal/_dom/_domManip';
 
-export default function (nodeList, ...args) {
-  return domManip(nodeList, args, 'appendChild');
+/**
+ * 向node节点添加新元素
+ * @param {Node|Node} dom
+ * @param  {...any} args
+ */
+export default function (dom, ...args) {
+  return domManip(dom, args, 'appendChild');
 }

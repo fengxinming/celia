@@ -1,6 +1,6 @@
 /*!
- * celia.js v2.1.0-0
+ * celia.js v2.1.0-1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
-"use strict";var __chunk_3=require("./chunk-1af9fb56.js"),__chunk_4=require("./chunk-55ad1914.js");function startOf(_,e){switch(e=__chunk_4.normalizeUnit(e)){case __chunk_3.YEAR:_.setMonth(0);case __chunk_3.MONTH:_.setDate(1);case __chunk_3.DAY:_.setHours(0);case __chunk_3.HOUR:_.setMinutes(0);case __chunk_3.MINUTE:_.setSeconds(0);case __chunk_3.SECOND:_.setMilliseconds(0)}return _}module.exports=startOf;
+"use strict";var __chunk_3=require("./chunk-c4e40a00.js");function startOf(s,e){switch(e=__chunk_3.normalizeUnit(e)){case"Y":s.setMonth(0);case"M":s.setDate(1);case"D":case"d":s.setHours(0);case"h":s.setMinutes(0);case"m":s.setSeconds(0);case"s":s.setMilliseconds(0)}return s}module.exports=startOf;

@@ -2,7 +2,6 @@ import array from './array.js';
 import camelCase from './camelCase.js';
 import date from './date.js';
 import each from './each.js';
-import error from './error.js';
 import forEach from './forEach.js';
 import forIn from './forIn.js';
 import forNumber from './forNumber.js';
@@ -17,13 +16,13 @@ import isObject from './isObject.js';
 import isPromiseLike from './isPromiseLike.js';
 import isString from './isString.js';
 import isUndefined from './isUndefined.js';
+import sleep from './sleep.js';
 import type from './type.js';
 export default {
   array,
   camelCase,
   date,
   each,
-  error,
   forEach,
   forIn,
   forNumber,
@@ -38,5 +37,6 @@ export default {
   isPromiseLike,
   isString,
   isUndefined,
+  sleep,
   type
 };

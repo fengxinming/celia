@@ -1,5 +1,5 @@
 /*!
- * celia.js v2.1.0-0
+ * celia.js v2.1.0-1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -57,51 +57,35 @@
     return date;
   }
 
-  function isString (value) {
-    return typeof value === 'string';
-  }
-
-  var YEAR = 'years';
-  var MONTH = 'months';
-  var DATE = 'dates';
-  var DAY = 'days';
-  var HOUR = 'hours';
-  var MINUTE = 'minutes';
-  var SECOND = 'seconds';
-  var MILLISECOND = 'milliseconds';
-
-  var TIMEZONE_OFFSET = (new Date()).getTimezoneOffset();
-
   var UNITS = {};
-  var setter = function (val) {
-    UNITS[val] = UNITS[val.slice(0, -1)] = UNITS[val.slice(0, 1)] = val;
+  var setter = function (val, key) {
+    UNITS[val] = UNITS[val.slice(0, -1)] = UNITS[key] = key;
   };
-  setter(MILLISECOND);
-  setter(YEAR);
-  setter(MONTH);
-  setter(DATE);
-  setter(DAY);
-  setter(HOUR);
-  setter(MINUTE);
-  setter(SECOND);
-  UNITS.M = MONTH;
-  UNITS.ms = MILLISECOND;
+  setter('years', 'Y');
+  setter('months', 'M');
+  setter('dates', 'D');
+  setter('days', 'd');
+  setter('hours', 'h');
+  setter('minutes', 'm');
+  setter('seconds', 's');
+  setter('milliseconds', 'ms');
 
-  function normalizeUnit (u) {
-    return isString(u) ? UNITS[u] : undefined;
+  function normalizeUnit (u, defaultValue) {
+    return UNITS[u] || defaultValue;
   }
 
-  var indexOfUnits = {};
-  indexOfUnits[YEAR] = 0;
-  indexOfUnits[MONTH] = 1;
-  indexOfUnits[DAY] = 2;
-  indexOfUnits[HOUR] = 3;
-  indexOfUnits[MINUTE] = 4;
-  indexOfUnits[SECOND] = 5;
-  indexOfUnits[MILLISECOND] = 6;
+  var indexOfUnits = {
+    Y: 0,
+    M: 1,
+    d: 2,
+    h: 3,
+    m: 4,
+    s: 5,
+    ms: 6
+  };
 
   function getIndex(units) {
-    units = units ? normalizeUnit(units) : MILLISECOND;
+    units = normalizeUnit(units, 'ms');
     return indexOfUnits[units];
   }
 
@@ -207,6 +191,12 @@
   ];
 
   var TZ_REGEX = /(Z)|[+-](\d\d)(?::?(\d\d))?/;
+
+  var TIMEZONE_OFFSET = (new Date()).getTimezoneOffset();
+
+  function isString (value) {
+    return typeof value === 'string';
+  }
 
   function forEach (value, iterator, context) {
     var cb = iteratorCallback(iterator, context);
@@ -413,7 +403,7 @@
     var anchor = add(clone(a), wholeMonthDiff, 'months');
     var anchor2, adjust;
 
-    if (b - anchor < 0) {
+    if (b < anchor) {
       anchor2 = add(clone(a), wholeMonthDiff - 1, 'months');
       adjust = (b - anchor) / (anchor - anchor2);
     } else {
@@ -433,22 +423,23 @@
     units = normalizeUnit(units);
 
     switch (units) {
-      case YEAR:
+      case 'Y':
         output = monthDiff(date, input) / 12;
         break;
-      case MONTH:
+      case 'M':
         output = monthDiff(date, input);
         break;
-      case SECOND:
+      case 's':
         output = (date - input) / 1000;
         break;
-      case MINUTE:
+      case 'm':
         output = (date - input) / 60000;
         break;
-      case HOUR:
+      case 'h':
         output = (date - input) / 3600000;
         break;
-      case DAY:
+      // case 'D':
+      case 'd':
         output = (date - input) / 86400000;
         break;
       default:
@@ -461,22 +452,23 @@
   function startOf (date, units) {
     units = normalizeUnit(units);
     switch (units) {
-      case YEAR:
+      case 'Y':
         date.setMonth(0);
       /* falls through */
-      case MONTH:
+      case 'M':
         date.setDate(1);
       /* falls through */
-      case DAY:
+      case 'D':
+      case 'd':
         date.setHours(0);
       /* falls through */
-      case HOUR:
+      case 'h':
         date.setMinutes(0);
       /* falls through */
-      case MINUTE:
+      case 'm':
         date.setSeconds(0);
       /* falls through */
-      case SECOND:
+      case 's':
         date.setMilliseconds(0);
     }
 
@@ -484,13 +476,13 @@
   }
 
   function endOf (date, units) {
-    units = normalizeUnit(units);
-    if (!units || units === MILLISECOND) {
+    units = normalizeUnit(units, 'ms');
+    if (units === 'ms') {
       return date;
     }
     startOf(date, units);
     add(date, 1, units);
-    add(date, -1, MILLISECOND);
+    add(date, -1, 'ms');
     return date;
   }
 
@@ -517,7 +509,7 @@
   }
 
   function format (date, inputString) {
-    if (!inputString) {
+    if (!inputString || inputString === 'UTC') {
       return date.toISOString();
     }
     return inputString.replace(FORMAT_REGEX, function (matched) {
@@ -558,9 +550,9 @@
         case 'SSS':
           return padLeft(date.getMilliseconds(), 3);
         case 'Z':
-          return timezone(date.getTimezoneOffset());
+          return timezone(TIMEZONE_OFFSET);
         case 'ZZ':
-          return timezone(date.getTimezoneOffset(), true);
+          return timezone(TIMEZONE_OFFSET, true);
         default:
           return matched;
       }
@@ -569,8 +561,8 @@
 
   function compare (date, input, units, type) {
     input = parse(input);
-    units = normalizeUnit(!isUndefined(units) ? units : MILLISECOND);
-    if (units === MILLISECOND) {
+    units = normalizeUnit(units, 'ms');
+    if (units === 'ms') {
       switch (type) {
         case 'before':
           return +date < +input;

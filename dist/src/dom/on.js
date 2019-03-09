@@ -1,5 +1,6 @@
 import isUndefined from '../isUndefined';
-import expandoStore from '../_internal/_expandoStore';
+import expandoStore from '../_internal/_dom/_expandoStore';
+import checkDom from '../_internal/_dom/_checkDom';
 import forEach from '../forEach';
 
 const addEventListenerFn = window.addEventListener ?
@@ -59,24 +60,32 @@ function createEventHandler(element, events) {
   return eventHandler;
 }
 
-export default function (element, types, fn) {
-  let events = expandoStore(element, 'events');
-  let handle = expandoStore(element, 'handle');
+/**
+ * 添加dom事件
+ * @param {Node|NodeList} dom
+ * @param {String} types
+ * @param {Function} fn
+ */
+export default function (dom, types, fn) {
+  checkDom(dom, (element) => {
+    let events = expandoStore(element, 'events');
+    let handle = expandoStore(element, 'handle');
 
-  if (!events) {
-    expandoStore(element, 'events', events = {});
-  };
-  if (!handle) {
-    expandoStore(element, 'handle', handle = createEventHandler(element, events));
-  };
-  types.split(' ').forEach((type) => {
-    let eventFns = events[type];
-    // 减少事件绑定
-    if (!eventFns) {
-      addEventListenerFn(element, type, handle);
-      eventFns = events[type] = [];
-    }
-    eventFns[eventFns.length] = fn;
+    if (!events) {
+      expandoStore(element, 'events', events = {});
+    };
+    if (!handle) {
+      expandoStore(element, 'handle', handle = createEventHandler(element, events));
+    };
+    types.split(' ').forEach((type) => {
+      let eventFns = events[type];
+      // 减少事件绑定
+      if (!eventFns) {
+        addEventListenerFn(element, type, handle);
+        eventFns = events[type] = [];
+      }
+      eventFns[eventFns.length] = fn;
+    });
   });
-  return element;
+  return dom;
 }

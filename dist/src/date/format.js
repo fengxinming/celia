@@ -1,4 +1,5 @@
-import { FORMAT_REGEX } from '../_internal/_dateRegex';
+import { FORMAT_REGEX } from '../_internal/_date/_dateRegex';
+import { TIMEZONE_OFFSET } from '../_internal/_date/_dateConsts';
 
 function padLeft(val, len = 2) {
   return `000000${val}`.slice(-len);
@@ -21,7 +22,7 @@ function h12(hours) {
 }
 
 export default function (date, inputString) {
-  if (!inputString) {
+  if (!inputString || inputString === 'UTC') {
     return date.toISOString();
   }
   return inputString.replace(FORMAT_REGEX, (matched) => {
@@ -62,9 +63,9 @@ export default function (date, inputString) {
       case 'SSS':
         return padLeft(date.getMilliseconds(), 3);
       case 'Z':
-        return timezone(date.getTimezoneOffset());
+        return timezone(TIMEZONE_OFFSET);
       case 'ZZ':
-        return timezone(date.getTimezoneOffset(), true);
+        return timezone(TIMEZONE_OFFSET, true);
       default:
         return matched;
     }

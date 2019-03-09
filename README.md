@@ -55,60 +55,81 @@ const isDate = require('celia/isDate');
 ### API
 
   - camelCase
-  - each
-  - forEach
-  - forIn
-  - forNumber
-  - index
-  - isArrayLike
-  - isAsyncFunction
-  - isBoolean
-  - isDate
-  - isFunction
-  - isNil
-  - isNumber
-  - isObject
-  - isPromiseLike
-  - isString
-  - isUndefined
-  - type
-  - array/append
-  - array/forEach
-  - array/grep
-  - array/inArray
-  - array/includes
-  - array/join
-  - array/makeArray
-  - array/map
-  - array/remove
-  - array/removeAt
-  - array/toArray
-  - date/add
-  - date/clone
-  - date/dayOfYear
-  - date/daysInMonth
-  - date/diff
-  - date/endOf
-  - date/format
-  - date/isAfter
-  - date/isBefore
-  - date/isBetween
-  - date/isLeapYear
-  - date/isSame
-  - date/isSameOrAfter
-  - date/isSameOrBefore
-  - date/isValid
-  - date/parse
-  - date/startOf
-  - date/subtract
-  - dom/after
-  - dom/append
-  - dom/before
-  - dom/data
-  - dom/off
-  - dom/on
-  - dom/prepend
-  - error/NotImplementedError
+- each
+- forEach
+- forIn
+- forNumber
+- index
+- isArrayLike
+- isAsyncFunction
+- isBoolean
+- isDate
+- isFunction
+- isNil
+- isNumber
+- isObject
+- isPromiseLike
+- isString
+- isUndefined
+- sleep
+- type
+- array/append
+- array/forEach
+- array/grep
+- array/inArray
+- array/includes
+- array/join
+- array/makeArray
+- array/map
+- array/remove
+- array/removeAt
+- array/toArray
+- date/add
+- date/clone
+- date/dayOfYear
+- date/daysInMonth
+- date/diff
+- date/endOf
+- date/format
+- date/isAfter
+- date/isBefore
+- date/isBetween
+- date/isLeapYear
+- date/isSame
+- date/isSameOrAfter
+- date/isSameOrBefore
+- date/isValid
+- date/parse
+- date/startOf
+- date/subtract
+- dom/addClass
+- dom/after
+- dom/append
+- dom/attr
+- dom/before
+- dom/children
+- dom/css
+- dom/data
+- dom/empty
+- dom/hasClass
+- dom/hide
+- dom/html
+- dom/next
+- dom/nextAll
+- dom/off
+- dom/on
+- dom/parent
+- dom/prepend
+- dom/prev
+- dom/prevAll
+- dom/prop
+- dom/remove
+- dom/removeAttr
+- dom/removeClass
+- dom/removeData
+- dom/removeProp
+- dom/show
+- dom/wrap
 
 ## Release History
 
@@ -133,3 +154,7 @@ const isDate = require('celia/isDate');
 ### 2.1.0-1
 
   - rebuild
+
+### 2.1.0
+
+  - added manipulation for dom

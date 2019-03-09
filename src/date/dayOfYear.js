@@ -1,4 +1,4 @@
-import daysInYear from '../_internal/_daysInYear';
+import daysInYear from '../_internal/_date/_daysInYear';
 import forNumber from '../_internal/_forNumber';
 import isUndefined from '../isUndefined';
 

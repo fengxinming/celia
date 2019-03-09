@@ -1,12 +1,7 @@
 import isNil from './isNil';
 import isFunction from './isFunction';
-
-const isArray = Array.isArray;
+import isNumber from './isNumber';
 
 export default function (value) {
-  if (isNil(value) || isFunction(value)) {
-    return false;
-  }
-  const length = value.length;
-  return isArray(value) || length === 0 || (+length > 0 && (length - 1) in value);
+  return !isNil(value) && isNumber(value.length) && !isFunction(value);
 };

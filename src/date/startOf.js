@@ -1,32 +1,25 @@
-import normalizeUnit from '../_internal/_normalizeUnit';
-import {
-  YEAR,
-  MONTH,
-  DAY,
-  HOUR,
-  MINUTE,
-  SECOND
-} from '../_internal/_dateConsts';
+import normalizeUnit from '../_internal/_date/_normalizeUnit';
 
 export default function (date, units) {
   units = normalizeUnit(units);
   switch (units) {
-    case YEAR:
+    case 'Y':
       date.setMonth(0);
     /* falls through */
-    case MONTH:
+    case 'M':
       date.setDate(1);
     /* falls through */
-    case DAY:
+    case 'D':
+    case 'd':
       date.setHours(0);
     /* falls through */
-    case HOUR:
+    case 'h':
       date.setMinutes(0);
     /* falls through */
-    case MINUTE:
+    case 'm':
       date.setSeconds(0);
     /* falls through */
-    case SECOND:
+    case 's':
       date.setMilliseconds(0);
   }
 

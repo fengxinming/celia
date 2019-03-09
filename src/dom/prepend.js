@@ -1,9 +1,14 @@
-import domManip from '../_internal/_domManip';
+import domManip from '../_internal/_dom/_domManip';
 
-export default function (nodeList, ...args) {
-  return domManip(nodeList, args, 'prepend', (elem, node) => {
-    if (elem.nodeType === 1 || elem.nodeType === 11 || elem.nodeType === 9) {
-      elem.insertBefore(node, elem.firstChild);
-    }
+/**
+ * 向node节点添加新元素
+ * @param {Node|Node} dom
+ * @param  {...any} args
+ */
+export default function (dom, ...args) {
+  return domManip(dom, args, 'prepend', (elem, node) => {
+    // if ([1, 11, 9].indexOf() > -1) {
+    elem.insertBefore(node, elem.firstChild);
+    // }
   });
 }

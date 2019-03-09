@@ -1,5 +1,5 @@
 /*!
- * celia.js v2.1.0-0
+ * celia.js v2.1.0-1
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -12,6 +12,7 @@
   function append (arr, obj) {
     if (arr) {
       arr[arr.length] = obj;
+      return obj;
     }
   }
 
@@ -89,14 +90,12 @@
     return typeof value === 'function';
   }
 
-  var isArray = Array.isArray;
+  function isNumber (value) {
+    return typeof value === 'number';
+  }
 
   function isArrayLike (value) {
-    if (isNil(value) || isFunction(value)) {
-      return false;
-    }
-    var length = value.length;
-    return isArray(value) || length === 0 || (+length > 0 && (length - 1) in value);
+    return !isNil(value) && isNumber(value.length) && !isFunction(value);
   }
 
   function isString (value) {
@@ -116,10 +115,6 @@
       }
     }
     return ret;
-  }
-
-  function isNumber (value) {
-    return typeof value === 'number';
   }
 
   function forIn (value, iterator, context) {
@@ -151,7 +146,6 @@
 
   function append$1 (arr, obj) {
     arr[arr.length] = obj;
-    return obj;
   }
 
   function map (elems, callback, context) {

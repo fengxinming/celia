@@ -1,22 +1,14 @@
 import parse from './parse';
 import add from './add';
 import clone from './clone';
-import normalizeUnit from '../_internal/_normalizeUnit';
-import {
-  YEAR,
-  MONTH,
-  DAY,
-  HOUR,
-  MINUTE,
-  SECOND
-} from '../_internal/_dateConsts';
+import normalizeUnit from '../_internal/_date/_normalizeUnit';
 
 function monthDiff(a, b) {
   const wholeMonthDiff = ((b.getFullYear() - a.getFullYear()) * 12) + (b.getMonth() - a.getMonth());
   const anchor = add(clone(a), wholeMonthDiff, 'months');
   let anchor2, adjust;
 
-  if (b - anchor < 0) {
+  if (b < anchor) {
     anchor2 = add(clone(a), wholeMonthDiff - 1, 'months');
     adjust = (b - anchor) / (anchor - anchor2);
   } else {
@@ -36,22 +28,23 @@ export default function (date, input, units, asFloat) {
   units = normalizeUnit(units);
 
   switch (units) {
-    case YEAR:
+    case 'Y':
       output = monthDiff(date, input) / 12;
       break;
-    case MONTH:
+    case 'M':
       output = monthDiff(date, input);
       break;
-    case SECOND:
+    case 's':
       output = (date - input) / 1000;
       break;
-    case MINUTE:
+    case 'm':
       output = (date - input) / 60000;
       break;
-    case HOUR:
+    case 'h':
       output = (date - input) / 3600000;
       break;
-    case DAY:
+    // case 'D':
+    case 'd':
       output = (date - input) / 86400000;
       break;
     default:

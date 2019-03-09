@@ -1,4 +1,4 @@
-import iteratorCallback from './_iteratorCB';
+import iteratorCallback from './_array/_iteratorCB';
 
 export default function (value, iterator, context) {
   const cb = iteratorCallback(iterator, context);

@@ -1,10 +1,15 @@
-import domManip from '../_internal/_domManip';
+import domManip from '../_internal/_dom/_domManip';
 
-export default function (nodeList, ...args) {
-  return domManip(nodeList, args, 'after', (dom, node) => {
-    const parentNode = dom.parentNode;
+/**
+ * 在node节点之后添加新元素
+ * @param {Node|NodeList} dom
+ * @param  {...any} args
+ */
+export default function (dom, ...args) {
+  return domManip(dom, args, 'after', (elem, node) => {
+    const parentNode = elem.parentNode;
     if (parentNode) {
-      parentNode.insertBefore(node, dom.nextSibling);
+      parentNode.insertBefore(node, elem.nextSibling);
     }
   });
 }
