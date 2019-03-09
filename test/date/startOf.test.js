@@ -7,7 +7,7 @@ import {
   MINUTE,
   SECOND,
   MILLISECOND
-} from '../../src/_internal/_dateConsts';
+} from '../../src/_internal/_date/_dateConsts';
 import moment from 'moment';
 
 it('测试 startOf 方法', () => {
