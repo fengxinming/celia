@@ -134,3 +134,10 @@ const { remove } = celia.array;
 
 ## Release History
 
+### 3.0.0
+
+  - finished all method for manipulating DOM
+
+### 3.0.1
+
+  - performance optimization
