@@ -17,10 +17,11 @@ function hasClass(dom, classes) {
 /**
  * 判断节点是否包含指定className
  * @param {Node|NodeList} dom
- * @param  {...any} args
+ * @param {String|Array} value
  */
-export default function (dom, ...args) {
+export default function (dom, value) {
   let exists = false;
+  const args = classesToArray(value);
   checkDom(dom, (elem) => {
     if (hasClass(elem, args)) {
       exists = true;

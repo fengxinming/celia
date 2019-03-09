@@ -1,4 +1,5 @@
-export const classListSupported = !!document.body.classList;
+export const classListSupported = 'classList' in document.body;
+export const firstElementChildSupported = 'firstElementChild' in document.body;
 
 export const propFix = {
   'for': 'htmlFor',

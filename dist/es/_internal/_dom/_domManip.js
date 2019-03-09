@@ -31,7 +31,7 @@ function fragmentForList(arr) {
  */
 export default function (list, arr, method, fallback) {
   if (list) {
-    if (document.body[method]) {
+    if (method && document.body[method]) {
       fallback = (elem, child) => {
         elem[method](child);
       };

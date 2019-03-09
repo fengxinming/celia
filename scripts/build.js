@@ -52,18 +52,18 @@ async function build(builds) {
     }
   }
   const dirList = readdirSync(srcDir);
-  dirList.forEach((file) => {
-    if (file.lastIndexOf('.js') > -1) {
-      file = file.slice(0, -3);
-      if (dirList.indexOf(file) === -1) {
-        console.log('-', file);
+  dirList
+    .forEach((file) => {
+      if (file !== 'index.js' && file.lastIndexOf('.js') > -1) {
+        file = file.slice(0, -3);
+        if (dirList.indexOf(file) === -1) {
+          console.log('-', file);
+        }
       }
-    }
-  });
+    });
   sourceDir
     .forEach((dir) => {
       readdirSync(join(srcDir, dir))
-        .filter(file => file !== 'index.js')
         .forEach((file) => {
           console.log('-', `${dir}/${file.slice(0, -3)}`);
         });

@@ -61,7 +61,6 @@ const { remove } = celia.array;
   - forEach
   - forIn
   - forNumber
-  - index
   - isArrayLike
   - isAsyncFunction
   - isBoolean

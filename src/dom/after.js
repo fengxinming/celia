@@ -6,10 +6,10 @@ import domManip from '../_internal/_dom/_domManip';
  * @param  {...any} args
  */
 export default function (dom, ...args) {
-  return domManip(dom, args, 'after', (dom, node) => {
-    const parentNode = dom.parentNode;
+  return domManip(dom, args, 'after', (elem, node) => {
+    const parentNode = elem.parentNode;
     if (parentNode) {
-      parentNode.insertBefore(node, dom.nextSibling);
+      parentNode.insertBefore(node, elem.nextSibling);
     }
   });
 }

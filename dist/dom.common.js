@@ -22,7 +22,8 @@ function classesToArray (value) {
   return [];
 }
 
-var classListSupported = !!document.body.classList;
+var classListSupported = 'classList' in document.body;
+var firstElementChildSupported = 'firstElementChild' in document.body;
 
 var propFix = {
   'for': 'htmlFor',
@@ -216,7 +217,7 @@ function fragmentForList(arr) {
  */
 function domManip (list, arr, method, fallback) {
   if (list) {
-    if (document.body[method]) {
+    if (method && document.body[method]) {
       fallback = function (elem, child) {
         elem[method](child);
       };
@@ -245,10 +246,10 @@ function after (dom) {
   var args = [], len = arguments.length - 1;
   while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
 
-  return domManip(dom, args, 'after', function (dom, node) {
-    var parentNode = dom.parentNode;
+  return domManip(dom, args, 'after', function (elem, node) {
+    var parentNode = elem.parentNode;
     if (parentNode) {
-      parentNode.insertBefore(node, dom.nextSibling);
+      parentNode.insertBefore(node, elem.nextSibling);
     }
   });
 }
@@ -301,10 +302,10 @@ function before (dom) {
   var args = [], len = arguments.length - 1;
   while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
 
-  return domManip(dom, args, 'before', function (dom, node) {
-    var parentNode = dom.parentNode;
+  return domManip(dom, args, 'before', function (elem, node) {
+    var parentNode = elem.parentNode;
     if (parentNode) {
-      parentNode.insertBefore(node, dom);
+      parentNode.insertBefore(node, elem);
     }
   });
 }
@@ -486,13 +487,11 @@ function hasClass(dom, classes) {
 /**
  * 判断节点是否包含指定className
  * @param {Node|NodeList} dom
- * @param  {...any} args
+ * @param {String|Array} value
  */
-function hasClass$1 (dom) {
-  var args = [], len = arguments.length - 1;
-  while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
-
+function hasClass$1 (dom, value) {
   var exists = false;
+  var args = classesToArray(value);
   checkDom(dom, function (elem) {
     if (hasClass(elem, args)) {
       exists = true;
@@ -511,13 +510,15 @@ function showHide (dom, show) {
       originalDisplay = display;
     }
     if (show) {
+      // 未在元素上设置display
       if (!display) {
+        // 获取渲染后的display
         var cssDisplay = curCSS(elem, 'display');
         if (cssDisplay === 'none') {
           elem.style.display = 'block';
         }
       } else if (display === 'none') {
-        elem.style.display = originalDisplay;
+        elem.style.display = originalDisplay === 'none' ? '' : originalDisplay;
       }
     } else {
       elem.style.display = 'none';
@@ -867,8 +868,25 @@ function removeClass$1 (dom, value) {
   return dom;
 }
 
-function removeData () {
+/**
+ * 缓存数据
+ * @param {Node|NodeList} dom
+ * @param  {...String} args
+ */
+function removeData (dom) {
+  var args = [], len = arguments.length - 1;
+  while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
 
+  var callback = args[0] ? function (element) {
+    var data = expandoStore(element, 'data');
+    data && forEach(args, function (arg) {
+      delete data[arg];
+    });
+  } : function () {
+    expandoStore(dom, 'data', {});
+  };
+  checkDom(dom, callback);
+  return dom;
 }
 
 /**
@@ -892,27 +910,39 @@ function show (dom) {
   return showHide(dom, true);
 }
 
-function wrap (proto) {
-  proto.wrap = function (content) {
-    if (content) {
-      fragment(content, null, function (elem) {
-        content = elem;
-        return false;
-      });
-      return checkDom(function (elem, i) {
-        var wrapNode = content;
-        if (i) {
-          wrapNode = content.cloneNode(true);
-        }
-        var pNode = elem.parentNode;
-        if (pNode) {
-          pNode.replaceChild(wrapNode, elem);
-        }
-        wrapNode.appendChild(elem);
-      });
-    }
-    return this;
-  };
+console.log('firstElementChildSupported', firstElementChildSupported);
+var firstElementChild = firstElementChildSupported ? function (elem) {
+  return elem.firstElementChild;
+} : function (elem) {
+  var firstChild = elem.firstChild;
+  return (firstChild && firstChild.nodeType === 1) ? firstChild : null;
+};
+
+/**
+ * 在dom包裹一层
+ * @param {Node|NodeList} dom
+ * @param {String} html
+ */
+function wrap (dom, html) {
+  if (html) {
+    fragment(html, null, function (elem) {
+      html = elem;
+      return false;
+    });
+    checkDom(dom, function (elem, i) {
+      var wrapNode = i ? html.cloneNode(true) : html;
+      var pNode = elem.parentNode;
+      if (pNode) {
+        pNode.replaceChild(wrapNode, dom);
+      }
+      var el;
+      while ((el = firstElementChild(elem))) {
+        wrapNode = el;
+      }
+      wrapNode.appendChild(elem);
+    });
+  }
+  return dom;
 }
 
 var dom = {
