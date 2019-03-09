@@ -1,6 +1,6 @@
 /*!
- * celia.js v2.1.0-1
+ * celia.js v2.1.0
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
-"use strict";require("./chunk-ee0a2fc7.js"),require("./chunk-b17e0ab6.js");var __chunk_3=require("./chunk-b2b68f01.js"),__chunk_5=require("./chunk-24292794.js"),__chunk_6=require("./chunk-ccb7a15b.js");function hasClass(r,s){var u=!1,c=__chunk_3.classesToArray(r.className);return __chunk_5.forEach(s,function(r){if(-1<c.indexOf(r))return!(u=!0)}),u}function hasClass$1(r,s){var u=!1,c=__chunk_3.classesToArray(s);return __chunk_6.checkDom(r,function(r){if(hasClass(r,c))return!(u=!0)}),u}module.exports=hasClass$1;
+"use strict";require("./chunk-e37cb146.js"),require("./chunk-fc07047e.js");var __chunk_3=require("./chunk-abd355a9.js"),__chunk_5=require("./chunk-7ad506f8.js"),__chunk_6=require("./chunk-cf5dc476.js");function hasClass(r,s){var c=!1,u=__chunk_3.classesToArray(r.className);return __chunk_5.forEach(s,function(r){if(-1<u.indexOf(r))return!(c=!0)}),c}function hasClass$1(r,s){var c=!1,u=__chunk_3.classesToArray(s);return __chunk_6.checkDom(r,function(r){if(hasClass(r,u))return!(c=!0)}),c}module.exports=hasClass$1;
