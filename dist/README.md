@@ -157,4 +157,7 @@ const isDate = require('celia/isDate');
 
 ### 2.1.0
 
-  - added manipulation for dom
+  - finished all method for manipulating DOM
+
+### 2.1.1
+  - performance optimization

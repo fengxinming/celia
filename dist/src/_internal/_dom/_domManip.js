@@ -2,6 +2,7 @@ import forEach from '../_forEach';
 import isArrayLike from '../../isArrayLike';
 import isString from '../../isString';
 import fragment from './_fragment';
+import forNumber from '../_forNumber';
 
 function fragmentForList(arr) {
   const frag = document.createDocumentFragment();
@@ -38,15 +39,15 @@ export default function (list, arr, method, fallback) {
     }
     const frag = fragmentForList(arr);
     const len = list.length;
+    let elem;
     if (len) {
       const last = len - 1;
-      for (let i = 0, j = last; i < j; i++) {
-        fallback(list[i], frag.cloneNode(true));
-      }
-      fallback(list[last], frag);
+      forNumber(last, i => fallback(list[i], frag.cloneNode(true)));
+      elem = list[last];
     } else {
-      fallback(list, frag);
+      elem = list;
     }
+    fallback(elem, frag);
   }
   return list;
 }
