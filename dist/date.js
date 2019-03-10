@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.1
+ * celia.js v3.0.2
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -57,22 +57,44 @@
     return date;
   }
 
-  var UNITS = {};
-  var setter = function (val, key) {
-    UNITS[val] = UNITS[val.slice(0, -1)] = UNITS[key] = key;
-  };
-  setter('years', 'Y');
-  setter('months', 'M');
-  setter('dates', 'D');
-  setter('days', 'd');
-  setter('hours', 'h');
-  setter('minutes', 'm');
-  setter('seconds', 's');
-  setter('milliseconds', 'ms');
+  var dateProto = Date.prototype;
+  /* eslint no-extend-native: 0 */
+  if (!dateProto.setDay) {
+    dateProto.setDay = function (val) {
+      var day = this.getDay();
+      if (val !== day) {
+        this.setTime(+this + ((val - day) * 86400000));
+      }
+    };
+  }
 
-  function normalizeUnit (u, defaultValue) {
+  var UNITS = {};
+  var fns = {};
+
+  function normalize(u, defaultValue) {
     return UNITS[u] || defaultValue;
   }
+
+  function setter(longer, shorter, method) {
+    var longerish = longer.slice(0, -1);
+    UNITS[shorter] = UNITS[longer] = UNITS[longerish] = shorter;
+    fns[shorter] = function (date, val) {
+      if (isNil(val)) {
+        return date[("get" + method)]();
+      } else {
+        date[("set" + method)](val);
+        return date;
+      }
+    };
+  }setter('years', 'Y', 'FullYear');
+  setter('months', 'M', 'Month');
+  setter('dates', 'D', 'Date');
+  setter('days', 'd', 'Day');
+  setter('hours', 'h', 'Hours');
+  setter('minutes', 'm', 'Minutes');
+  setter('seconds', 's', 'Seconds');
+  setter('milliseconds', 'ms', 'Milliseconds');
+  setter('times', 't', 'Time');
 
   var indexOfUnits = {
     Y: 0,
@@ -85,7 +107,7 @@
   };
 
   function getIndex(units) {
-    units = normalizeUnit(units, 'ms');
+    units = normalize(units, 'ms');
     return indexOfUnits[units];
   }
 
@@ -420,7 +442,7 @@
   function diff (date, input, units, asFloat) {
     input = parse(input);
     var output;
-    units = normalizeUnit(units);
+    units = normalize(units);
 
     switch (units) {
       case 'Y':
@@ -450,7 +472,7 @@
   }
 
   function startOf (date, units) {
-    units = normalizeUnit(units);
+    units = normalize(units);
     switch (units) {
       case 'Y':
         date.setMonth(0);
@@ -476,7 +498,7 @@
   }
 
   function endOf (date, units) {
-    units = normalizeUnit(units, 'ms');
+    units = normalize(units, 'ms');
     if (units === 'ms') {
       return date;
     }
@@ -559,9 +581,14 @@
     });
   }
 
+  function get (date, unit) {
+    unit = normalize(unit, 't');
+    return fns[unit](date);
+  }
+
   function compare (date, input, units, type) {
     input = parse(input);
-    units = normalizeUnit(units, 'ms');
+    units = normalize(units, 'ms');
     if (units === 'ms') {
       switch (type) {
         case 'before':
@@ -614,6 +641,11 @@
     return date.toString() !== 'Invalid Date';
   }
 
+  function set (date, unit, val) {
+    unit = normalize(unit, 'ms');
+    return fns[unit](date, val);
+  }
+
   function subtract (date, num, unit) {
     return add(date, -num, unit);
   }
@@ -626,6 +658,7 @@
     diff: diff,
     endOf: endOf,
     format: format,
+    get: get,
     isAfter: isAfter,
     isBefore: isBefore,
     isBetween: isBetween,
@@ -635,6 +668,7 @@
     isSameOrBefore: isSameOrBefore,
     isValid: isValid,
     parse: parse,
+    set: set,
     startOf: startOf,
     subtract: subtract
   };

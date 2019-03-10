@@ -16,7 +16,6 @@ it('测试 prepend', () => {
   const $child = document.createElement('div');
   $child.innerHTML = '789';
   prepend($div2, $child);
-  console.log(document.getElementById('app').innerHTML);
   forEach($div2, (el) => {
     expect(el.innerHTML).toEqual(
       expect.stringContaining('<div>789</div>')

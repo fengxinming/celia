@@ -34,7 +34,7 @@ async function build(builds) {
   sourceDir.concat('index').forEach((mod) => {
     mod = resolve(`src/${mod}.js`);
     rimraf.sync(mod);
-    logger.info(`remove a file: ${mod}`);
+    logger.info(`remove file: ${mod}`);
   });
   const srcDir = resolve('src');
   // 把单独的文件夹打包成js
