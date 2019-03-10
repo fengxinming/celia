@@ -142,10 +142,6 @@ const { remove } = celia.array;
 
   - performance optimization
 
-### 3.0.2
+### 3.0.4
 
   - added `get` and `set` two functions for manipulating Date
-
-### 3.0.3
-
-  - return `Date` when `set` is called for manipulating Date
