@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.2
+ * celia.js v3.0.3
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -791,7 +791,8 @@
 
   function set (date, unit, val) {
     unit = normalize(unit, 'ms');
-    return fns[unit](date, val);
+    fns[unit](date, val);
+    return date;
   }
 
   function subtract (date, num, unit) {

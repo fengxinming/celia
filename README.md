@@ -145,3 +145,7 @@ const { remove } = celia.array;
 ### 3.0.2
 
   - added `get` and `set` two functions for manipulating Date
+
+### 3.0.3
+
+  - return `Date` when `set` is called for manipulating Date
