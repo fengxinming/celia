@@ -42,6 +42,7 @@ import isDate from 'celia/es/isDate';
 import append from 'celia/es/dom/append';
 import add from 'celia/es/date/add';
 import remove from 'celia/es/array/remove';
+import stringify from 'celia/es/qs/stringify';
 
 // node
 const celia = require('celia');
@@ -49,6 +50,7 @@ const { isDate } = celia;
 const { append } = celia.dom;
 const { add } = celia.date;
 const { remove } = celia.array;
+const { stringify } = celia.stringify;
 
 ```
 
@@ -61,6 +63,7 @@ const { remove } = celia.array;
   - forEach
   - forIn
   - forNumber
+  - forOwn
   - isArrayLike
   - isAsyncFunction
   - isBoolean
@@ -92,6 +95,7 @@ const { remove } = celia.array;
   - date/diff
   - date/endOf
   - date/format
+  - date/get
   - date/isAfter
   - date/isBefore
   - date/isBetween
@@ -101,6 +105,7 @@ const { remove } = celia.array;
   - date/isSameOrBefore
   - date/isValid
   - date/parse
+  - date/set
   - date/startOf
   - date/subtract
   - dom/addClass
@@ -131,6 +136,9 @@ const { remove } = celia.array;
   - dom/removeProp
   - dom/show
   - dom/wrap
+  - qs/parse
+  - qs/prepend
+  - qs/stringify
 
 ## Release History
 
@@ -142,6 +150,10 @@ const { remove } = celia.array;
 
   - performance optimization
 
-### 3.0.4
+### 3.0.5
 
   - added `get` and `set` two functions for manipulating Date
+
+### 3.0.6
+
+  - added functions for manipulating querystring

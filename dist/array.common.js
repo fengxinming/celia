@@ -6,8 +6,12 @@
 'use strict';
 
 function append (arr, obj) {
+  arr[arr.length] = obj;
+}
+
+function append$1 (arr, obj) {
   if (arr) {
-    arr[arr.length] = obj;
+    append(arr, obj);
     return obj;
   }
 }
@@ -27,16 +31,12 @@ function forEach$1 (value, iterator, context) {
   return value && forEach(value, iterator, context);
 }
 
-function append$1 (arr, obj) {
-  arr[arr.length] = obj;
-}
-
 function grep (elems, callback, isOpposite) {
   var matches = [];
   isOpposite = !!isOpposite;
   forEach$1(elems, function (elem, i) {
     if (!callback(elem, i) === isOpposite) {
-      append$1(matches, elem);
+      append(matches, elem);
     }
   });
   return matches;
@@ -144,7 +144,7 @@ function map (elems, callback, context) {
   each(elems, function (elem) {
     elem = cb(elem);
     if (!isNil(elem)) {
-      append$1(ret, elem);
+      append(ret, elem);
     }
   });
   return ret;
@@ -171,7 +171,7 @@ function toArray (arrLike) {
 }
 
 var array = {
-  append: append,
+  append: append$1,
   forEach: forEach$1,
   grep: grep,
   inArray: inArray,

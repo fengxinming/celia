@@ -156,8 +156,12 @@ function forIn (value, iterator, context) {
     }  }
 }
 
+function isObject (value) {
+  return !isNil(value) && typeof value === 'object';
+}
+
 function forIn$1 (value, iterator, context) {
-  return value && forIn(value, iterator, context);
+  return isObject(value) && forIn(value, iterator, context);
 }
 
 function childNodes (dom, cb) {
@@ -322,7 +326,7 @@ function before (dom) {
 
 function append$2 (arr, obj) {
   if (arr) {
-    arr[arr.length] = obj;
+    append(arr, obj);
     return obj;
   }
 }
@@ -403,10 +407,6 @@ function css (dom, key, val) {
   return isUndefined(val) ?
     getter(dom, key) :
     setter(dom, key, val);
-}
-
-function isObject (value) {
-  return !isNil(value) && typeof value === 'object';
 }
 
 var expandoSequence = 1;

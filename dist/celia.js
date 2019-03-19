@@ -10,8 +10,12 @@
 }(this, function () { 'use strict';
 
   function append (arr, obj) {
+    arr[arr.length] = obj;
+  }
+
+  function append$1 (arr, obj) {
     if (arr) {
-      arr[arr.length] = obj;
+      append(arr, obj);
       return obj;
     }
   }
@@ -31,16 +35,12 @@
     return value && forEach(value, iterator, context);
   }
 
-  function append$1 (arr, obj) {
-    arr[arr.length] = obj;
-  }
-
   function grep (elems, callback, isOpposite) {
     var matches = [];
     isOpposite = !!isOpposite;
     forEach$1(elems, function (elem, i) {
       if (!callback(elem, i) === isOpposite) {
-        append$1(matches, elem);
+        append(matches, elem);
       }
     });
     return matches;
@@ -148,7 +148,7 @@
     each(elems, function (elem) {
       elem = cb(elem);
       if (!isNil(elem)) {
-        append$1(ret, elem);
+        append(ret, elem);
       }
     });
     return ret;
@@ -175,7 +175,7 @@
   }
 
   var array = {
-    append: append,
+    append: append$1,
     forEach: forEach$1,
     grep: grep,
     inArray: inArray,
@@ -823,11 +823,23 @@
   };
 
   function forIn$1 (value, iterator, context) {
-    return value && forIn(value, iterator, context);
+    return isObject(value) && forIn(value, iterator, context);
   }
 
   function forNumber$1 (value, iterator, context) {
     return value && forNumber(value, iterator, context);
+  }
+
+  function forOwn (value, iterator, context) {
+    var cb = iteratorCallback(iterator, context);
+    for (var key in value) {
+      if (value.hasOwnProperty(key) && cb(value[key], key, value) === false) {
+        break;
+      }  }
+  }
+
+  function forOwn$1 (value, iterator, context) {
+    return isObject(value) && forOwn(value, iterator, context);
   }
 
   function isAsyncFunction (value) {
@@ -841,6 +853,60 @@
   function isPromiseLike (value) {
     return !!value && isFunction(value.then);
   }
+
+  function decode(input) {
+    return decodeURIComponent(input.replace(/\+/g, ' '));
+  }
+
+  var isArray = Array.isArray;
+
+  function parse$1 (query, sep, eq) {
+    if ( sep === void 0 ) sep = '&';
+    if ( eq === void 0 ) eq = '=';
+
+    var result = {};
+    if (isString(query)) {
+      query.split(sep).forEach(function (n) {
+        var ref = n.split(eq);
+        var key = ref[0];
+        var value = ref[1];
+        var cache = result[key];
+        if (isUndefined(cache)) {
+          result[key] = decode(value);
+        } else if (isArray(cache)) {
+          append(cache, decode(value));
+        } else {
+          result[key] = [cache, decode(value)];
+        }
+      });
+    }
+    return result;
+  }
+
+  function prepend (str, prefix) {
+    prefix = isString(prefix) ? prefix : '';
+    return str ? prefix + str : str;
+  }
+
+  function stringify(obj, sep, eq) {
+    if ( sep === void 0 ) sep = '&';
+    if ( eq === void 0 ) eq = '=';
+
+    var arr = [];
+    forOwn$1(obj, function (value, key) {
+      if (!value && (isNil(value) || isNaN(value))) {
+        value = '';
+      }
+      append(arr, encodeURIComponent(key) + eq + encodeURIComponent(value));
+    });
+    return arr.length ? arr.join(sep) : '';
+  }
+
+  var qs = {
+    parse: parse$1,
+    prepend: prepend,
+    stringify: stringify
+  };
 
   function sleep (ms) {
     return new Promise(function (resolve) {
@@ -868,6 +934,7 @@
     forEach: forEach$1,
     forIn: forIn$1,
     forNumber: forNumber$1,
+    forOwn: forOwn$1,
     isArrayLike: isArrayLike,
     isAsyncFunction: isAsyncFunction,
     isBoolean: isBoolean,
@@ -879,6 +946,7 @@
     isPromiseLike: isPromiseLike,
     isString: isString,
     isUndefined: isUndefined,
+    qs: qs,
     sleep: sleep,
     type: type
   };
