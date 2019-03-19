@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.5
+ * celia.js v3.0.6
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */

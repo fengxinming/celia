@@ -153,3 +153,7 @@ const { stringify } = celia.stringify;
 ### 3.0.5
 
   - added `get` and `set` two functions for manipulating Date
+
+### 3.0.6
+
+  - added functions for manipulating querystring
