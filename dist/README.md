@@ -22,6 +22,7 @@
 <script src="https://cdn.jsdelivr.net/npm/celia/date.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/celia/dom.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/celia/array.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/qs.min.js"></script>
 ```
 
 ### CommonJS style with npm
