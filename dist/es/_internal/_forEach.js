@@ -1,8 +1,5 @@
-import iteratorCallback from './_array/_iteratorCB';
+import forSlice from './_forSlice';
 
 export default function (value, iterator, context) {
-  const cb = iteratorCallback(iterator, context);
-  for (let i = 0, len = value.length, returnValue; returnValue !== false && i < len; i++) {
-    returnValue = cb(value[i], i, value);
-  }
+  forSlice(value, 0, value.length, iterator, context);
 };

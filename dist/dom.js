@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.6
+ * celia.js v3.0.7
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -77,11 +77,15 @@
     return context ? iterator.bind(context) : iterator;
   }
 
-  function forEach (value, iterator, context) {
+  function forSlice (value, start, end, iterator, context) {
     var cb = iteratorCallback(iterator, context);
-    for (var i = 0, len = value.length, returnValue = (void 0); returnValue !== false && i < len; i++) {
+    for (var i = start, returnValue = (void 0); returnValue !== false && i < end; i++) {
       returnValue = cb(value[i], i, value);
     }
+  }
+
+  function forEach (value, iterator, context) {
+    forSlice(value, 0, value.length, iterator, context);
   }
 
   function firstNode(dom) {

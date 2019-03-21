@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.6
+ * celia.js v3.0.7
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -20,11 +20,15 @@ function iteratorCallback (iterator, context) {
   return context ? iterator.bind(context) : iterator;
 }
 
-function forEach (value, iterator, context) {
+function forSlice (value, start, end, iterator, context) {
   var cb = iteratorCallback(iterator, context);
-  for (var i = 0, len = value.length, returnValue = (void 0); returnValue !== false && i < len; i++) {
+  for (var i = start, returnValue = (void 0); returnValue !== false && i < end; i++) {
     returnValue = cb(value[i], i, value);
   }
+}
+
+function forEach (value, iterator, context) {
+  forSlice(value, 0, value.length, iterator, context);
 }
 
 function forEach$1 (value, iterator, context) {
@@ -838,6 +842,17 @@ function forOwn$1 (value, iterator, context) {
   return isObject(value) && forOwn(value, iterator, context);
 }
 
+function forSlice$1 (value, start, end, iterator, context) {
+  if (value) {
+    if (isFunction(end)) {
+      context = iterator;
+      iterator = end;
+      end = value.length;
+    }
+    forSlice(value, start, end || value.length, iterator, context);
+  }
+}
+
 function isAsyncFunction (value) {
   return toString$1(value) === '[object AsyncFunction]';
 }
@@ -922,6 +937,34 @@ function type (value) {
   return (isObject(value) || isFunction(value)) ? (RAW_DATA_TYPES[toString$1(value)] || 'object') : typeof value;
 }
 
+function isAbsolute (url) {
+  return /^([a-z][a-z0-9+\-.]*:)?\/\//i.test(url);
+}
+
+function join$1 (baseURL) {
+  var args = arguments;
+  var len = args.length;
+  if (!isNil(baseURL)) {
+    baseURL = baseURL.replace(/\/+$/, '');
+  } else if (len > 1) {
+    baseURL = '';
+  }
+  var str = '';
+  forSlice(args, 1, len, function (arg) {
+    str += '/';
+    str += arg || '';
+  });
+  if (str) {
+    baseURL += str.replace(/\/+/g, '/');
+  }
+  return baseURL;
+}
+
+var url = {
+  isAbsolute: isAbsolute,
+  join: join$1
+};
+
 var index = {
   array: array,
   camelCase: camelCase,
@@ -931,6 +974,7 @@ var index = {
   forIn: forIn$1,
   forNumber: forNumber$1,
   forOwn: forOwn$1,
+  forSlice: forSlice$1,
   isArrayLike: isArrayLike,
   isAsyncFunction: isAsyncFunction,
   isBoolean: isBoolean,
@@ -942,9 +986,11 @@ var index = {
   isPromiseLike: isPromiseLike,
   isString: isString,
   isUndefined: isUndefined,
+  map: map,
   qs: qs,
   sleep: sleep,
-  type: type
+  type: type,
+  url: url
 };
 
 module.exports = index;

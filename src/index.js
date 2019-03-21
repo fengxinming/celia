@@ -6,6 +6,7 @@ import forEach from './forEach.js';
 import forIn from './forIn.js';
 import forNumber from './forNumber.js';
 import forOwn from './forOwn.js';
+import forSlice from './forSlice.js';
 import isArrayLike from './isArrayLike.js';
 import isAsyncFunction from './isAsyncFunction.js';
 import isBoolean from './isBoolean.js';
@@ -17,9 +18,11 @@ import isObject from './isObject.js';
 import isPromiseLike from './isPromiseLike.js';
 import isString from './isString.js';
 import isUndefined from './isUndefined.js';
+import map from './map.js';
 import qs from './qs.js';
 import sleep from './sleep.js';
 import type from './type.js';
+import url from './url.js';
 export default {
   array,
   camelCase,
@@ -29,6 +32,7 @@ export default {
   forIn,
   forNumber,
   forOwn,
+  forSlice,
   isArrayLike,
   isAsyncFunction,
   isBoolean,
@@ -40,7 +44,9 @@ export default {
   isPromiseLike,
   isString,
   isUndefined,
+  map,
   qs,
   sleep,
-  type
+  type,
+  url
 };

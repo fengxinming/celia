@@ -23,6 +23,7 @@
 <script src="https://cdn.jsdelivr.net/npm/celia/dom.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/celia/array.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/celia/qs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/url.min.js"></script>
 ```
 
 ### CommonJS style with npm
@@ -44,6 +45,7 @@ import append from 'celia/es/dom/append';
 import add from 'celia/es/date/add';
 import remove from 'celia/es/array/remove';
 import stringify from 'celia/es/qs/stringify';
+import join from 'celia/es/url/join';
 
 // node
 const celia = require('celia');
@@ -51,7 +53,8 @@ const { isDate } = celia;
 const { append } = celia.dom;
 const { add } = celia.date;
 const { remove } = celia.array;
-const { stringify } = celia.stringify;
+const { stringify } = celia.qs;
+const { join } = celia.url;
 
 ```
 
@@ -65,6 +68,7 @@ const { stringify } = celia.stringify;
   - forIn
   - forNumber
   - forOwn
+  - forSlice
   - isArrayLike
   - isAsyncFunction
   - isBoolean
@@ -76,6 +80,7 @@ const { stringify } = celia.stringify;
   - isPromiseLike
   - isString
   - isUndefined
+  - map
   - sleep
   - type
   - array/append
@@ -140,6 +145,8 @@ const { stringify } = celia.stringify;
   - qs/parse
   - qs/prepend
   - qs/stringify
+  - url/isAbsolute
+  - url/join
 
 ## Release History
 
@@ -158,3 +165,8 @@ const { stringify } = celia.stringify;
 ### 3.0.6
 
   - added functions for manipulating querystring
+
+### 3.0.7
+
+  - added functions `map` and `forSlice`
+  - added functions for manipulating url
