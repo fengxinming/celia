@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.7
+ * celia.js v3.0.8
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -66,6 +66,8 @@ function includes (elems, value) {
   return inArray(value, elems) !== -1;
 }
 
+var isArray = Array.isArray;
+
 function join (first, second) {
   var i = first.length;
 
@@ -74,7 +76,9 @@ function join (first, second) {
   });
 
   // 如果first是arrayLike, 那就需要手动更新长度
-  first.length = i;
+  if (!isArray(first)) {
+    first.length = i;
+  }
 
   return first;
 }

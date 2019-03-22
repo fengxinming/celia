@@ -170,3 +170,7 @@ const { join } = celia.url;
 
   - added functions `map` and `forSlice`
   - added functions for manipulating url
+
+### 3.0.8
+
+  - fixed an underlying bug for function `join`

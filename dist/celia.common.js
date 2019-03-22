@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.7
+ * celia.js v3.0.8
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -66,6 +66,8 @@ function includes (elems, value) {
   return inArray(value, elems) !== -1;
 }
 
+var isArray = Array.isArray;
+
 function join (first, second) {
   var i = first.length;
 
@@ -74,7 +76,9 @@ function join (first, second) {
   });
 
   // 如果first是arrayLike, 那就需要手动更新长度
-  first.length = i;
+  if (!isArray(first)) {
+    first.length = i;
+  }
 
   return first;
 }
@@ -869,7 +873,7 @@ function decode(input) {
   return decodeURIComponent(input.replace(/\+/g, ' '));
 }
 
-var isArray = Array.isArray;
+var isArray$1 = Array.isArray;
 
 function parse$1 (query, sep, eq) {
   if ( sep === void 0 ) sep = '&';
@@ -884,7 +888,7 @@ function parse$1 (query, sep, eq) {
       var cache = result[key];
       if (isUndefined(cache)) {
         result[key] = decode(value);
-      } else if (isArray(cache)) {
+      } else if (isArray$1(cache)) {
         append(cache, decode(value));
       } else {
         result[key] = [cache, decode(value)];
