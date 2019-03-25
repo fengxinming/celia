@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.8
+ * celia.js v3.0.9
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -153,8 +153,8 @@
   function map (elems, callback, context) {
     var ret = [];
     var cb = iteratorCallback(callback, context);
-    each(elems, function (elem) {
-      elem = cb(elem);
+    each(elems, function (elem, key) {
+      elem = cb(elem, key);
       if (!isNil(elem)) {
         append(ret, elem);
       }

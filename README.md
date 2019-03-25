@@ -1,5 +1,7 @@
 # celia
 
+[![npm package](https://nodei.co/npm/celia.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/celia)
+
 > Note:  A modern JavaScript utility library delivering modularity, performance, & extras.
 
 ---
