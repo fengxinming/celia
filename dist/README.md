@@ -175,4 +175,8 @@ const { join } = celia.url;
 
 ### 3.0.8
 
-  - fixed an underlying bug for function `join`
+  - fixed an underlying bug for function `join` in array
+
+### 3.0.9
+
+  - fixed an underlying bug for function `map`
