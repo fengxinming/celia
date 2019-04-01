@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.10
+ * celia.js v3.0.11
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -99,16 +99,18 @@ function checkDom (dom, callback) {
   return dom;
 }
 
+function _addClass (dom, classes) {
+  classes.forEach(function (cls) {
+    dom.classList.add(cls);
+  });
+}
+
 function append (arr, obj) {
   arr[arr.length] = obj;
   return obj;
 }
 
-var addClass = classListSupported ? function (dom, classes) {
-  classes.forEach(function (cls) {
-    dom.classList.add(cls);
-  });
-} : function (dom, classes) {
+function _addClass2 (dom, classes) {
   var curClasses = classesToArray(dom.className);
   var oprClasses = curClasses.slice(0);
   classes.forEach(function (cls) {
@@ -121,7 +123,9 @@ var addClass = classListSupported ? function (dom, classes) {
   if (curClasses !== oprClasses) {
     dom.className = oprClasses;
   }
-};
+}
+
+var addClass = classListSupported ? _addClass : _addClass2;
 
 /**
  * 追加className
@@ -854,11 +858,13 @@ function removeAttr (dom, key) {
   return dom;
 }
 
-var removeClass = classListSupported ? function (dom, classes) {
+function _removeClass (dom, classes) {
   classes.forEach(function (cls) {
     dom.classList.remove(cls);
   });
-} : function (dom, classes) {
+}
+
+function _removeClass2 (dom, classes) {
   var curClasses = classesToArray(dom.className);
   var oprClasses = curClasses.slice(0);
   classes.forEach(function (cls) {
@@ -872,7 +878,9 @@ var removeClass = classListSupported ? function (dom, classes) {
   if (curClasses !== oprClasses) {
     dom.className = oprClasses;
   }
-};
+}
+
+var removeClass = classListSupported ? _removeClass : _removeClass2;
 
 /**
  * 移除className
@@ -880,7 +888,7 @@ var removeClass = classListSupported ? function (dom, classes) {
  * @param {String|Array} value
  */
 function removeClass$1 (dom, value) {
-  if (!arguments.length) {
+  if (arguments.length === 1) {
     return prop(dom, 'className', '');
   }
   var classes = classesToArray(value);

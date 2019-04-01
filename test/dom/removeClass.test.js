@@ -1,24 +1,47 @@
 import html from '../prepare/html';
-import addClass from '../../src/dom/addClass';
 import removeClass from '../../src/dom/removeClass';
+import removeClass2 from '../../src/_internal/_dom/_removeClass.legacy';
 import forEach from '../../src/forEach';
 
-it('测试 removeClass', () => {
-  document.body.innerHTML = html;
+describe('测试 removeClass', () => {
 
-  const $div = document.querySelector('.test-after');
-  addClass($div, 'class2');
-  expect($div.className).toBe('test-after class2');
-
-  const $div2 = document.querySelectorAll('.test-after');
-  addClass($div2, 'class1 class2');
-  forEach($div2, (el) => {
-    expect(el.className).toEqual(
-      expect.stringContaining('class1'),
-      expect.stringContaining('class2')
-    );
+  beforeAll(() => {
+    document.body.innerHTML = html;
   });
 
-  removeClass($div, 'class2 class1');
-  expect($div.outerHTML).toBe('<div class="test-after"><div class="after"></div><div class="after"></div></div>');
+  it('测试支持classList', () => {
+
+    const $div = document.querySelector('.test-remove-class');
+    removeClass($div, 'class2');
+    expect($div.className).toBe('test-remove-class class1');
+
+    const $div2 = document.querySelectorAll('.test-remove-class');
+    removeClass($div2, 'class1 class2');
+    forEach($div2, (el) => {
+      expect(el.className).toBe('test-remove-class');
+    });
+  });
+
+  it('测试不支持classList', () => {
+
+    const $div = document.querySelector('.test-remove-class2');
+    removeClass2($div, ['class2']);
+    expect($div.className).toBe('test-remove-class2 class1');
+
+    const $div2 = document.querySelectorAll('.test-remove-class2');
+    forEach($div2, (el) => {
+      removeClass2(el, ['class1', 'class2']);
+      expect(el.className).toBe('test-remove-class2');
+    });
+
+  });
+
+  it('移除所有', () => {
+
+    const $div = document.querySelector('.test-remove-class2');
+    removeClass($div);
+    expect($div.outerHTML).toBe('<div class=""></div>');
+
+  });
+
 });

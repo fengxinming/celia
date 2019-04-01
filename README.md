@@ -184,3 +184,7 @@ const { join } = celia.url;
 ### 3.0.10
 
   - fixed an underlying bug for function `forSlice`
+
+### 3.0.11
+
+  - fixed an underlying bug for function `removeClass`
