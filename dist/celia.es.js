@@ -1,16 +1,16 @@
 /*!
- * celia.js v3.0.9
+ * celia.js v3.0.10
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
 function append (arr, obj) {
   arr[arr.length] = obj;
+  return obj;
 }
 
 function append$1 (arr, obj) {
   if (arr) {
-    append(arr, obj);
-    return obj;
+    return append(arr, obj);
   }
 }
 
@@ -44,13 +44,21 @@ function grep (elems, callback, isOpposite) {
   return matches;
 }
 
+function max(a, b) {
+  return a >= b ? a : b;
+}
+
+function compareIndex (fromIndex, length) {
+  return fromIndex < 0 ? max(0, length + fromIndex) : fromIndex;
+}
+
 function inArray (elem, arr, fromIndex) {
   if (arr) {
     if (arr.indexOf) {
       return arr.indexOf(elem, fromIndex);
     }
     var len = arr.length;
-    var i = fromIndex ? fromIndex < 0 ? Math.max(0, len + fromIndex) : fromIndex : 0;
+    var i = fromIndex ? compareIndex(fromIndex, len) : 0;
     for (; i < len; i++) {
       if (i in arr && arr[i] === elem) {
         return i;
@@ -845,13 +853,21 @@ function forOwn$1 (value, iterator, context) {
 }
 
 function forSlice$1 (value, start, end, iterator, context) {
+  var len = value.length;
+  if (isFunction(end)) {
+    context = iterator;
+    iterator = end;
+    end = len;
+  } else {
+    end = compareIndex(end, len);
+  }
+  start = compareIndex(start, len);
+  forSlice(value, start, end, iterator, context);
+}
+
+function forSlice$2 (value, start, end, iterator, context) {
   if (value) {
-    if (isFunction(end)) {
-      context = iterator;
-      iterator = end;
-      end = value.length;
-    }
-    forSlice(value, start, end || value.length, iterator, context);
+    forSlice$1(value, start, end, iterator, context);
   }
 }
 
@@ -940,7 +956,7 @@ function type (value) {
 }
 
 function isAbsolute (url) {
-  return /^([a-z][a-z0-9+\-.]*:)?\/\//i.test(url);
+  return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
 }
 
 function join$1 (baseURL) {
@@ -976,7 +992,7 @@ var index = {
   forIn: forIn$1,
   forNumber: forNumber$1,
   forOwn: forOwn$1,
-  forSlice: forSlice$1,
+  forSlice: forSlice$2,
   isArrayLike: isArrayLike,
   isAsyncFunction: isAsyncFunction,
   isBoolean: isBoolean,

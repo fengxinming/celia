@@ -180,3 +180,7 @@ const { join } = celia.url;
 ### 3.0.9
 
   - fixed an underlying bug for function `map`
+
+### 3.0.10
+
+  - fixed an underlying bug for function `forSlice`

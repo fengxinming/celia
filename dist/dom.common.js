@@ -1,5 +1,5 @@
 /*!
- * celia.js v3.0.9
+ * celia.js v3.0.10
  * (c) 2018-2019 Jesse Feng
  * Released under the MIT License.
  */
@@ -101,6 +101,7 @@ function checkDom (dom, callback) {
 
 function append (arr, obj) {
   arr[arr.length] = obj;
+  return obj;
 }
 
 var addClass = classListSupported ? function (dom, classes) {
@@ -330,8 +331,7 @@ function before (dom) {
 
 function append$2 (arr, obj) {
   if (arr) {
-    append(arr, obj);
-    return obj;
+    return append(arr, obj);
   }
 }
 
@@ -603,13 +603,21 @@ function forEach$1 (value, iterator, context) {
   return value && forEach(value, iterator, context);
 }
 
+function max(a, b) {
+  return a >= b ? a : b;
+}
+
+function compareIndex (fromIndex, length) {
+  return fromIndex < 0 ? max(0, length + fromIndex) : fromIndex;
+}
+
 function inArray (elem, arr, fromIndex) {
   if (arr) {
     if (arr.indexOf) {
       return arr.indexOf(elem, fromIndex);
     }
     var len = arr.length;
-    var i = fromIndex ? fromIndex < 0 ? Math.max(0, len + fromIndex) : fromIndex : 0;
+    var i = fromIndex ? compareIndex(fromIndex, len) : 0;
     for (; i < len; i++) {
       if (i in arr && arr[i] === elem) {
         return i;
