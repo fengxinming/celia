@@ -1,4 +1,6 @@
-import map from '../map';
+import each from './forEach';
+import map from '../_internal/_map';
 
-// 兼容老版本
-export default map;
+export default function (elems, callback, context) {
+  return map(each, elems, callback, context);
+}

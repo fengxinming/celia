@@ -1,5 +1,5 @@
 import checkDom from './_checkDom';
-import append from '../../array/append';
+import append from '../_array/_append';
 
 export default function (dom, method, fn) {
   const arr = [];

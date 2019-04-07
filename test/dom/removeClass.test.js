@@ -1,7 +1,8 @@
 import html from '../prepare/html';
 import removeClass from '../../src/dom/removeClass';
-import removeClass2 from '../../src/_internal/_dom/_removeClass.legacy';
-import forEach from '../../src/forEach';
+
+import forEach from '../../src/array/forEach';
+import { removeClassLegacy } from '../prepare/legacy';
 
 describe('测试 removeClass', () => {
 
@@ -23,14 +24,15 @@ describe('测试 removeClass', () => {
   });
 
   it('测试不支持classList', () => {
+    removeClassLegacy();
 
     const $div = document.querySelector('.test-remove-class2');
-    removeClass2($div, ['class2']);
+    removeClass($div, 'class2');
     expect($div.className).toBe('test-remove-class2 class1');
 
     const $div2 = document.querySelectorAll('.test-remove-class2');
     forEach($div2, (el) => {
-      removeClass2(el, ['class1', 'class2']);
+      removeClass(el, 'class1 class2');
       expect(el.className).toBe('test-remove-class2');
     });
 

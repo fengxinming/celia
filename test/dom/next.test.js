@@ -6,4 +6,7 @@ it('测试 next', () => {
   let $div = document.querySelector('.after');
 
   expect(next($div)[0].outerHTML).toBe('<div class="after"></div>');
+
+  delete $div.nextElementSibling;
+  expect(next($div)[0].outerHTML).toBe('<div class="after"></div>');
 });

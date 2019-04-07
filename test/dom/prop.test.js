@@ -1,6 +1,6 @@
 import html from '../prepare/html';
 import prop from '../../src/dom/prop';
-import forEach from '../../src/forEach';
+import forEach from '../../src/array/forEach';
 
 it('测试 prop', () => {
   document.body.innerHTML = html;

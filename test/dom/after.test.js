@@ -1,5 +1,6 @@
 import html from '../prepare/html';
 import after from '../../src/dom/after';
+import { afterLegacy } from '../prepare/legacy';
 
 it('测试 after', () => {
   document.body.innerHTML = html;
@@ -23,4 +24,16 @@ it('测试 after', () => {
   expect($div.innerHTML).toEqual(
     expect.stringContaining('<div>789</div>')
   );
+
+  dom2.innerHTML = '789';
+  after($div.querySelectorAll('.after'), dom2);
+  expect($div.innerHTML).toEqual(
+    expect.stringContaining('<div>789</div>')
+  );
+
+  afterLegacy();
+  dom2.innerHTML = '111';
+  const $div4 = document.querySelector('.empty2');
+  after($div4, dom2);
+  expect($div4.parentNode.innerHTML).toBe('<div class="empty2"></div><div>111</div>');
 });

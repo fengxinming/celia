@@ -1,4 +1,4 @@
-import forSlice from '../_internal/_forSlice';
+import forSlice from '../_internal/_array/_forSlice';
 import isNil from '../isNil';
 
 export default function (baseURL) {

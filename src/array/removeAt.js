@@ -1,4 +1,9 @@
+import removeAt from '../_internal/_array/_removeAt';
+
+const { isArray } = Array;
 export default function (elems, index) {
-  elems.splice(index, 1);
-  return index;
+  if (elems && isArray(elems)) {
+    return removeAt(elems, index);
+  }
+  return null;
 }

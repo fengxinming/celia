@@ -1,4 +1,4 @@
-import forOwn from '../forOwn';
+import forOwn from '../object/forOwn';
 import isNil from '../isNil';
 import append from '../_internal/_array/_append';
 

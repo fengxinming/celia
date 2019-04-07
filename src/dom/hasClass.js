@@ -1,6 +1,6 @@
 import classesToArray from '../_internal/_dom/_classesToArray';
 import checkDom from '../_internal/_dom/_checkDom';
-import forEach from '../_internal/_forEach';
+import forEach from '../_internal/_array/_forEach';
 
 function hasClass(dom, classes) {
   let exists = false;

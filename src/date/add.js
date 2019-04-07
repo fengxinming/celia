@@ -1,5 +1,5 @@
 import isObject from '../isObject';
-import forIn from '../_internal/_forIn';
+import forOwn from '../_internal/_object/_forOwn';
 import parseArray from '../_internal/_date/_parseArray';
 import normalizeUnit from '../_internal/_date/_normalizeUnit';
 
@@ -29,7 +29,7 @@ export default function (date, num, units) {
     date.getMilliseconds()
   ];
   if (isObject(num)) {
-    forIn(num, (val, key) => {
+    forOwn(num, (val, key) => {
       const index = getIndex(key);
       arr[index] += val;
     });

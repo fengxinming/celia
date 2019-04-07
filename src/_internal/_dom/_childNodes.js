@@ -1,5 +1,5 @@
-import forEach from '../_forEach';
-import append from '../../_internal/_array/_append';
+import forEach from '../_array/_forEach';
+import append from '../_array/_append';
 
 export default function (dom, cb) {
   const nodes = [];

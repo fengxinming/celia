@@ -47,9 +47,7 @@ exports.genConfig = function (name, opts) {
       '@': resolve('./')
     }, aliases)),
     node({
-      module: true,
-      jsnext: true,
-      main: true
+      mainFields: ['module', 'main']
     }),
     cjs(),
     compress && uglify({

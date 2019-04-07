@@ -1,7 +1,7 @@
 import isUndefined from '../isUndefined';
 import isNil from '../isNil';
 import isObject from '../isObject';
-import forIn from '../_internal/_forIn';
+import forOwn from '../_internal/_object/_forOwn';
 import checkDom, { firstNode } from '../_internal/_dom/_checkDom';
 import expandoStore from '../_internal/_dom/_expandoStore';
 
@@ -18,7 +18,7 @@ export default function (dom, key, value) {
       if (!data) {
         expandoStore(dom, 'data', data = {});
       }
-      forIn(key, (n, k) => {
+      forOwn(key, (n, k) => {
         data[k] = n;
       });
     });

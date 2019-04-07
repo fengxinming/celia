@@ -1,7 +1,7 @@
 import html from '../prepare/html';
 import attr from '../../src/dom/attr';
 import removeAttr from '../../src/dom/removeAttr';
-import forEach from '../../src/forEach';
+import forEach from '../../src/array/forEach';
 
 it('测试 removeAttr', () => {
   document.body.innerHTML = html;

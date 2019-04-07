@@ -1,4 +1,4 @@
-import forEach from '../forEach';
+import forEach from './forEach';
 import append from '../_internal/_array/_append';
 
 export default function (elems, callback, isOpposite) {

@@ -9,8 +9,8 @@ import {
 import { TIMEZONE_OFFSET } from '../_internal/_date/_dateConsts';
 import parseArray from '../_internal/_date/_parseArray';
 import isString from '../isString';
-import forEach from '../_internal/_forEach';
-import forNumber from '../_internal/_forNumber';
+import forEach from '../_internal/_array/_forEach';
+import forNumber from '../_internal/_number/_forNumber';
 import isNil from '../isNil';
 import isNumber from '../isNumber';
 import isDate from '../isDate';

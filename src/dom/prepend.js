@@ -6,9 +6,5 @@ import domManip from '../_internal/_dom/_domManip';
  * @param  {...any} args
  */
 export default function (dom, ...args) {
-  return domManip(dom, args, 'prepend', (elem, node) => {
-    // if ([1, 11, 9].indexOf() > -1) {
-    elem.insertBefore(node, elem.firstChild);
-    // }
-  });
+  return domManip(dom, args, 'prepend');
 }

@@ -1,5 +1,5 @@
-import inArray from './inArray';
+import indexOf from './indexOf';
 
 export default function (elems, value) {
-  return inArray(value, elems) !== -1;
+  return indexOf(elems, value) !== -1;
 }

@@ -1,8 +1,8 @@
 import parse from './qs/parse.js';
-import prepend from './qs/prepend.js';
+import prefix from './qs/prefix.js';
 import stringify from './qs/stringify.js';
 export default {
   parse,
-  prepend,
+  prefix,
   stringify
 };

@@ -1,7 +1,7 @@
 import isUndefined from '../isUndefined';
 import expandoStore from '../_internal/_dom/_expandoStore';
 import checkDom from '../_internal/_dom/_checkDom';
-import forEach from '../forEach';
+import forEach from '../array/forEach';
 
 const addEventListenerFn = window.addEventListener ?
   (dom, name, fn) => {

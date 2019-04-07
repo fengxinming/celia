@@ -1,9 +1,10 @@
 import append from './array/append.js';
+import combine from './array/combine.js';
 import forEach from './array/forEach.js';
+import forSlice from './array/forSlice.js';
 import grep from './array/grep.js';
-import inArray from './array/inArray.js';
 import includes from './array/includes.js';
-import join from './array/join.js';
+import indexOf from './array/indexOf.js';
 import makeArray from './array/makeArray.js';
 import map from './array/map.js';
 import remove from './array/remove.js';
@@ -11,11 +12,12 @@ import removeAt from './array/removeAt.js';
 import toArray from './array/toArray.js';
 export default {
   append,
+  combine,
   forEach,
+  forSlice,
   grep,
-  inArray,
   includes,
-  join,
+  indexOf,
   makeArray,
   map,
   remove,

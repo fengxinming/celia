@@ -1,7 +1,7 @@
 import html from '../prepare/html';
 import addClass from '../../src/dom/addClass';
-import forEach from '../../src/forEach';
-import addClass2 from '../../src/_internal/_dom/_addClass.legacy';
+import forEach from '../../src/array/forEach';
+import { addClassLegacy } from '../prepare/legacy';
 
 describe('测试 addClass', () => {
 
@@ -25,17 +25,18 @@ describe('测试 addClass', () => {
   });
 
   it('测试不支持classList', () => {
+    addClassLegacy();
 
     const $div = document.querySelector('.test-after2');
-    addClass2($div, ['class2']);
+    addClass($div, 'class2');
     expect($div.className).toBe('test-after2 class2');
 
-    addClass2($div, ['class1']);
+    addClass($div, 'class1');
     expect($div.className).toBe('test-after2 class2 class1');
 
     const $div2 = document.querySelectorAll('.test-after2');
     forEach($div2, (el) => {
-      addClass2(el, ['class1', 'class2']);
+      addClass(el, 'class1 class2');
       expect(el.className).toEqual(
         expect.stringMatching(/class1|class2/)
       );

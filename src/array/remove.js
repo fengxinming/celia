@@ -1,12 +1,9 @@
-import inArray from './inArray';
-import removeAt from './removeAt';
+import remove from '../_internal/_array/_remove';
 
+const { isArray } = Array;
 export default function (elems, value) {
-  let index = inArray(value, elems);
-  if (index >= 0) {
-    removeAt(elems, index);
-    return value;
+  if (elems && isArray(elems)) {
+    return remove(elems, value);
   }
-  // 删除失败返回null
   return null;
 }

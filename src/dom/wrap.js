@@ -1,13 +1,6 @@
-import checkDom from '../_internal/_dom/_checkDom';
-import fragment from '../_internal/_dom/_fragment';
-import { firstElementChildSupported } from '../_internal/_dom/_domConsts';
-
-const firstElementChild = firstElementChildSupported ? function (elem) {
-  return elem.firstElementChild;
-} : function (elem) {
-  const firstChild = elem.firstChild;
-  return (firstChild && firstChild.nodeType === 1) ? firstChild : null;
-};
+import { manip } from '../_internal/_dom/_checkDom';
+import createDocumentFragment from '../_internal/_dom/_createDocumentFragment';
+import support from '../_internal/_dom/_support';
 
 /**
  * 在dom包裹一层
@@ -16,22 +9,22 @@ const firstElementChild = firstElementChildSupported ? function (elem) {
  */
 export default function (dom, html) {
   if (html) {
-    fragment(html, null, (elem) => {
-      html = elem;
-      return false;
-    });
-    checkDom(dom, (elem, i) => {
-      let wrapNode = i ? html.cloneNode(true) : html;
-      const pNode = elem.parentNode;
-      if (pNode) {
-        pNode.replaceChild(wrapNode, dom);
-      }
+    html = createDocumentFragment(html);
+    // 方便做单元测试
+    const { firstElementChild, before } = support;
+    const wrap = (elem, fragment) => {
+      // 插入之后文档碎片中的内容被清空
+      before(elem, fragment);
+      fragment = elem.previousSibling;
+
+      // 找到末尾节点
       let el;
-      while ((el = firstElementChild(elem))) {
-        wrapNode = el;
+      while ((el = firstElementChild(fragment))) {
+        fragment = el;
       }
-      wrapNode.appendChild(elem);
-    });
+      fragment.appendChild(elem);
+    };
+    manip(dom, elem => wrap(elem, html.cloneNode(true)), elem => wrap(elem, html));
   }
   return dom;
 }

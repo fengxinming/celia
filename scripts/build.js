@@ -30,7 +30,7 @@ if (process.argv[2]) {
  * @param {Array} builds 配置数组
  */
 async function build(builds) {
-  rimraf.sync(resolve('dist/**'));
+  rimraf.sync(resolve('npm/**'));
   sourceDir.concat('index').forEach((mod) => {
     mod = resolve(`src/${mod}.js`);
     rimraf.sync(mod);
@@ -180,7 +180,11 @@ async function createIndex(srcDir) {
     .filter(file =>
       file.lastIndexOf('.js') === -1 &&
       file.indexOf('_'))
-    .map(dir => createFile(readdirSync(join(srcDir, dir)), `/${dir}`, join(srcDir, `${dir}.js`)));
+    .map(dir => createFile(
+      readdirSync(join(srcDir, dir)).filter(f => f.lastIndexOf('.proto.js') === -1),
+      `/${dir}`,
+      join(srcDir, `${dir}.js`))
+    );
   await Promise.all(promises);
 
   const jses = readdirSync(srcDir).filter(file =>

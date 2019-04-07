@@ -1,11 +1,6 @@
 import classesToArray from '../_internal/_dom/_classesToArray';
-import { classListSupported } from '../_internal/_dom/_domConsts';
+import support from '../_internal/_dom/_support';
 import checkDom from '../_internal/_dom/_checkDom';
-import _addClass from '../_internal/_dom/_addClass';
-import _addClass2 from '../_internal/_dom/_addClass.legacy';
-
-const addClass = classListSupported ? _addClass : _addClass2;
-
 /**
  * 追加className
  * @param {Node|NodeList} dom
@@ -13,6 +8,8 @@ const addClass = classListSupported ? _addClass : _addClass2;
  */
 export default function (dom, value) {
   const classes = classesToArray(value);
+  // 方便做单元测试
+  const { addClass } = support;
   checkDom(dom, (elem) => {
     addClass(elem, classes);
   });

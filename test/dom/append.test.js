@@ -1,6 +1,6 @@
 import html from '../prepare/html';
 import append from '../../src/dom/append';
-import forEach from '../../src/forEach';
+import forEach from '../../src/array/forEach';
 
 it('测试 append', () => {
   document.body.innerHTML = html;
