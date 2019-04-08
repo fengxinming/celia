@@ -1,5 +1,6 @@
 import forEach from '../_array/_forEach';
 import forSlice from '../_array/_forSlice';
+import isWindow from '../../isWindow';
 
 export function firstNode(dom) {
   return dom && (dom.length > -1 ? dom[0] : dom);
@@ -20,7 +21,7 @@ export function manip(dom, mcallback, callback) {
 
 export default function (dom, callback) {
   if (dom) {
-    if (dom.length) {
+    if (dom.length && !isWindow(dom)) {
       forEach(dom, callback);
     } else {
       callback(dom);

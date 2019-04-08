@@ -13,6 +13,7 @@ import isObject from './isObject.js';
 import isPromiseLike from './isPromiseLike.js';
 import isString from './isString.js';
 import isUndefined from './isUndefined.js';
+import isWindow from './isWindow.js';
 import map from './map.js';
 import number from './number.js';
 import object from './object.js';
@@ -36,6 +37,7 @@ export default {
   isPromiseLike,
   isString,
   isUndefined,
+  isWindow,
   map,
   number,
   object,
