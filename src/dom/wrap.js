@@ -1,7 +1,7 @@
 import { manip } from '../_internal/_dom/_checkDom';
 import createDocumentFragment from '../_internal/_dom/_createDocumentFragment';
 import support from '../_internal/_dom/_support';
-
+import firstElementChild from '../_internal/_dom/_legacy/_firstElementChild';
 /**
  * 在dom包裹一层
  * @param {Node|NodeList} dom
@@ -11,11 +11,11 @@ export default function (dom, html) {
   if (html) {
     html = createDocumentFragment(html);
     // 方便做单元测试
-    const { firstElementChild, before } = support;
+    const { before } = support;
     const wrap = (elem, fragment) => {
       // 插入之后文档碎片中的内容被清空
       before(elem, fragment);
-      fragment = elem.previousSibling;
+      fragment = elem.previousElementSibling;
 
       // 找到末尾节点
       let el;

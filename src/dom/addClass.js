@@ -1,5 +1,5 @@
+import '../_internal/_dom/_proto/_classList';
 import classesToArray from '../_internal/_dom/_classesToArray';
-import support from '../_internal/_dom/_support';
 import checkDom from '../_internal/_dom/_checkDom';
 /**
  * 追加className
@@ -8,10 +8,8 @@ import checkDom from '../_internal/_dom/_checkDom';
  */
 export default function (dom, value) {
   const classes = classesToArray(value);
-  // 方便做单元测试
-  const { addClass } = support;
   checkDom(dom, (elem) => {
-    addClass(elem, classes);
+    elem.classList.add(...classes);
   });
   return dom;
 };

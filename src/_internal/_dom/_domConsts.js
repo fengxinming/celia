@@ -35,8 +35,3 @@ export function vendorPropName(name) {
     }
   }
 }
-
-export const siblingHooker = {
-  nextElementSibling: 'nextSibling',
-  previousElementSibling: 'previousSibling'
-};

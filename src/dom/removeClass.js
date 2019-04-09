@@ -1,7 +1,7 @@
+import '../_internal/_dom/_proto/_classList';
 import classesToArray from '../_internal/_dom/_classesToArray';
 import checkDom from '../_internal/_dom/_checkDom';
 import prop from './prop';
-import support from '../_internal/_dom/_support';
 
 /**
  * 移除className
@@ -13,10 +13,8 @@ export default function (dom, value) {
     return prop(dom, 'className', '');
   }
   const classes = classesToArray(value);
-  // 方便做单元测试
-  const { removeClass } = support;
   checkDom(dom, (elem) => {
-    removeClass(elem, classes);
+    elem.classList.remove(...classes);
   });
   return dom;
 };
