@@ -77,6 +77,7 @@ const { join } = celia.url;
   - isPromiseLike
   - isString
   - isUndefined
+  - isWindow
   - map
   - sleep
   - type
@@ -98,6 +99,7 @@ const { join } = celia.url;
   - array/removeAt
   - array/removeAt.proto
   - array/toArray
+  - array/toArray.proto
   - date/add
   - date/clone
   - date/dayOfYear
@@ -128,6 +130,7 @@ const { join } = celia.url;
   - dom/css
   - dom/data
   - dom/empty
+  - dom/find
   - dom/hasClass
   - dom/hide
   - dom/html
@@ -149,6 +152,7 @@ const { join } = celia.url;
   - dom/wrap
   - number/forNumber
   - number/map
+  - object/assign
   - object/forIn
   - object/forOwn
   - object/map

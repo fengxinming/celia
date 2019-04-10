@@ -1,5 +1,8 @@
-import defineProto from './_defineProto';
+import { checkProto } from './_defineProto';
 
 const objectProto = Object.prototype;
 
-export default defineProto(objectProto);
+export default function (name, val) {
+  name = checkProto(objectProto, name);
+  objectProto[name] = val;
+};

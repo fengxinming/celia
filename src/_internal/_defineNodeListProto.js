@@ -1,5 +1,5 @@
 import defineProto from './_defineProto';
 
-const elProto = window.Element.prototype;
+const elProto = window.NodeList.prototype;
 
 export default defineProto(elProto);

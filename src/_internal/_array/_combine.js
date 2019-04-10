@@ -12,6 +12,7 @@ export default function (first, args) {
       });
     } else {
       append(first, arg);
+      i++;
     }
   });
 

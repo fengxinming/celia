@@ -1,5 +1,8 @@
-import defineProto from './_defineProto';
+import { checkProto } from './_defineProto';
 
 const arrayProto = Array.prototype;
 
-export default defineProto(arrayProto);
+export default function (name, val) {
+  name = checkProto(arrayProto, name);
+  arrayProto[name] = val;
+};
