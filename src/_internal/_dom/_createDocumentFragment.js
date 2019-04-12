@@ -1,4 +1,4 @@
-import fragment from './_fragment';
+import createElement from './_createElement';
 import forEach from '../_array/_forEach';
 import isArrayLike from '../../isArrayLike';
 import isString from '../../isString';
@@ -16,7 +16,7 @@ export default function (htmlOrArray, props) {
         frag.appendChild(elem);
       });
     } else {
-      fragment(content, props, (elem) => {
+      createElement(content, props, (elem) => {
         frag.appendChild(elem);
       });
     }

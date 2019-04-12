@@ -1,6 +1,6 @@
-import fragment from '../_internal/_dom/_fragment';
+import createElement from '../_internal/_dom/_createElement';
 import isFunction from '../isFunction';
-import _append from '../_internal/_array/_append';
+import append from '../_internal/_array/_append';
 
 export default function (html, props, fn) {
   if (isFunction(props)) {
@@ -8,11 +8,11 @@ export default function (html, props, fn) {
     props = null;
   }
   if (isFunction(fn)) {
-    return fragment(html, props, fn);
+    return createElement(html, props, fn);
   }
   const arr = [];
-  fragment(html, props, (el) => {
-    _append(arr, el);
+  createElement(html, props, (el) => {
+    append(arr, el);
   });
   return arr;
 }

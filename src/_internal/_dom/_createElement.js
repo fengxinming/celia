@@ -1,10 +1,8 @@
-import {
-  singleTagRE,
-  fragmentRE
-} from './_domRegex';
+import { singleTagRE, fragmentRE } from './_domRegex';
 import forOwn from '../../object/forOwn';
 import childNodes from './_childNodes';
 import { testEl } from './_domConsts';
+import support from './_support';
 
 export default function (html, props, fn) {
   let matches = html.match(singleTagRE);
@@ -15,8 +13,15 @@ export default function (html, props, fn) {
     });
     fn(dom);
   } else if (fragmentRE.test(html)) {
-    testEl.innerHTML = html;
-    childNodes(testEl, fn);
+    const newEl = testEl.cloneNode();
+    // 使用高级特性
+    if (support.createContextualFragment) {
+      const range = document.createRange();
+      newEl.appendChild(range.createContextualFragment(html));
+    } else {
+      newEl.innerHTML = html;
+    }
+    childNodes(newEl, fn);
   } else {
     fn(document.createTextNode(html));
   }

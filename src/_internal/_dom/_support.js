@@ -12,7 +12,8 @@ const support = {
   append,
   prepend,
   after,
-  before
+  before,
+  createContextualFragment: window.Range && 'createContextualFragment' in window.Range.prototype
 };
 
 ['prepend', 'after', 'before'].forEach((fn) => {

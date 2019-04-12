@@ -15,6 +15,7 @@ import isString from './isString.js';
 import isUndefined from './isUndefined.js';
 import isWindow from './isWindow.js';
 import map from './map.js';
+import msie from './msie.js';
 import number from './number.js';
 import object from './object.js';
 import qs from './qs.js';
@@ -39,6 +40,7 @@ export default {
   isUndefined,
   isWindow,
   map,
+  msie,
   number,
   object,
   qs,
