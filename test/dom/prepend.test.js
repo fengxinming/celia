@@ -1,6 +1,7 @@
 import html from '../prepare/html';
 import prepend from '../../src/dom/prepend';
-import forEach from '../../src/forEach';
+import forEach from '../../src/array/forEach';
+import { prependLegacy } from '../prepare/legacy';
 
 it('测试 prepend', () => {
   document.body.innerHTML = html;
@@ -16,10 +17,14 @@ it('测试 prepend', () => {
   const $child = document.createElement('div');
   $child.innerHTML = '789';
   prepend($div2, $child);
-  console.log(document.getElementById('app').innerHTML);
   forEach($div2, (el) => {
     expect(el.innerHTML).toEqual(
       expect.stringContaining('<div>789</div>')
     );
   });
+
+  prependLegacy();
+  const $div3 = document.querySelector('.test-after2');
+  prepend($div3, '<div></div>');
+  expect($div3.innerHTML).toBe('<div></div><div class="after"></div><div class="after"></div>');
 });

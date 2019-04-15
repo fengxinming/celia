@@ -1,7 +1,3 @@
-export const classListSupported = 'classList' in document.body;
-// export const classListSupported = false;
-export const firstElementChildSupported = 'firstElementChild' in document.body;
-
 export const propFix = {
   'for': 'htmlFor',
   'class': 'className'
@@ -39,8 +35,3 @@ export function vendorPropName(name) {
     }
   }
 }
-
-export const siblingHooker = {
-  nextElementSibling: 'nextSibling',
-  previousElementSibling: 'previousSibling'
-};

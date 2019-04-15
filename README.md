@@ -1,5 +1,7 @@
 # celia
 
+[![npm package](https://nodei.co/npm/celia.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/celia)
+
 > Note:  A modern JavaScript utility library delivering modularity, performance, & extras.
 
 ---
@@ -18,10 +20,12 @@
 ### Load `celia` via classical `<script>` tag
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/celia/celia.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/celia/date.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/celia/dom.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/celia/array.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dist/celia.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dist/date.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dist/dom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dist/array.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dist/qs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dist/url.min.js"></script>
 ```
 
 ### CommonJS style with npm
@@ -35,13 +39,15 @@ npm install celia --save
 // es6
 import celia from 'celia';
 // or
-import celia from 'celia/celia.es';
+import celia from 'celia/dist/celia.es';
 
 // modularity
-import isDate from 'celia/es/isDate';
-import append from 'celia/es/dom/append';
-import add from 'celia/es/date/add';
-import remove from 'celia/es/array/remove';
+import isDate from 'celia/isDate';
+import append from 'celia/dom/append';
+import add from 'celia/date/add';
+import remove from 'celia/array/remove';
+import stringify from 'celia/qs/stringify';
+import join from 'celia/url/join';
 
 // node
 const celia = require('celia');
@@ -49,6 +55,8 @@ const { isDate } = celia;
 const { append } = celia.dom;
 const { add } = celia.date;
 const { remove } = celia.array;
+const { stringify } = celia.qs;
+const { join } = celia.url;
 
 ```
 
@@ -58,9 +66,6 @@ const { remove } = celia.array;
 
   - camelCase
   - each
-  - forEach
-  - forIn
-  - forNumber
   - isArrayLike
   - isAsyncFunction
   - isBoolean
@@ -72,19 +77,29 @@ const { remove } = celia.array;
   - isPromiseLike
   - isString
   - isUndefined
+  - isWindow
+  - map
   - sleep
   - type
   - array/append
+  - array/append.proto
+  - array/combine
   - array/forEach
+  - array/forEach.proto
+  - array/forSlice
+  - array/forSlice.proto
   - array/grep
-  - array/inArray
   - array/includes
-  - array/join
+  - array/indexOf
   - array/makeArray
   - array/map
+  - array/map.proto
   - array/remove
+  - array/remove.proto
   - array/removeAt
+  - array/removeAt.proto
   - array/toArray
+  - array/toArray.proto
   - date/add
   - date/clone
   - date/dayOfYear
@@ -92,6 +107,7 @@ const { remove } = celia.array;
   - date/diff
   - date/endOf
   - date/format
+  - date/get
   - date/isAfter
   - date/isBefore
   - date/isBetween
@@ -101,6 +117,7 @@ const { remove } = celia.array;
   - date/isSameOrBefore
   - date/isValid
   - date/parse
+  - date/set
   - date/startOf
   - date/subtract
   - dom/addClass
@@ -109,9 +126,11 @@ const { remove } = celia.array;
   - dom/attr
   - dom/before
   - dom/children
+  - dom/createElement
   - dom/css
   - dom/data
   - dom/empty
+  - dom/find
   - dom/hasClass
   - dom/hide
   - dom/html
@@ -131,13 +150,16 @@ const { remove } = celia.array;
   - dom/removeProp
   - dom/show
   - dom/wrap
+  - number/forNumber
+  - number/map
+  - object/assign
+  - object/forIn
+  - object/forOwn
+  - object/map
+  - qs/parse
+  - qs/prefix
+  - qs/stringify
+  - url/isAbsolute
+  - url/join
 
 ## Release History
-
-### 3.0.0
-
-  - finished all method for manipulating DOM
-
-### 3.0.1
-
-  - performance optimization

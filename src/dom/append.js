@@ -6,7 +6,5 @@ import domManip from '../_internal/_dom/_domManip';
  * @param  {...any} args
  */
 export default function (dom, ...args) {
-  return domManip(dom, args, 'appendChild'/*, (el, child) => {
-    el.appendChild(child);
-  } */);
+  return domManip(dom, args, 'append');
 }

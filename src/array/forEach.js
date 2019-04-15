@@ -1,4 +1,5 @@
-import forEach from '../forEach';
+import forEach from '../_internal/_array/_forEach';
 
-// 兼容老版本
-export default forEach;
+export default function (value, iterator, context) {
+  return value && forEach(value, iterator, context);
+};

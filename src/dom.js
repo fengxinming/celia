@@ -4,9 +4,11 @@ import append from './dom/append.js';
 import attr from './dom/attr.js';
 import before from './dom/before.js';
 import children from './dom/children.js';
+import createElement from './dom/createElement.js';
 import css from './dom/css.js';
 import data from './dom/data.js';
 import empty from './dom/empty.js';
+import find from './dom/find.js';
 import hasClass from './dom/hasClass.js';
 import hide from './dom/hide.js';
 import html from './dom/html.js';
@@ -33,9 +35,11 @@ export default {
   attr,
   before,
   children,
+  createElement,
   css,
   data,
   empty,
+  find,
   hasClass,
   hide,
   html,

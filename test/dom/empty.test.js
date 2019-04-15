@@ -1,6 +1,6 @@
 import html from '../prepare/html';
 import empty from '../../src/dom/empty';
-import forEach from '../../src/forEach';
+import forEach from '../../src/array/forEach';
 
 it('测试 empty', () => {
   document.body.innerHTML = html;

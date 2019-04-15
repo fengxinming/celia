@@ -1,5 +1,6 @@
 import html from '../prepare/html';
 import before from '../../src/dom/before';
+import { beforeLegacy } from '../prepare/legacy';
 
 it('测试 before', () => {
   document.body.innerHTML = html;
@@ -23,4 +24,10 @@ it('测试 before', () => {
   expect($div.innerHTML).toEqual(
     expect.stringContaining('<div>789</div>')
   );
+
+  beforeLegacy();
+  dom2.innerHTML = '111';
+  const $div4 = document.querySelector('.empty2');
+  before($div4, dom2);
+  expect($div4.parentNode.innerHTML).toBe('<div>111</div><div class="empty2"></div>');
 });

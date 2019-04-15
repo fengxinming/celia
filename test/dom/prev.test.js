@@ -6,4 +6,7 @@ it('测试 prev', () => {
   let $div = document.querySelector('.empty1');
 
   expect(prev($div)[0].innerHTML).toBe('<div class="empty2"></div>');
+
+  delete $div.previousElementSibling;
+  expect(prev($div)[0].innerHTML).toBe('<div class="empty2"></div>');
 });

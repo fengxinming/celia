@@ -1,5 +1,5 @@
 import daysInYear from '../_internal/_date/_daysInYear';
-import forNumber from '../_internal/_forNumber';
+import forNumber from '../_internal/_number/_forNumber';
 import isUndefined from '../isUndefined';
 
 export default function (date, val) {

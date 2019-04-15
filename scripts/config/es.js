@@ -8,7 +8,7 @@ function configure() {
       input: resolve('src/index.js')
     },
     outputOptions: {
-      file: resolve(`dist/${DIST_FILENAME}.es.js`),
+      file: resolve(`npm/dist/${DIST_FILENAME}.es.js`),
       format: 'es'
     }
   };

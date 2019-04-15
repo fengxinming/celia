@@ -1,6 +1,6 @@
 import html from '../prepare/html';
 import attr from '../../src/dom/attr';
-import forEach from '../../src/forEach';
+import forEach from '../../src/array/forEach';
 
 it('测试 attr', () => {
   document.body.innerHTML = html;

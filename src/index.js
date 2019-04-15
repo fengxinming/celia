@@ -2,9 +2,6 @@ import array from './array.js';
 import camelCase from './camelCase.js';
 import date from './date.js';
 import each from './each.js';
-import forEach from './forEach.js';
-import forIn from './forIn.js';
-import forNumber from './forNumber.js';
 import isArrayLike from './isArrayLike.js';
 import isAsyncFunction from './isAsyncFunction.js';
 import isBoolean from './isBoolean.js';
@@ -16,16 +13,20 @@ import isObject from './isObject.js';
 import isPromiseLike from './isPromiseLike.js';
 import isString from './isString.js';
 import isUndefined from './isUndefined.js';
+import isWindow from './isWindow.js';
+import map from './map.js';
+import msie from './msie.js';
+import number from './number.js';
+import object from './object.js';
+import qs from './qs.js';
 import sleep from './sleep.js';
 import type from './type.js';
+import url from './url.js';
 export default {
   array,
   camelCase,
   date,
   each,
-  forEach,
-  forIn,
-  forNumber,
   isArrayLike,
   isAsyncFunction,
   isBoolean,
@@ -37,6 +38,13 @@ export default {
   isPromiseLike,
   isString,
   isUndefined,
+  isWindow,
+  map,
+  msie,
+  number,
+  object,
+  qs,
   sleep,
-  type
+  type,
+  url
 };

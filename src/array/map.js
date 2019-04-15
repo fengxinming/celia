@@ -1,16 +1,6 @@
-import each from '../each';
-import isNil from '../isNil';
-import iteratorCallback from '../_internal/_array/_iteratorCB';
-import append from '../_internal/_array/_append';
+import each from './forEach';
+import map from '../_internal/_map';
 
 export default function (elems, callback, context) {
-  const ret = [];
-  const cb = iteratorCallback(callback, context);
-  each(elems, (elem) => {
-    elem = cb(elem);
-    if (!isNil(elem)) {
-      append(ret, elem);
-    }
-  });
-  return ret;
+  return map(each, elems, callback, context);
 }

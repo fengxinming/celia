@@ -5,6 +5,7 @@ import daysInMonth from './date/daysInMonth.js';
 import diff from './date/diff.js';
 import endOf from './date/endOf.js';
 import format from './date/format.js';
+import get from './date/get.js';
 import isAfter from './date/isAfter.js';
 import isBefore from './date/isBefore.js';
 import isBetween from './date/isBetween.js';
@@ -14,6 +15,7 @@ import isSameOrAfter from './date/isSameOrAfter.js';
 import isSameOrBefore from './date/isSameOrBefore.js';
 import isValid from './date/isValid.js';
 import parse from './date/parse.js';
+import set from './date/set.js';
 import startOf from './date/startOf.js';
 import subtract from './date/subtract.js';
 export default {
@@ -24,6 +26,7 @@ export default {
   diff,
   endOf,
   format,
+  get,
   isAfter,
   isBefore,
   isBetween,
@@ -33,6 +36,7 @@ export default {
   isSameOrBefore,
   isValid,
   parse,
+  set,
   startOf,
   subtract
 };
