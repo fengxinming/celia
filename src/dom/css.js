@@ -3,6 +3,8 @@ import camelCase from '../camelCase';
 import checkDom, { firstNode } from '../_internal/_dom/_checkDom';
 import style from '../_internal/_dom/_style';
 import curCSS from '../_internal/_dom/_curCSS';
+import isObject from '../isObject';
+import forOwn from '../_internal/_object/_forOwn';
 
 function getter(dom, k) {
   dom = firstNode(dom);
@@ -16,6 +18,13 @@ function setter(dom, k, v) {
   return dom;
 }
 
+function objSetter(dom, obj) {
+  forOwn(obj, (val, key) => {
+    setter(dom, key, val);
+  });
+  return dom;
+}
+
 /**
  * 读取或者设置属性
  * @param {Node|NodeList} dom
@@ -23,8 +32,9 @@ function setter(dom, k, v) {
  * @param {*} val
  */
 export default function (dom, key, val) {
-  key = camelCase(key);
   return isUndefined(val) ?
-    getter(dom, key) :
+    isObject(key) ?
+      objSetter(dom, key) :
+      getter(dom, key) :
     setter(dom, key, val);
 }
