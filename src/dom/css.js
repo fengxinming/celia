@@ -1,5 +1,4 @@
 import isUndefined from '../isUndefined';
-import camelCase from '../camelCase';
 import checkDom, { firstNode } from '../_internal/_dom/_checkDom';
 import style from '../_internal/_dom/_style';
 import curCSS from '../_internal/_dom/_curCSS';

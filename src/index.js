@@ -11,6 +11,7 @@ import isNil from './isNil.js';
 import isNumber from './isNumber.js';
 import isObject from './isObject.js';
 import isPromiseLike from './isPromiseLike.js';
+import isRegExp from './isRegExp.js';
 import isString from './isString.js';
 import isUndefined from './isUndefined.js';
 import isWindow from './isWindow.js';
@@ -36,6 +37,7 @@ export default {
   isNumber,
   isObject,
   isPromiseLike,
+  isRegExp,
   isString,
   isUndefined,
   isWindow,
