@@ -1,7 +1,6 @@
 'use strict';
 
-const { existsSync, mkdirSync, readdirSync } = require('fs');
-const { join } = require('path');
+const { existsSync, mkdirSync } = require('fs');
 const { copy } = require('fs-extra');
 const { getConsole } = require('corie-logger');
 const logger = getConsole('celia');
