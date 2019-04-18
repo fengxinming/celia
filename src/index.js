@@ -1,6 +1,4 @@
-import array from './array.js';
 import camelCase from './camelCase.js';
-import date from './date.js';
 import each from './each.js';
 import isArrayLike from './isArrayLike.js';
 import isAsyncFunction from './isAsyncFunction.js';
@@ -23,9 +21,7 @@ import sleep from './sleep.js';
 import type from './type.js';
 import url from './url.js';
 export default {
-  array,
   camelCase,
-  date,
   each,
   isArrayLike,
   isAsyncFunction,

@@ -1,10 +1,8 @@
-import iteratorCallback from '../_array/_iteratorCB';
+import _for from './_for';
 
 export default function (value, iterator, context) {
-  const cb = iteratorCallback(iterator, context);
-  for (let key in value) {
-    if (value.hasOwnProperty(key) && cb(value[key], key, value) === false) {
-      break;
-    };
-  }
+  _for(
+    (cb, val, key) => value.hasOwnProperty(key) && cb(val, key, value) === false,
+    value, iterator, context
+  );
 };
