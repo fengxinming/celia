@@ -1,5 +1,8 @@
 import camelCase from './camelCase.js';
 import each from './each.js';
+import forEach from './forEach.js';
+import forNumber from './forNumber.js';
+import forOwn from './forOwn.js';
 import isArrayLike from './isArrayLike.js';
 import isAsyncFunction from './isAsyncFunction.js';
 import isBoolean from './isBoolean.js';
@@ -23,6 +26,9 @@ import url from './url.js';
 export default {
   camelCase,
   each,
+  forEach,
+  forNumber,
+  forOwn,
   isArrayLike,
   isAsyncFunction,
   isBoolean,

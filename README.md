@@ -10,6 +10,7 @@
 
   - [Installation](#Installation)
   - [Usage](#Usage)
+    - [Manipulation](#Manipulation)
     - [API](#API)
   - [Release History](#Release-History)
 
@@ -39,12 +40,14 @@ import celia from 'celia';
 import celia from 'celia/dist/celia.es';
 
 // modularity
+import each from 'celia/each';
 import isDate from 'celia/isDate';
 import stringify from 'celia/qs/stringify';
 import join from 'celia/url/join';
 
 // node
 const celia = require('celia');
+const { each } = celia;
 const { isDate } = celia;
 const { stringify } = celia.qs;
 const { join } = celia.url;
@@ -53,10 +56,19 @@ const { join } = celia.url;
 
 ## Usage
 
+### Manipulation
+
+  - [manipulate Array](https://www.npmjs.com/package/kick-array)
+  - [manipulate DOM](https://www.npmjs.com/package/kick-dom)
+  - [manipulate Date](https://www.npmjs.com/package/kick-date)
+
 ### API
 
   - camelCase
   - each
+  - forEach
+  - forNumber
+  - forOwn
   - isArrayLike
   - isAsyncFunction
   - isBoolean

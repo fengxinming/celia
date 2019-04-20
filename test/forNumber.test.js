@@ -1,4 +1,4 @@
-import forNumber from '../../src/number/forNumber';
+import forNumber from '../src/forNumber';
 
 it('测试 forNumber 方法', () => {
 

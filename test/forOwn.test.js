@@ -1,4 +1,4 @@
-import forOwn from '../../src/object/forOwn';
+import forOwn from '../src/forOwn';
 
 it('测试 forOwn 方法', () => {
   class A {
