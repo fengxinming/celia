@@ -3,4 +3,6 @@ const versions = {
   objectundefined: 6 // IE6
 };
 
-export default document.documentMode || versions[typeof document.all + typeof XMLHttpRequest];
+export default (function (doc) {
+  return doc.documentMode || versions[typeof doc.all + typeof XMLHttpRequest];
+})(document || {});

@@ -3,6 +3,7 @@ import each from './each.js';
 import forEach from './forEach.js';
 import forNumber from './forNumber.js';
 import forOwn from './forOwn.js';
+import getUid from './getUid.js';
 import isArrayLike from './isArrayLike.js';
 import isAsyncFunction from './isAsyncFunction.js';
 import isBoolean from './isBoolean.js';
@@ -29,6 +30,7 @@ export default {
   forEach,
   forNumber,
   forOwn,
+  getUid,
   isArrayLike,
   isAsyncFunction,
   isBoolean,
