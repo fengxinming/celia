@@ -10,8 +10,10 @@ export default function (baseURL) {
   }
   let str = '';
   forSlice(arguments, 1, len, (arg) => {
-    str += '/';
-    str += arg || '';
+    if (arg) {
+      str += '/';
+      str += arg;
+    }
   });
   if (str) {
     baseURL += str.replace(/\/+/g, '/');
