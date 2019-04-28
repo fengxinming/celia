@@ -1,13 +1,13 @@
 'use strict';
 
 const { EOL } = require('os');
-const { writeFile, readdirSync, existsSync } = require('fs');
+const { writeFile, readdirSync, statSync } = require('fs');
 const { relative, join } = require('path');
 const { promisify } = require('util');
 const rollup = require('rollup');
 const zlib = require('zlib');
 const rimraf = require('rimraf');
-const { getConsole } = require('corie-logger');
+const Console = require('clrsole');
 const { minify } = require('uglify-js');
 const cp = require('./cp');
 
@@ -16,7 +16,7 @@ const { resolve, sourceDir, banner } = require('./config/_util');
 
 const gzip = promisify(zlib.gzip);
 const writeFileify = promisify(writeFile);
-const logger = getConsole('celia');
+const logger = new Console('celia');
 
 if (process.argv[2]) {
   const filters = process.argv[2].split(',');
@@ -31,17 +31,12 @@ if (process.argv[2]) {
  */
 async function build(builds) {
   rimraf.sync(resolve('npm/**'));
-  sourceDir.concat('index').forEach((mod) => {
-    mod = resolve(`src/${mod}.js`);
-    rimraf.sync(mod);
-    logger.info(`remove file: ${mod}`);
+  await cp().catch((err) => {
+    logger.error(err);
   });
-  const srcDir = resolve('src');
+  const distDir = resolve('npm');
   // 把单独的文件夹打包成js
-  if (!existsSync(join(srcDir, 'index.js'))) {
-    await createIndex(srcDir);
-  }
-  cp();
+  await createIndex(distDir);
   const total = builds.length;
   for (let i = 0; i < total; i++) {
     try {
@@ -51,10 +46,11 @@ async function build(builds) {
       break;
     }
   }
+  const srcDir = resolve('src');
   const dirList = readdirSync(srcDir);
   dirList
     .forEach((file) => {
-      if (file !== 'index.js' && file.lastIndexOf('.js') > -1) {
+      if (file.lastIndexOf('.js') > -1) {
         file = file.slice(0, -3);
         if (dirList.indexOf(file) === -1) {
           console.log('-', file);
@@ -178,17 +174,15 @@ async function createIndex(srcDir) {
   const files = readdirSync(srcDir);
   const promises = files
     .filter(file =>
-      file.lastIndexOf('.js') === -1 &&
+      statSync(join(srcDir, file)).isDirectory() &&
       file.indexOf('_'))
     .map(dir => createFile(
-      readdirSync(join(srcDir, dir)).filter(f => f.lastIndexOf('.proto.js') === -1),
+      readdirSync(join(srcDir, dir)).filter(f => !f.endsWith('.proto.js')),
       `/${dir}`,
       join(srcDir, `${dir}.js`))
     );
   await Promise.all(promises);
 
-  const jses = readdirSync(srcDir).filter(file =>
-    ['index.js', 'dom.js', 'browser.js'].indexOf(file) === -1 &&
-    file.lastIndexOf('.js') > 0);
+  const jses = files.filter(file => file.endsWith('.js'));
   await createFile(jses, '', join(srcDir, 'index.js'));
 }

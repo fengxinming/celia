@@ -5,7 +5,7 @@ const { resolve, DIST_FILENAME } = require('./_util');
 function configure() {
   return {
     inputOptions: {
-      input: resolve('src/index.js')
+      input: resolve('npm/index.js')
     },
     outputOptions: {
       file: resolve(`npm/dist/${DIST_FILENAME}.es.js`),

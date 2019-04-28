@@ -18,6 +18,6 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('src/index.js', `npm/dist/${DIST_FILENAME}.js`),
-  ...sourceDir.map(dir => configure(`src/${dir}.js`, `npm/dist/${dir}.js`))
+  configure('npm/index.js', `npm/dist/${DIST_FILENAME}.js`),
+  ...sourceDir.map(dir => configure(`npm/${dir}.js`, `npm/dist/${dir}.js`))
 ];
