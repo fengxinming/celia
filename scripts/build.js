@@ -183,6 +183,11 @@ async function createIndex(srcDir) {
     );
   await Promise.all(promises);
 
-  const jses = files.filter(file => file.endsWith('.js'));
-  await createFile(jses, '', join(srcDir, 'index.js'));
+  // 重新读取文件夹
+  const moudles = readdirSync(srcDir).filter(file => file.endsWith('.js'));
+  await createFile(
+    moudles,
+    '',
+    join(srcDir, 'index.js')
+  );
 }
