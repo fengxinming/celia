@@ -4,7 +4,7 @@ import isObject from './isObject';
 import isFunction from './isFunction';
 
 const RAW_DATA_TYPES = {};
-'Boolean,Number,String,Function,Array,Date,RegExp,Object,Error,Symbol'.split(',').forEach((name) => {
+'Boolean,Number,String,Function,AsyncFunction,Array,Date,RegExp,Object,Error,Symbol'.split(',').forEach((name) => {
   RAW_DATA_TYPES[`[object ${name}]`] = name.toLowerCase();
 });
 

@@ -69,6 +69,7 @@ const { join } = celia.url;
   - forEach
   - forNumber
   - forOwn
+  - get
   - getUid
   - isArrayLike
   - isAsyncFunction
@@ -92,6 +93,7 @@ const { join } = celia.url;
   - object/assign
   - object/forIn
   - object/forOwn
+  - object/get
   - object/map
   - qs/parse
   - qs/prefix

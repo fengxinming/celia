@@ -50,7 +50,7 @@ async function build(builds) {
   const dirList = readdirSync(srcDir);
   dirList
     .forEach((file) => {
-      if (file.lastIndexOf('.js') > -1) {
+      if (file.endsWith('.js')) {
         file = file.slice(0, -3);
         if (dirList.indexOf(file) === -1) {
           console.log('-', file);
