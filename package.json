@@ -1,6 +1,6 @@
 {
   "name": "celia",
-  "version": "5.1.4",
+  "version": "5.2.0",
   "description": "A modern JavaScript utility library delivering modularity, performance, & extras.",
   "main": "./dist/celia.c.js",
   "module": "./dist/celia.es.js",
