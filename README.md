@@ -4,6 +4,8 @@
 
 > Note:  A modern JavaScript utility library delivering modularity, performance, & extras.
 
+[![NPM version](https://img.shields.io/npm/v/celia.svg?style=flat)](https://npmjs.org/package/celia) [![NPM Downloads](https://img.shields.io/npm/dm/celia.svg?style=flat)](https://npmjs.org/package/celia)
+
 ---
 
 ## Table of contents
@@ -87,6 +89,9 @@ const { join } = celia.url;
   - map
   - sleep
   - type
+  - aop/after
+  - aop/around
+  - aop/before
   - browser/msie
   - number/forNumber
   - number/map

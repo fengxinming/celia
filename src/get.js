@@ -1,14 +1,12 @@
 import isNil from './isNil';
 import isUndefined from './isUndefined';
-
-const rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
-const reEscapeChar = /\\(\\)?/g;
+import { PROP_NAME_REGEX, ESCAPE_CHAR_REGEX } from './_internal/_regex';
 
 export default function (object, path, defaultValue) {
   let part;
-  while (!isNil(object) && (part = rePropName.exec(path))) {
+  while (!isNil(object) && (part = PROP_NAME_REGEX.exec(path))) {
     const [match, number, quote, subString] = part;
-    const prop = quote ? subString.replace(reEscapeChar, '$1') : (number || match);
+    const prop = quote ? subString.replace(ESCAPE_CHAR_REGEX, '$1') : (number || match);
     object = object[prop];
   }
   return isUndefined(object) ? defaultValue : object;
