@@ -78,6 +78,7 @@ const { join } = celia.url;
   - isBoolean
   - isDate
   - isFunction
+  - isInteger
   - isNil
   - isNumber
   - isObject
