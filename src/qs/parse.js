@@ -1,4 +1,4 @@
-import '../array/append.proto';
+import append from '../_internal/_array/_append';
 import isString from '../isString';
 import isUndefined from '../isUndefined';
 
@@ -22,7 +22,7 @@ export default function (query) {
         if (isUndefined(last)) {
           result[key] = decode(value);
         } else if (isArray(last)) { // 继续追加
-          last.append(decode(value));
+          append(last, decode(value));
         } else { // 已存在key
           result[key] = [last, decode(value)];
         }

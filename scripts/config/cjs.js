@@ -20,6 +20,6 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('src/index.js', `npm/dist/${DIST_FILENAME}.c.js`),
-  ...sourceDir.map(dir => configure(`src/${dir}.js`, `npm/dist/${dir}.c.js`))
+  configure('npm/index.js', `npm/dist/${DIST_FILENAME}.c.js`),
+  ...sourceDir.map(dir => configure(`npm/${dir}.js`, `npm/dist/${dir}.c.js`))
 ];
