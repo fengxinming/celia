@@ -1,5 +1,6 @@
-import toString from './_internal/_toString';
+// import toString from './_internal/_toString';
 
 export default function (value) {
-  return toString(value) === '[object RegExp]';
+  // return toString(value) === '[object RegExp]';
+  return value instanceof RegExp;
 };
