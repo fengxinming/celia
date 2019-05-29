@@ -1,15 +1,3 @@
-import isNumber from './isNumber';
+import _isInteger from './_internal/_isInteger';
 
-let { isInteger } = Number;
-
-if (!isInteger) {
-  isInteger = function (value) {
-    return isNumber(value) &&
-      isFinite(value) &&
-      (value >> 0) === value;
-  };
-}
-
-export default function (value) {
-  return isInteger(value);
-}
+export default Number.isInteger || _isInteger;

@@ -24,6 +24,9 @@
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/celia/dist/celia.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dist/aop.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dist/browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/dist/object.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/celia/dist/qs.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/celia/dist/url.min.js"></script>
 ```
@@ -67,6 +70,7 @@ const { join } = celia.url;
 ### API
 
   - camelCase
+  - debounce
   - each
   - forEach
   - forNumber
@@ -94,6 +98,7 @@ const { join } = celia.url;
   - aop/around
   - aop/before
   - browser/msie
+  - browser/os
   - number/forNumber
   - number/map
   - object/assign
