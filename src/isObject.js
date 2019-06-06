@@ -1,5 +1,3 @@
-import isNil from './isNil';
-
 export default function (value) {
-  return !isNil(value) && typeof value === 'object';
+  return value !== null && typeof value === 'object';
 };

@@ -77,6 +77,7 @@ const { join } = celia.url;
   - forOwn
   - get
   - getUid
+  - hasOwn
   - isArrayLike
   - isAsyncFunction
   - isBoolean
@@ -86,6 +87,7 @@ const { join } = celia.url;
   - isNil
   - isNumber
   - isObject
+  - isPlainObject
   - isPromiseLike
   - isRegExp
   - isString

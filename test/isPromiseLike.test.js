@@ -6,6 +6,6 @@ it('测试 isPromiseLike 方法', () => {
   expect(isPromiseLike(undefined)).toBe(false);
   expect(isPromiseLike({})).toBe(false);
   expect(isPromiseLike(new Promise(() => { }))).toBe(true);
-  expect(isPromiseLike({ then: () => { } })).toBe(true);
+  expect(isPromiseLike({ then: () => { }, catch: () => { } })).toBe(true);
 
 });
