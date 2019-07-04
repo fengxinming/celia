@@ -93,7 +93,9 @@ const { join } = celia.url;
   - isString
   - isUndefined
   - isWindow
+  - looseEqual
   - map
+  - noop
   - sleep
   - type
   - aop/after
