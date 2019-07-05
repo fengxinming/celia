@@ -8,5 +8,5 @@ it('测试 looseEqual 方法', () => {
   expect(looseEqual([1, 2], [1, 2])).toBe(true);
   expect(looseEqual(/\d+/, /\d+/)).toBe(true);
   expect(looseEqual(new Date(2019, 0, 1, 9, 9, 9), new Date(2019, 0, 1, 9, 9, 9))).toBe(true);
-  expect(looseEqual(() => { }, () => { })).toBe(true);
+  expect(looseEqual(it, it)).toBe(true);
 });
