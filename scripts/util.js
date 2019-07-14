@@ -61,9 +61,6 @@ function genConfig(name, opts) {
     }),
     cjs()
   ].concat(inputOptions.plugins || []);
-  inputOptions.external = (id) => {
-    return /^celia/.test(id);
-  };
 
   outputOptions.banner = banner;
   outputOptions.freeze = false;
