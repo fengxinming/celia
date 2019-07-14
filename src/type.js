@@ -1,4 +1,4 @@
-import toString from './_internal/_toString';
+import toString from './/toString';
 import isNil from './isNil';
 import isObject from './isObject';
 import isFunction from './isFunction';

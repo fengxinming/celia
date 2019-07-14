@@ -1,17 +1,17 @@
 import isArrayLike from './isArrayLike';
 import isNumber from './isNumber';
-import forEach from './_internal/_array/_forEach';
-import forOwn from './_internal/_object/_forOwn';
-import forNumber from './_internal/_number/_forNumber';
+import isObject from './isObject';
+import isFunction from './isFunction';
+import forEach from './_forEach';
+import forOwn from './_forOwn';
+import forNumber from './_forNumber';
 
-export default function (arr, cb, context) {
-  if (arr) {
-    if (isArrayLike(arr)) {
-      forEach(arr, cb, context);
-    } else if (isNumber(arr)) {
-      forNumber(arr, cb, context);
-    } else {
-      forOwn(arr, cb, context);
-    }
+export default function (value, cb, context) {
+  if (isArrayLike(value)) {
+    forEach(value, cb, context);
+  } else if (isObject(value) || isFunction(value)) {
+    forOwn(value, cb, context);
+  } else if (isNumber(value)) {
+    forNumber(value, cb, context);
   }
 };

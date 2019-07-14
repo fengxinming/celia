@@ -1,15 +1,15 @@
 'use strict';
 
-const { resolve, DIST_FILENAME, sourceDir } = require('./_util');
+const { resolve } = require('../util');
 
 function configure(input, output) {
   return {
     isProd: true,
     inputOptions: {
-      input: resolve(input)
+      input
     },
     outputOptions: {
-      file: resolve(output),
+      file: output,
       format: 'umd',
       legacy: false,
       esModule: false
@@ -18,6 +18,5 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('npm/index.js', `npm/dist/${DIST_FILENAME}.js`),
-  ...sourceDir.map(dir => configure(`npm/${dir}.js`, `npm/dist/${dir}.js`))
+  configure(resolve('src/index.js'), resolve(`npm/umd.js`))
 ];

@@ -1,17 +1,16 @@
 'use strict';
 
-const { matches } = require('corie-utils');
-const { resolve, sourceDir, DIST_FILENAME } = require('./_util');
+const { resolve, apiNames } = require('../util');
 
 function configure(input, output) {
-  const isDIR = input.indexOf('*') > -1;
+  const isDIR = Array.isArray(input);
   return {
     inputOptions: {
-      input: isDIR ? matches(resolve(input)) : resolve(input)
+      input
     },
     outputOptions: {
-      dir: isDIR ? resolve(output) : undefined,
-      file: isDIR ? undefined : resolve(output),
+      dir: isDIR ? output : undefined,
+      file: isDIR ? undefined : output,
       format: 'cjs',
       legacy: false,
       esModule: false
@@ -20,6 +19,6 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure('npm/index.js', `npm/dist/${DIST_FILENAME}.c.js`),
-  ...sourceDir.map(dir => configure(`npm/${dir}.js`, `npm/dist/${dir}.c.js`))
+  configure(resolve('src/index.js'), resolve(`npm/cjs.js`)),
+  configure(apiNames.map(dir => resolve(`src/${dir}.js`)), resolve(`npm`))
 ];

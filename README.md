@@ -4,7 +4,7 @@
 
 > Note:  A modern JavaScript utility library delivering modularity, performance, & extras.
 
-[![NPM version](https://img.shields.io/npm/v/celia.svg?style=flat)](https://npmjs.org/package/celia) [![NPM Downloads](https://img.shields.io/npm/dm/celia.svg?style=flat)](https://npmjs.org/package/celia)
+[![NPM version](https://img.shields.io/npm/v/celia.svg?style=flat)](https://npmjs.org/package/celia) [![NPM Downloads](https://img.shields.io/npm/dm/celia.svg?style=flat)](https://npmjs.org/package/celia)[![](https://data.jsdelivr.com/v1/package/npm/celia/badge)](https://www.jsdelivr.com/package/npm/celia)
 
 ---
 
@@ -23,12 +23,7 @@
 ### Load `celia` via classical `<script>` tag
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/celia/dist/celia.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/celia/dist/aop.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/celia/dist/browser.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/celia/dist/object.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/celia/dist/qs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/celia/dist/url.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia@6.0.0-beta.1/umd.min.js"></script>
 ```
 
 ### CommonJS style with npm
@@ -42,20 +37,20 @@ npm install celia --save
 // es6
 import celia from 'celia';
 // or
-import celia from 'celia/dist/celia.es';
+import celia from 'celia/es';
 
 // modularity
 import each from 'celia/each';
 import isDate from 'celia/isDate';
-import stringify from 'celia/qs/stringify';
-import join from 'celia/url/join';
 
 // node
 const celia = require('celia');
 const { each } = celia;
 const { isDate } = celia;
-const { stringify } = celia.qs;
-const { join } = celia.url;
+// or
+const each = require('celia/each');
+const isDate = require('celia/isDate');
+
 
 ```
 
@@ -63,20 +58,13 @@ const { join } = celia.url;
 
 ### Manipulation
 
-  - [manipulate Array](https://www.npmjs.com/package/kick-array)
-  - [manipulate DOM](https://www.npmjs.com/package/kick-dom)
-  - [manipulate Date](https://www.npmjs.com/package/kick-date)
+  
 
 ### API
 
-  - camelCase
-  - debounce
+  - assign
   - each
-  - forEach
-  - forNumber
-  - forOwn
-  - get
-  - getUid
+  - getUID
   - hasOwn
   - isArrayLike
   - isAsyncFunction
@@ -97,23 +85,7 @@ const { join } = celia.url;
   - map
   - noop
   - sleep
+  - toString
   - type
-  - aop/after
-  - aop/around
-  - aop/before
-  - browser/msie
-  - browser/os
-  - number/forNumber
-  - number/map
-  - object/assign
-  - object/forIn
-  - object/forOwn
-  - object/get
-  - object/map
-  - qs/parse
-  - qs/prefix
-  - qs/stringify
-  - url/isAbsolute
-  - url/join
   
 ## Release History

@@ -1,19 +1,19 @@
 'use strict';
 
-const { resolve, DIST_FILENAME } = require('./_util');
+const { resolve } = require('../util');
 
-function configure() {
+function configure(input, output) {
   return {
     inputOptions: {
-      input: resolve('npm/index.js')
+      input
     },
     outputOptions: {
-      file: resolve(`npm/dist/${DIST_FILENAME}.es.js`),
+      file: output,
       format: 'es'
     }
   };
 }
 
 module.exports = [
-  configure()
+  configure(resolve('src/index.js'), resolve(`npm/es.js`))
 ];
