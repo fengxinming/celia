@@ -17,6 +17,8 @@ it('测试 forOwn 方法', () => {
 
   }
 
+  A.prototype.method = function () { };
+
   const instance = new A();
   expect(forOwn(null, () => { })).toBe(false);
   let i = 0;

@@ -1,6 +1,6 @@
 'use strict';
 
-const { matches } = require('corie-utils');
+const { matches } = require('kyla/path');
 const { resolve, sourceDir, DIST_FILENAME } = require('./_util');
 
 function configure(input, output) {
