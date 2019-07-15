@@ -52,7 +52,7 @@ async function build(builds) {
 
   apiNames
     .forEach((dir) => {
-      dir.startsWith('_') || console.log('-', dir);
+      dir.startsWith('_') || dir === 'index' || console.log('-', dir);
     });
   await cp().catch((err) => {
     logger.error(err);

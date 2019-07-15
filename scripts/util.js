@@ -160,5 +160,4 @@ module.exports = {
   getSize,
   apiNames: readdirSync(resolve('src'))
     .map(file => file.replace(/\.\w+$/, ''))
-    .filter(file => file !== 'index')
 };

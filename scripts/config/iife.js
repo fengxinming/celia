@@ -11,7 +11,7 @@ function configure(input, output) {
     outputOptions: {
       name: 'celia',
       file: output,
-      format: 'umd',
+      format: 'iife',
       legacy: false,
       esModule: false
     }
@@ -19,5 +19,5 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure(resolve('src/index.js'), resolve(`npm/umd.js`))
+  configure(resolve('src/index.js'), resolve(`npm/iife.js`))
 ];

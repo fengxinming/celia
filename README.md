@@ -23,7 +23,7 @@
 ### Load `celia` via classical `<script>` tag
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/celia@6.0.0-beta.1/umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia@6.0.0-beta.1/iife.min.js"></script>
 ```
 
 ### CommonJS style with npm

@@ -14,7 +14,7 @@ module.exports = () => {
   }
   return Promise.all([
     copify(resolve('package.json'), resolve('npm/package.json')),
-    copify(resolve('README.md'), resolve('npm/README.md'))
-    // copify(resolve('src'), distDir)
+    copify(resolve('README.md'), resolve('npm/README.md')),
+    copify(resolve('src'), resolve('npm/es'))
   ]);
 };
