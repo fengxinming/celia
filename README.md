@@ -96,6 +96,7 @@ const { join } = celia.url;
   - looseEqual
   - map
   - noop
+  - set
   - sleep
   - type
   - aop/after

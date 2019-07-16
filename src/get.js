@@ -1,13 +1,7 @@
 import isNil from './isNil';
-import isUndefined from './isUndefined';
-import { PROP_NAME_REGEX, ESCAPE_CHAR_REGEX } from './_internal/_regex';
+import get from './_internal/_get';
 
 export default function (object, path, defaultValue) {
-  let part;
-  while (!isNil(object) && (part = PROP_NAME_REGEX.exec(path))) {
-    const [match, number, quote, subString] = part;
-    const prop = quote ? subString.replace(ESCAPE_CHAR_REGEX, '$1') : (number || match);
-    object = object[prop];
-  }
-  return isUndefined(object) ? defaultValue : object;
+  const result = isNil(object) ? undefined : get(object, path);
+  return result === undefined ? defaultValue : result;
 }
