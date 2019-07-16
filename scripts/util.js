@@ -47,8 +47,8 @@ function genConfig(name, opts) {
       __VERSION__: version
     }, replaceAll)),
     combine({
-      include: /src\/index.js$/
-      // exports: 'named'
+      include: /src\/index.js$/,
+      exports: 'named'
     }),
     flow(),
     buble(),

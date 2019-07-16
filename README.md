@@ -13,7 +13,6 @@
   - [Installation](#Installation)
   - [Usage](#Usage)
     - [Manipulation](#Manipulation)
-    - [API](#API)
   - [Release History](#Release-History)
 
 ---
@@ -23,7 +22,7 @@
 ### Load `celia` via classical `<script>` tag
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/celia@6.0.0-beta.1/iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia@6.0.0-beta.2/iife.min.js"></script>
 ```
 
 ### CommonJS style with npm
@@ -35,21 +34,115 @@ npm install celia --save
 ```javascript
 
 // es6
-import celia from 'celia';
-// or
-import celia from 'celia/es';
+import {
+  assign,
+  each,
+  getUID,
+  hasOwn,
+  isArrayLike,
+  isAsyncFunction,
+  isBoolean,
+  isDate,
+  isFunction,
+  isInteger,
+  isNil,
+  isNumber,
+  isObject,
+  isPlainObject,
+  isPromiseLike,
+  isRegExp,
+  isString,
+  isUndefined,
+  isWindow,
+  looseEqual,
+  map,
+  noop,
+  sleep,
+  toString,
+  type
+} from 'celia');
 
 // modularity
-import each from 'celia/each';
-import isDate from 'celia/isDate';
+import assign from 'celia/es/assign';
+import each from 'celia/es/each';
+import getUID from 'celia/es/getUID';
+import hasOwn from 'celia/es/hasOwn';
+import isArrayLike from 'celia/es/isArrayLike';
+import isAsyncFunction from 'celia/es/isAsyncFunction';
+import isBoolean from 'celia/es/isBoolean';
+import isDate from 'celia/es/isDate';
+import isFunction from 'celia/es/isFunction';
+import isInteger from 'celia/es/isInteger';
+import isNil from 'celia/es/isNil';
+import isNumber from 'celia/es/isNumber';
+import isObject from 'celia/es/isObject';
+import isPlainObject from 'celia/es/isPlainObject';
+import isPromiseLike from 'celia/es/isPromiseLike';
+import isRegExp from 'celia/es/isRegExp';
+import isString from 'celia/es/isString';
+import isUndefined from 'celia/es/isUndefined';
+import isWindow from 'celia/es/isWindow';
+import looseEqual from 'celia/es/looseEqual';
+import map from 'celia/es/map';
+import noop from 'celia/es/noop';
+import sleep from 'celia/es/sleep';
+import toString from 'celia/es/toString';
+import type from 'celia/es/type';
 
 // node
-const celia = require('celia');
-const { each } = celia;
-const { isDate } = celia;
+const {
+  assign,
+  each,
+  getUID,
+  hasOwn,
+  isArrayLike,
+  isAsyncFunction,
+  isBoolean,
+  isDate,
+  isFunction,
+  isInteger,
+  isNil,
+  isNumber,
+  isObject,
+  isPlainObject,
+  isPromiseLike,
+  isRegExp,
+  isString,
+  isUndefined,
+  isWindow,
+  looseEqual,
+  map,
+  noop,
+  sleep,
+  toString,
+  type
+} = require('celia');
 // or
+const assign = require('celia/assign');
 const each = require('celia/each');
+const getUID = require('celia/getUID');
+const hasOwn = require('celia/hasOwn');
+const isArrayLike = require('celia/isArrayLike');
+const isAsyncFunction = require('celia/isAsyncFunction');
+const isBoolean = require('celia/isBoolean');
 const isDate = require('celia/isDate');
+const isFunction = require('celia/isFunction');
+const isInteger = require('celia/isInteger');
+const isNil = require('celia/isNil');
+const isNumber = require('celia/isNumber');
+const isObject = require('celia/isObject');
+const isPlainObject = require('celia/isPlainObject');
+const isPromiseLike = require('celia/isPromiseLike');
+const isRegExp = require('celia/isRegExp');
+const isString = require('celia/isString');
+const isUndefined = require('celia/isUndefined');
+const isWindow = require('celia/isWindow');
+const looseEqual = require('celia/looseEqual');
+const map = require('celia/map');
+const noop = require('celia/noop');
+const sleep = require('celia/sleep');
+const toString = require('celia/toString');
+const type = require('celia/type');
 
 
 ```
@@ -57,35 +150,5 @@ const isDate = require('celia/isDate');
 ## Usage
 
 ### Manipulation
-
-  
-
-### API
-
-  - assign
-  - each
-  - getUID
-  - hasOwn
-  - isArrayLike
-  - isAsyncFunction
-  - isBoolean
-  - isDate
-  - isFunction
-  - isInteger
-  - isNil
-  - isNumber
-  - isObject
-  - isPlainObject
-  - isPromiseLike
-  - isRegExp
-  - isString
-  - isUndefined
-  - isWindow
-  - looseEqual
-  - map
-  - noop
-  - sleep
-  - toString
-  - type
   
 ## Release History

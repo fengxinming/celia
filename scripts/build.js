@@ -16,6 +16,7 @@ function getAllBuilds() {
   let mods = [];
   readdirSync(join(__dirname, 'config'))
     .forEach((key) => {
+      key = key.replace(/\.js$/, '');
       require(`./config/${key}`)
         .forEach((config) => {
           mods[mods.length] = genConfig(key, config);
