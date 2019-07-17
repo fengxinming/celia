@@ -4,8 +4,8 @@
   "description": "A modern JavaScript utility library delivering modularity, performance, and extras.",
   "main": "./index.js",
   "module": "./es.js",
-  "unpkg": "./umd.js",
-  "jsdelivr": "./umd.js",
+  "unpkg": "./iife.js",
+  "jsdelivr": "./iife.js",
   "scripts": {
     "build": "node ./scripts/build.js",
     "test": "jest --detectOpenHandles --config jest.config.js",
