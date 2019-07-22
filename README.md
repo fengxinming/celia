@@ -65,7 +65,7 @@ import {
 // modularity
 import assign from 'celia/es/assign';
 import each from 'celia/es/each';
-import getUID from 'celia/es/getUID';
+import getUid from 'celia/es/getUid';
 import hasOwn from 'celia/es/hasOwn';
 import isArrayLike from 'celia/es/isArrayLike';
 import isAsyncFunction from 'celia/es/isAsyncFunction';
@@ -93,7 +93,7 @@ import type from 'celia/es/type';
 const {
   assign,
   each,
-  getUID,
+  getUid,
   hasOwn,
   isArrayLike,
   isAsyncFunction,
@@ -120,7 +120,7 @@ const {
 // or
 const assign = require('celia/assign');
 const each = require('celia/each');
-const getUID = require('celia/getUID');
+const getUid = require('celia/getUid');
 const hasOwn = require('celia/hasOwn');
 const isArrayLike = require('celia/isArrayLike');
 const isAsyncFunction = require('celia/isAsyncFunction');
@@ -150,5 +150,7 @@ const type = require('celia/type');
 ## Usage
 
 ### Manipulation
+
+[Object](https://github.com/fengxinming/object-utils)
   
 ## Release History
