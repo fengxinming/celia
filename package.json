@@ -1,6 +1,6 @@
 {
   "name": "celia",
-  "version": "6.0.0-beta.3",
+  "version": "6.0.0-beta.4",
   "description": "A modern JavaScript utility library delivering modularity, performance, and extras.",
   "main": "./index.js",
   "module": "./es.js",
@@ -8,8 +8,7 @@
   "jsdelivr": "./iife.js",
   "scripts": {
     "build": "node ./scripts/build.js",
-    "test": "jest --detectOpenHandles --config jest.config.js",
-    "dev": "NODE_ENV=development node ./scripts/watch.js"
+    "test": "jest --detectOpenHandles --config jest.config.js"
   },
   "repository": {
     "type": "git",
@@ -41,7 +40,6 @@
     "eslint-plugin-standard": "^4.0.0",
     "fs-extra": "^7.0.1",
     "jest": "^24.0.0",
-    "moment": "^2.24.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.1.2",
     "rollup-plugin-alias": "^1.5.1",
