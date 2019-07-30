@@ -2,9 +2,11 @@
 
 [![npm package](https://nodei.co/npm/celia.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/celia)
 
-> Note:  A modern JavaScript utility library delivering modularity, performance, & extras.
+> Note:  A modern JavaScript utility library delivering modularity, performance, and extras.
 
-[![NPM version](https://img.shields.io/npm/v/celia.svg?style=flat)](https://npmjs.org/package/celia) [![NPM Downloads](https://img.shields.io/npm/dm/celia.svg?style=flat)](https://npmjs.org/package/celia)[![](https://data.jsdelivr.com/v1/package/npm/celia/badge)](https://www.jsdelivr.com/package/npm/celia)
+[![NPM version](https://img.shields.io/npm/v/celia.svg?style=flat)](https://npmjs.org/package/celia)
+[![NPM Downloads](https://img.shields.io/npm/dm/celia.svg?style=flat)](https://npmjs.org/package/celia)
+[![](https://data.jsdelivr.com/v1/package/npm/celia/badge)](https://www.jsdelivr.com/package/npm/celia)
 
 ---
 
@@ -13,7 +15,7 @@
   - [Installation](#Installation)
   - [Usage](#Usage)
     - [Manipulation](#Manipulation)
-  - [Release History](#Release-History)
+  - [Example](#Example)
 
 ---
 
@@ -22,7 +24,36 @@
 ### Load `celia` via classical `<script>` tag
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/celia@6.0.0-beta.2/iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/iife.min.js"></script>
+<script>
+  // window.celia
+  celia.assign
+  celia.each
+  celia.getUid
+  celia.hasOwn
+  celia.isArrayLike
+  celia.isAsyncFunction
+  celia.isBoolean
+  celia.isDate
+  celia.isFalsy
+  celia.isFunction
+  celia.isInteger
+  celia.isNil
+  celia.isNumber
+  celia.isObject
+  celia.isPlainObject
+  celia.isPromiseLike
+  celia.isRegExp
+  celia.isString
+  celia.isUndefined
+  celia.isWindow
+  celia.looseEqual
+  celia.map
+  celia.noop
+  celia.sleep
+  celia.toString
+  celia.type
+</script>
 ```
 
 ### CommonJS style with npm
@@ -34,33 +65,7 @@ npm install celia --save
 ```javascript
 
 // es6
-import {
-  assign,
-  each,
-  getUID,
-  hasOwn,
-  isArrayLike,
-  isAsyncFunction,
-  isBoolean,
-  isDate,
-  isFunction,
-  isInteger,
-  isNil,
-  isNumber,
-  isObject,
-  isPlainObject,
-  isPromiseLike,
-  isRegExp,
-  isString,
-  isUndefined,
-  isWindow,
-  looseEqual,
-  map,
-  noop,
-  sleep,
-  toString,
-  type
-} from 'celia');
+import { assign, each, getUid, hasOwn, isArrayLike, isUndefined, isWindow, looseEqual, map, noop, sleep, toString, type } from 'celia');
 
 // modularity
 import assign from 'celia/es/assign';
@@ -71,6 +76,7 @@ import isArrayLike from 'celia/es/isArrayLike';
 import isAsyncFunction from 'celia/es/isAsyncFunction';
 import isBoolean from 'celia/es/isBoolean';
 import isDate from 'celia/es/isDate';
+import isFalsy from 'celia/es/isFalsy';
 import isFunction from 'celia/es/isFunction';
 import isInteger from 'celia/es/isInteger';
 import isNil from 'celia/es/isNil';
@@ -90,33 +96,7 @@ import toString from 'celia/es/toString';
 import type from 'celia/es/type';
 
 // node
-const {
-  assign,
-  each,
-  getUid,
-  hasOwn,
-  isArrayLike,
-  isAsyncFunction,
-  isBoolean,
-  isDate,
-  isFunction,
-  isInteger,
-  isNil,
-  isNumber,
-  isObject,
-  isPlainObject,
-  isPromiseLike,
-  isRegExp,
-  isString,
-  isUndefined,
-  isWindow,
-  looseEqual,
-  map,
-  noop,
-  sleep,
-  toString,
-  type
-} = require('celia');
+const { assign, each, getUid, hasOwn, isArrayLike, isUndefined, isWindow, looseEqual, map, noop, sleep, toString, type } = require('celia');
 // or
 const assign = require('celia/assign');
 const each = require('celia/each');
@@ -126,6 +106,7 @@ const isArrayLike = require('celia/isArrayLike');
 const isAsyncFunction = require('celia/isAsyncFunction');
 const isBoolean = require('celia/isBoolean');
 const isDate = require('celia/isDate');
+const isFalsy = require('celia/isFalsy');
 const isFunction = require('celia/isFunction');
 const isInteger = require('celia/isInteger');
 const isNil = require('celia/isNil');
@@ -151,6 +132,14 @@ const type = require('celia/type');
 
 ### Manipulation
 
-[Object](https://github.com/fengxinming/object-utils)
-  
-## Release History
+- [Manipulate Object](https://github.com/fengxinming/object-utils)
+- [Manipulate Array](https://github.com/fengxinming/array-utils)
+- [Manipulate String](https://github.com/fengxinming/string-utils)
+- [Manipulate Function](https://github.com/fengxinming/func-utils)
+- [Manipulate Query String](https://github.com/fengxinming/qs)
+- [Manipulate Properties Files](https://github.com/fengxinming/properties-like)
+- [Browser Stuff](https://github.com/fengxinming/browser-stuff)
+
+## Example
+
+  - [Jest](test)
