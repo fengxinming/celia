@@ -4,6 +4,9 @@ import isRegExp from './isRegExp';
 
 const { isArray } = Array;
 export default function looseEqual(a, b) {
+  if (a === b) {
+    return true;
+  }
   if (isObject(a) && isObject(b)) {
     if (isArray(a) && isArray(b)) { // 判断是否是数组
       return a.length === b.length && a.every((e, i) => {
@@ -21,5 +24,5 @@ export default function looseEqual(a, b) {
       });
     }
   }
-  return a === b;
+  return false;
 }
