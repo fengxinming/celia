@@ -1,10 +1,17 @@
-import forSlice from './_forSlice';
 import bindContext from './_bindContext';
+import hasOwn from './hasOwn';
 
 export default function (value, iterator, context) {
   iterator = bindContext(iterator, context);
-  const keys = Object.keys(value);
-  forSlice(Object.keys(value), 0, keys.length, function (key) {
-    return iterator(value[key], key);
-  });
+  // const keys = Object.keys(value);
+  // const len = keys.length;
+  // for (let i = 0, key; i < len; i++) {
+  //   key = keys[i];
+  //   i = iterator(value[key], key, value) === false ? len : i;
+  // }
+  for (let key in value) {
+    if (hasOwn(value, key) && iterator(value[key], key, value) === false) {
+      break;
+    }
+  }
 };

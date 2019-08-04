@@ -12,11 +12,22 @@
 
 ## Table of contents
 
+  - [Manipulation](#Manipulation)
   - [Installation](#Installation)
   - [API](#API)
-  - [Usage](#Usage)
-    - [Manipulation](#Manipulation)
   - [Example](#Example)
+
+---
+
+## Manipulation
+
+- [Manipulate Object](https://github.com/fengxinming/object-utils)
+- [Manipulate Array](https://github.com/fengxinming/array-utils)
+- [Manipulate String](https://github.com/fengxinming/string-utils)
+- [Manipulate Function](https://github.com/fengxinming/func-utils)
+- [Manipulate Query String](https://github.com/fengxinming/qs)
+- [Manipulate Properties Files](https://github.com/fengxinming/properties-like)
+- [Browser Stuff](https://github.com/fengxinming/browser-stuff)
 
 ---
 
@@ -109,20 +120,6 @@ const sleep = require('celia/sleep');
   - sleep
   - toString
   - type
-
----
-
-## Usage
-
-### Manipulation
-
-- [Manipulate Object](https://github.com/fengxinming/object-utils)
-- [Manipulate Array](https://github.com/fengxinming/array-utils)
-- [Manipulate String](https://github.com/fengxinming/string-utils)
-- [Manipulate Function](https://github.com/fengxinming/func-utils)
-- [Manipulate Query String](https://github.com/fengxinming/qs)
-- [Manipulate Properties Files](https://github.com/fengxinming/properties-like)
-- [Browser Stuff](https://github.com/fengxinming/browser-stuff)
 
 ---
 

@@ -7,4 +7,13 @@ it('测试 forEach 方法', () => {
     count++;
   });
   expect(count).toBe(3);
+
+  count = 0;
+  forEach(arr, () => {
+    if (count === 2) {
+      return false;
+    }
+    count++;
+  });
+  expect(count).toBe(2);
 });

@@ -1,8 +1,8 @@
 import bindContext from './_bindContext';
 
 export default function (value, iterator, context) {
-  const cb = bindContext(iterator, context);
-  for (let i = 0, returnValue; returnValue !== false && i < value; i++) {
-    returnValue = cb(i, i, i);
+  iterator = bindContext(iterator, context);
+  for (let i = 0; i < value; i++) {
+    i = iterator(i, i, value) === false ? value : i;
   }
 };
