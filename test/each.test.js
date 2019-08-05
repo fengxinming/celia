@@ -1,20 +1,71 @@
 import each from '../src/each';
 
-it('测试 each 方法', () => {
-  expect(each(null, () => { })).toBeUndefined();
-  expect(each([1, 2], () => { })).toBeUndefined();
-  expect(each(10, () => { })).toBeUndefined();
-  expect(each({
-    0: 1,
-    1: 2,
-    length: 2
-  }, () => { })).toBeUndefined();
-  expect(each({
-    a: 'a',
-    b: 'b'
-  }, (val) => {
-    if (val === 'b') {
+describe('测试 each 方法', () => {
+
+  it('遍历空对象', () => {
+    let i = 0;
+    each(null, () => i++);
+    expect(i).toBe(0);
+  });
+
+  it('遍历数组', () => {
+    let i = 0;
+    each([1, 2], () => i++);
+    expect(i).toBe(2);
+
+    i = 0;
+    each([1, 2], () => {
+      i++;
+      if (i === 1) {
+        return false;
+      }
+    });
+    expect(i).toBe(1);
+  });
+
+  it('遍历数字', () => {
+    let i = 0;
+    each(10, () => i++);
+    expect(i).toBe(10);
+
+    i = 0;
+    each(10, () => {
+      i++;
+      if (i === 2) {
+        return false;
+      }
+    });
+    expect(i).toBe(2);
+
+  });
+
+  it('遍历类数组', () => {
+    let i = 0;
+    each({
+      0: 1,
+      1: 2,
+      length: 2
+    }, () => i++);
+    expect(i).toBe(2);
+
+  });
+
+  it('遍历对象', () => {
+    let i = 0;
+    each({
+      a: 'a',
+      b: 'b'
+    }, () => i++);
+    expect(i).toBe(2);
+
+    i = 0;
+    each({
+      a: 'a',
+      b: 'b'
+    }, () => {
       return false;
-    }
-  })).toBeUndefined();
+    });
+    expect(i).toBe(0);
+  });
+
 });
