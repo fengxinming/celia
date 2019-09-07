@@ -1,6 +1,6 @@
 'use strict';
 
-const { resolve, apiNames } = require('../util');
+const { resolve, apiNames, releaseDir } = require('../util');
 
 function configure(input, output) {
   const isDIR = Array.isArray(input);
@@ -19,6 +19,6 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure(resolve('src/index.js'), resolve(`npm/cjs.js`)),
-  configure(apiNames.map(dir => resolve(`src/${dir}.js`)), resolve(`npm`))
+  configure(resolve('src/index.js'), releaseDir(`cjs.js`)),
+  configure(apiNames.map(dir => resolve(`src/${dir}.js`)), releaseDir())
 ];

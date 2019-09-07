@@ -1,11 +1,11 @@
 'use strict';
 
 const { readdirSync } = require('fs');
-const { join, basename } = require('path');
+const { join, basename, relative } = require('path');
 const { remove } = require('fs-extra');
 const { getLogger } = require('clrsole');
 const cp = require('./cp');
-const { buildSrc, resolve, genConfig, apiNames } = require('./util');
+const { buildSrc, releaseDir, genConfig, apiNames } = require('./util');
 
 const logger = getLogger(basename(__filename, '.js'));
 
@@ -38,8 +38,9 @@ if (process.argv[2]) {
  * @param {Array} builds 配置数组
  */
 async function build(builds) {
-  await remove(resolve('npm'));
-  logger.info('directory npm has been removed');
+  const npmDir = releaseDir();
+  await remove(npmDir);
+  logger.info(`directory ${relative(process.cwd(), npmDir)} has been removed`);
 
   const total = builds.length;
   for (let i = 0; i < total; i++) {

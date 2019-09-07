@@ -3,6 +3,7 @@ let uidCounter = 0;
 
 export default function (obj) {
   return obj[UID_PROPERTY] || (++uidCounter, Object.defineProperty(obj, UID_PROPERTY, {
+    configurable: true,
     value: uidCounter
   }), uidCounter);
 };

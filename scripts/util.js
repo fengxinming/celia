@@ -30,6 +30,10 @@ function resolve(...args) {
   return pathResolve(__dirname, '..', ...args);
 }
 
+function releaseDir(...args) {
+  return resolve('node_modules', '__npm__', ...args);
+}
+
 /**
  * 根据自定义配置返回rollup配置
  * @param {String} name
@@ -157,7 +161,9 @@ module.exports = {
   genConfig,
   buildSrc,
   resolve,
+  releaseDir,
   getSize,
   apiNames: readdirSync(resolve('src'))
+    .filter(file => file.endsWith('.js'))
     .map(file => file.replace(/\.\w+$/, ''))
 };

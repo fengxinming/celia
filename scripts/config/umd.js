@@ -1,6 +1,6 @@
 'use strict';
 
-const { resolve } = require('../util');
+const { resolve, releaseDir } = require('../util');
 
 function configure(input, output) {
   return {
@@ -19,5 +19,5 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure(resolve('src/index.js'), resolve(`npm/umd.js`))
+  configure(resolve('src/index.js'), releaseDir(`umd.js`))
 ];

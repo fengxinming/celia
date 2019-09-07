@@ -1,6 +1,6 @@
 'use strict';
 
-const { resolve } = require('../util');
+const { resolve, releaseDir } = require('../util');
 
 function configure(input, output) {
   return {
@@ -15,5 +15,5 @@ function configure(input, output) {
 }
 
 module.exports = [
-  configure(resolve('src/index.js'), resolve(`npm/es.js`))
+  configure(resolve('src/index.js'), releaseDir(`es.js`))
 ];
