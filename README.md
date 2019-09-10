@@ -8,7 +8,7 @@
 [![NPM Downloads](https://img.shields.io/npm/dm/celia.svg?style=flat)](https://npmjs.org/package/celia)
 [![](https://data.jsdelivr.com/v1/package/npm/celia/badge)](https://www.jsdelivr.com/package/npm/celia)
 
-## [Full Documentation](https://github.com/fengxinming/celia)
+## [Full Documentation](https://fengxinming.github.io/celia/index.html)
 
 ---
 
