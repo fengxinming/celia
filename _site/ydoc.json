@@ -1,0 +1,14 @@
+{
+  "title": "celia",
+  "keywords": "celia,lodash,underscore",
+  "description": "A modern JavaScript utility library delivering modularity, performance, and extras.",
+  "author": "Jesse Feng",
+  "dist": "../gh-pages/zh-cn",
+  "pluginsConfig": {
+    "import-asset": {
+      "css": [
+        "css/custom.css"
+      ]
+    }
+  }
+}
