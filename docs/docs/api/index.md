@@ -882,10 +882,10 @@ remove(arr, 9)
 
 ```js
 const arr = [1, 2, 3, 4, 5];
-remove(arr, 2)
+removeAt(arr, 2)
 // => 3
 
-remove(arr, 9)
+removeAt(arr, 9)
 // => null
 
 ```
