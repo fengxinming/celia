@@ -235,6 +235,31 @@ window.ydoc_plugin_search_json = {
           "content": "setset(object, path, value)\n\nobject \npath \nvalue \n\n\nconst a = { a: [{ b: { c: 3 } }], key: 'value' };set(a, 'a[0].b.c', 1);\n// => { a: [{ b: { c: 1 } }], key: 'value' }\n\n"
         },
         {
+          "title": "Array Methods",
+          "url": "/api/index.html#array-methods",
+          "content": "Array Methods"
+        },
+        {
+          "title": "flatten",
+          "url": "/api/index.html#array-methods-flatten",
+          "content": "flatten\nflatten(arr[, depth])\n\narr \ndepth  Default: 1\n\n\n\nReturns\n\n\n\n\nconst arr1 = [1, [2], [], 3, 4, 5];flatten(arr1)\n// => [1, 2, 3, 4, 5]\n\nconst arr2 = [1, 2, 3, [2, 3, 4], [[1, 2, 3], [3, 4, 5]], 1, 3, 4];\nflatten(arr2)\n// => [1, 2, 3, 2, 3, 4, [1, 2, 3], [3, 4, 5], 1, 3, 4]\n\n"
+        },
+        {
+          "title": "flattenDeep",
+          "url": "/api/index.html#array-methods-flattendeep",
+          "content": "flattenDeep\nflattenDeep(arr)\n\narr \n\n\n\nReturns\n\n\n\n\nconst arr1 = [1, [2], [], 3, 4, 5];flattenDeep(arr1)\n// => [1, 2, 3, 4, 5]\n\nconst arr2 = [1, [2, [1, 2, [2, 3]], 3], [], 3, [[1, 2], [[1, 2, 3], 3], [1, 2]], 4, 5];\nflattenDeep(arr2)\n// => [1, 2, 1, 2, 2, 3, 3, 3, 1, 2, 1, 2, 3, 3, 1, 2, 4, 5]\n\n"
+        },
+        {
+          "title": "remove",
+          "url": "/api/index.html#array-methods-remove",
+          "content": "remove\nremove(arr, value)\n\narr \nvalue \n\n\n\nReturns\n\n returns something being removed\n\n\nconst arr = [1, 2, 3, 4, 5];remove(arr, 2)\n// => 2\n\nremove(arr, 9)\n// => null\n\n"
+        },
+        {
+          "title": "removeAt",
+          "url": "/api/index.html#array-methods-removeat",
+          "content": "removeAt\nremoveAt(arr, index)\n\narr \nindex \n\n\n\nReturns\n\n returns something being removed\n\n\nconst arr = [1, 2, 3, 4, 5];remove(arr, 2)\n// => 3\n\nremove(arr, 9)\n// => null\n\n"
+        },
+        {
           "title": "Function Methods",
           "url": "/api/index.html#function-methods",
           "content": "Function Methods"
