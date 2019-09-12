@@ -5,7 +5,7 @@ banner:
   btns: 
     - { name: 'Get started', href: './guide/index.html', primary: true }
     - { name: 'Github >', href: 'https://github.com/fengxinming/celia' }
-  caption: 'current version: v6.1.0'
+  caption: 'current version: v6.1.1'
 features: 
   - { name: 'Modular', desc: 'celia modular methods are great for iterating arrays, objects, strings, manipulating, testing values, creating composite functions. ' }
   - { name: 'Easy', desc: 'celia makes JavaScript easier by taking the hassle out of working with arrays, numbers, objects, strings, etc. ' }

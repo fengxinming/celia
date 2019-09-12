@@ -811,6 +811,85 @@ set(a, 'a[0].b.c', 1);
 
 ```
 
+## Array Methods
+
+### flatten
+
+- flatten(arr[, depth])
+  - `arr` `<Array>`
+  - `depth` `<Number>` <strong>Default: 1</strong>
+
+- Returns
+  - `<Array>`
+
+```js
+const arr1 = [1, [2], [], 3, 4, 5];
+flatten(arr1)
+// => [1, 2, 3, 4, 5]
+
+const arr2 = [1, 2, 3, [2, 3, 4], [[1, 2, 3], [3, 4, 5]], 1, 3, 4];
+flatten(arr2)
+// => [1, 2, 3, 2, 3, 4, [1, 2, 3], [3, 4, 5], 1, 3, 4]
+
+```
+
+### flattenDeep
+
+- flattenDeep(arr)
+  - `arr` `<Array>`
+
+- Returns
+  - `<Array>`
+
+```js
+const arr1 = [1, [2], [], 3, 4, 5];
+flattenDeep(arr1)
+// => [1, 2, 3, 4, 5]
+
+const arr2 = [1, [2, [1, 2, [2, 3]], 3], [], 3, [[1, 2], [[1, 2, 3], 3], [1, 2]], 4, 5];
+flattenDeep(arr2)
+// => [1, 2, 1, 2, 2, 3, 3, 3, 1, 2, 1, 2, 3, 3, 1, 2, 4, 5]
+
+```
+
+### remove
+
+- remove(arr, value)
+  - `arr` `<Array>`
+  - `value` `<any>`
+
+- Returns
+  - `<any>` returns something being removed
+
+```js
+const arr = [1, 2, 3, 4, 5];
+remove(arr, 2)
+// => 2
+
+remove(arr, 9)
+// => null
+
+```
+
+### removeAt
+
+- removeAt(arr, index)
+  - `arr` `<Array>`
+  - `index` `<Number>`
+
+- Returns
+  - `<any>` returns something being removed
+
+```js
+const arr = [1, 2, 3, 4, 5];
+removeAt(arr, 2)
+// => 3
+
+removeAt(arr, 9)
+// => null
+
+```
+
 ## Function Methods
 
 ### afterCall
