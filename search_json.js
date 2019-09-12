@@ -257,7 +257,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "removeAt",
           "url": "/api/index.html#array-methods-removeat",
-          "content": "removeAt\nremoveAt(arr, index)\n\narr \nindex \n\n\n\nReturns\n\n returns something being removed\n\n\nconst arr = [1, 2, 3, 4, 5];remove(arr, 2)\n// => 3\n\nremove(arr, 9)\n// => null\n\n"
+          "content": "removeAt\nremoveAt(arr, index)\n\narr \nindex \n\n\n\nReturns\n\n returns something being removed\n\n\nconst arr = [1, 2, 3, 4, 5];removeAt(arr, 2)\n// => 3\n\nremoveAt(arr, 9)\n// => null\n\n"
         },
         {
           "title": "Function Methods",
