@@ -890,6 +890,84 @@ removeAt(arr, 9)
 
 ```
 
+## String Methods
+
+### camelize
+
+- camelize(value)
+  - `value` `<String>`
+
+- Returns
+  - `<String>`
+
+```js
+camelize('-value')
+// => 'Value'
+
+camelize('data-value')
+// =>  'dataValue'
+
+camelize('data-------value')
+// => 'dataValue'
+
+camelize('data-attr-value')
+// => 'dataAttrValue'
+
+camelize('data--attr--value')
+// => 'dataAttrValue'
+
+camelize('data_value')
+// => 'dataValue'
+
+camelize('data_______value')
+// => 'dataValue'
+
+camelize('data_attr_value')
+// => 'dataAttrValue'
+
+camelize('data__attr__value')
+// => 'dataAttrValue'
+
+camelize('data value')
+// => 'dataValue'
+
+camelize('data       value')
+// => 'dataValue'
+
+camelize('data attr value')
+// => 'dataAttrValue'
+
+camelize('data  attr  value')
+// => 'dataAttrValue'
+
+camelize('data.value')
+// => 'dataValue'
+
+camelize('data.......value')
+// => 'dataValue'
+
+camelize('data.attr.value')
+// => 'dataAttrValue'
+
+camelize('data..attr..value')
+// => 'dataAttrValue'
+
+```
+
+### capitalize
+
+- capitalize(value)
+  - `value` `<String>`
+
+- Returns
+  - `<String>`
+
+```js
+capitalize('value')
+// => 'Value'
+
+```
+
 ## Function Methods
 
 ### afterCall

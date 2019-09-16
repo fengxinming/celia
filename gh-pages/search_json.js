@@ -260,6 +260,21 @@ window.ydoc_plugin_search_json = {
           "content": "removeAt\nremoveAt(arr, index)\n\narr \nindex \n\n\n\nReturns\n\n returns something being removed\n\n\nconst arr = [1, 2, 3, 4, 5];removeAt(arr, 2)\n// => 3\n\nremoveAt(arr, 9)\n// => null\n\n"
         },
         {
+          "title": "String Methods",
+          "url": "/api/index.html#string-methods",
+          "content": "String Methods"
+        },
+        {
+          "title": "camelize",
+          "url": "/api/index.html#string-methods-camelize",
+          "content": "camelize\ncamelize(value)\n\nvalue \n\n\n\nReturns\n\n\n\n\ncamelize('-value')// => 'Value'\n\ncamelize('data-value')\n// =>  'dataValue'\n\ncamelize('data-------value')\n// => 'dataValue'\n\ncamelize('data-attr-value')\n// => 'dataAttrValue'\n\ncamelize('data--attr--value')\n// => 'dataAttrValue'\n\ncamelize('data_value')\n// => 'dataValue'\n\ncamelize('data_______value')\n// => 'dataValue'\n\ncamelize('data_attr_value')\n// => 'dataAttrValue'\n\ncamelize('data__attr__value')\n// => 'dataAttrValue'\n\ncamelize('data value')\n// => 'dataValue'\n\ncamelize('data       value')\n// => 'dataValue'\n\ncamelize('data attr value')\n// => 'dataAttrValue'\n\ncamelize('data  attr  value')\n// => 'dataAttrValue'\n\ncamelize('data.value')\n// => 'dataValue'\n\ncamelize('data.......value')\n// => 'dataValue'\n\ncamelize('data.attr.value')\n// => 'dataAttrValue'\n\ncamelize('data..attr..value')\n// => 'dataAttrValue'\n\n"
+        },
+        {
+          "title": "capitalize",
+          "url": "/api/index.html#string-methods-capitalize",
+          "content": "capitalize\ncapitalize(value)\n\nvalue \n\n\n\nReturns\n\n\n\n\ncapitalize('value')// => 'Value'\n\n"
+        },
+        {
           "title": "Function Methods",
           "url": "/api/index.html#function-methods",
           "content": "Function Methods"
