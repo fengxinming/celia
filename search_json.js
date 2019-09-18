@@ -275,6 +275,16 @@ window.ydoc_plugin_search_json = {
           "content": "capitalize\ncapitalize(value)\n\nvalue \n\n\n\nReturns\n\n\n\n\ncapitalize('value')// => 'Value'\n\n"
         },
         {
+          "title": "formatString",
+          "url": "/api/index.html#string-methods-formatstring",
+          "content": "formatString\nformatString(val, obj)\n\nval \nobj \n\n\n\nformatString(val, arg[, arg2, arg3])\n\nval \narg \n\n\nformatString('共{0}条记录', 2)// => '共2条记录'\n\nformatString('共{ page }条记录', {})\n// => '共{ page }条记录'\n\nformatString('共{ page }条记录', { page: 2 })\n// => '共2条记录'\n\n"
+        },
+        {
+          "title": "joinPath",
+          "url": "/api/index.html#string-methods-joinpath",
+          "content": "joinPathjoinPath(base, arg[, arg2, arg3])\n\nbase \narg \n\n\njoinPath('https://www.baidu.com', 'path1')// => 'https://www.baidu.com/path1'\n\njoinPath('https://www.baidu.com/', 'path1')\n// => 'https://www.baidu.com/path1'\n\njoinPath('https://www.baidu.com', 'path1', 'path2)\n// => 'https://www.baidu.com/path1/path2'\n\n"
+        },
+        {
           "title": "Function Methods",
           "url": "/api/index.html#function-methods",
           "content": "Function Methods"
