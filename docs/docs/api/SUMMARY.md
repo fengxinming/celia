@@ -49,6 +49,8 @@
 - [String](index.md#String-Methods)
   - [camelize](index.md#String-Methods-camelize)
   - [capitalize](index.md#String-Methods-capitalize)
+  - [formatString](index.md#String-Methods-formatString)
+  - [joinPath](index.md#String-Methods-joinPath)
 - [Function](index.md#Function-Methods)
   - [afterCall](index.md#Function-Methods-afterCall)
   - [aroundCall](index.md#Function-Methods-aroundCall)

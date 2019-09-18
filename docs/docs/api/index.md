@@ -968,6 +968,46 @@ capitalize('value')
 
 ```
 
+### formatString
+
+- formatString(val, obj)
+  - `val` `<String>`
+  - `obj` `<Object>`
+
+- formatString(val, arg[, arg2, arg3])
+  - `val` `<String>`
+  - `arg` `<String|Number|Boolean>`
+
+```js
+formatString('共{0}条记录', 2)
+// => '共2条记录'
+
+formatString('共{ page }条记录', {})
+// => '共{ page }条记录'
+
+formatString('共{ page }条记录', { page: 2 })
+// => '共2条记录'
+
+```
+
+### joinPath
+
+- joinPath(base, arg[, arg2, arg3])
+  - `base` `<String>`
+  - `arg` `<String|Number|Boolean>`
+
+```js
+joinPath('https://www.baidu.com', 'path1')
+// => 'https://www.baidu.com/path1'
+
+joinPath('https://www.baidu.com/', 'path1')
+// => 'https://www.baidu.com/path1'
+
+joinPath('https://www.baidu.com', 'path1', 'path2)
+// => 'https://www.baidu.com/path1/path2'
+
+```
+
 ## Function Methods
 
 ### afterCall
