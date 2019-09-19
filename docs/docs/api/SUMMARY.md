@@ -44,6 +44,8 @@
 - [Array](index.md#Array-Methods)
   - [flatten](index.md#Array-Methods-flatten)
   - [flattenDeep](index.md#Array-Methods-flattenDeep)
+  - [forEach](index.md#Array-Methods-forEach)
+  - [forSlice](index.md#Array-Methods-forSlice)
   - [remove](index.md#Array-Methods-remove)
   - [removeAt](index.md#Array-Methods-removeAt)
 - [String](index.md#String-Methods)

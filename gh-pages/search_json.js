@@ -250,6 +250,16 @@ window.ydoc_plugin_search_json = {
           "content": "flattenDeep\nflattenDeep(arr)\n\narr \n\n\n\nReturns\n\n\n\n\nconst arr1 = [1, [2], [], 3, 4, 5];flattenDeep(arr1)\n// => [1, 2, 3, 4, 5]\n\nconst arr2 = [1, [2, [1, 2, [2, 3]], 3], [], 3, [[1, 2], [[1, 2, 3], 3], [1, 2]], 4, 5];\nflattenDeep(arr2)\n// => [1, 2, 1, 2, 2, 3, 3, 3, 1, 2, 1, 2, 3, 3, 1, 2, 4, 5]\n\n"
         },
         {
+          "title": "forEach",
+          "url": "/api/index.html#array-methods-foreach",
+          "content": "forEachforEach(arr, callback[, context])\n\narr \ncallback \ncontext  Optional\n\n\nlet i = 0;forEach([1, 2, 3], function(num) {\n  if (num === 1) {\n    return false;\n  }\n  i++;\n});\n// i === 0\n\n"
+        },
+        {
+          "title": "forSlice",
+          "url": "/api/index.html#array-methods-forslice",
+          "content": "forSlice\nforSlice(arr, callback[, context])\n\narr \ncallback \ncontext  Optional\n\n\n\nforSlice(arr, start, callback[, context])\n\narr \nstart \ncallback \ncontext  Optional\n\n\n\nforSlice(arr, start, end, callback[, context])\n\narr \nstart \nend \ncallback \ncontext  Optional\n\n\nlet i = 0;forSlice([1, 2, 3, 4, 5], 1, function(num) {\n  if (num === 3) {\n    return false;\n  }\n  i++;\n});\n// i === 1\n\ni = 0;\nforSlice([1, 2, 3, 4, 5], 1, -1, function(num) {\n  i++;\n});\n// i === 3\n\n"
+        },
+        {
           "title": "remove",
           "url": "/api/index.html#array-methods-remove",
           "content": "remove\nremove(arr, value)\n\narr \nvalue \n\n\n\nReturns\n\n returns something being removed\n\n\nconst arr = [1, 2, 3, 4, 5];remove(arr, 2)\n// => 2\n\nremove(arr, 9)\n// => null\n\n"

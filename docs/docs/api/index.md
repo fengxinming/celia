@@ -852,6 +852,63 @@ flattenDeep(arr2)
 
 ```
 
+### forEach
+
+- forEach(arr, callback[, context])
+  - `arr` `<Array>`
+  - `callback` `<Function>`
+  - `context` `<any>` Optional
+
+```js
+let i = 0;
+forEach([1, 2, 3], function(num) {
+  if (num === 1) {
+    return false;
+  }
+  i++;
+});
+// i === 0
+
+```
+
+### forSlice
+
+- forSlice(arr, callback[, context])
+  - `arr` `<Array>`
+  - `callback` `<Function>`
+  - `context` `<any>` Optional
+
+- forSlice(arr, start, callback[, context])
+  - `arr` `<Array>`
+  - `start` `<Number>`
+  - `callback` `<Function>`
+  - `context` `<any>` Optional
+
+- forSlice(arr, start, end, callback[, context])
+  - `arr` `<Array>`
+  - `start` `<Number>`
+  - `end` `<Number>`
+  - `callback` `<Function>`
+  - `context` `<any>` Optional
+
+```js
+let i = 0;
+forSlice([1, 2, 3, 4, 5], 1, function(num) {
+  if (num === 3) {
+    return false;
+  }
+  i++;
+});
+// i === 1
+
+i = 0;
+forSlice([1, 2, 3, 4, 5], 1, -1, function(num) {
+  i++;
+});
+// i === 3
+
+```
+
 ### remove
 
 - remove(arr, value)
