@@ -42,7 +42,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "getEasyHash",
           "url": "/api/index.html#lang-methods-geteasyhash",
-          "content": "getEasyHash\ngetEasyHash(value)\n\nvalue'`\n\n\n\nReturns\n\n returns an easy hash value\n\n\ngetEasyHash('abc')// => 'sabc'\n\ngetEasyHash(1)\n// => 'n1'\n\ngetEasyHash({})\n// => 'o1'\n\n"
+          "content": "getEasyHash\ngetEasyHash(value)\n\nvalue \n\n\n\nReturns\n\n returns an easy hash value\n\n\ngetEasyHash('abc')// => 'sabc'\n\ngetEasyHash(1)\n// => 'n1'\n\ngetEasyHash({})\n// => 'o1'\n\n"
         },
         {
           "title": "isAbsoluteURL",

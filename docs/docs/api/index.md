@@ -20,7 +20,7 @@ assert(1 !== 1, 'assertion error');
 ### getEasyHash
 
 - getEasyHash(value)
-  - `value' `<any>`
+  - `value` `<any>`
 
 - Returns
   - `<String>` returns an easy hash value
