@@ -1,4 +1,4 @@
-import loop from './_loop';
+import iterate from './_iterate';
 import isNil from './isNil';
 
 export default function (basePath) {
@@ -9,7 +9,7 @@ export default function (basePath) {
 
   let str = '';
 
-  loop(arguments, 1, len, (arg) => {
+  iterate(arguments, 1, len, (arg) => {
     if (arg) {
       str += '/';
       str += arg;
