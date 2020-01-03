@@ -3,18 +3,17 @@
 const { promisify } = require('util');
 const { existsSync, mkdirSync } = require('fs');
 const { copy } = require('fs-extra');
-const { resolve, releaseDir } = require('./util');
+const { resolve, dist, resolveDist } = require('./utils');
 
 const copify = promisify(copy);
 
 module.exports = () => {
-  const distDir = releaseDir();
-  if (!existsSync(distDir)) {
-    mkdirSync(distDir);
+  if (!existsSync(dist)) {
+    mkdirSync(dist);
   }
   return Promise.all([
-    copify(resolve('package.json'), releaseDir('package.json')),
-    copify(resolve('README.md'), releaseDir('README.md'))
+    copify(resolve('package.json'), resolveDist('package.json')),
+    copify(resolve('README.md'), resolveDist('README.md'))
     // copify(resolve('src'), releaseDir('es'))
   ]);
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-const { resolve, releaseDir } = require('../util');
+const { resolve, resolveDist } = require('../utils');
 
 function configure(input, output) {
   return {
@@ -9,15 +9,12 @@ function configure(input, output) {
       input
     },
     outputOptions: {
-      name: 'celia',
       file: output,
-      format: 'iife',
+      format: 'amd',
       legacy: false,
       esModule: false
     }
   };
 }
 
-module.exports = [
-  configure(resolve('src/index.js'), releaseDir(`iife.js`))
-];
+module.exports = configure(resolve('src/index.js'), resolveDist('amd.js'));

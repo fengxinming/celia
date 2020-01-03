@@ -1,64 +1,23 @@
 'use strict';
 
-const { readdirSync } = require('fs');
-const { join, basename, relative } = require('path');
+const { relative } = require('path');
 const { remove } = require('fs-extra');
+const { dist } = require('../build/utils');
+const pack = require('../build/pack');
+const cp = require('../build/cp');
 const { getLogger } = require('clrsole');
-const cp = require('./cp');
-const { buildSrc, releaseDir, genConfig, apiNames } = require('./util');
 
-const logger = getLogger(basename(__filename, '.js'));
+const logger = getLogger('build');
 
-/**
- * 获取所有的配置
- */
-function getAllBuilds() {
-  let mods = [];
-  readdirSync(join(__dirname, 'config'))
-    .forEach((key) => {
-      key = key.replace(/\.js$/, '');
-      require(`./config/${key}`)
-        .forEach((config) => {
-          mods[mods.length] = genConfig(key, config);
-        });
-    });
-  return mods;
-};
+async function build() {
+  await remove(dist);
+  logger.info(`directory ${relative(process.cwd(), dist)} has been removed`);
 
-let builds = getAllBuilds();
-if (process.argv[2]) {
-  const filters = process.argv[2].split(',');
-  builds = builds.filter((b) => {
-    return filters.some(f => b._name.indexOf(f) > -1);
-  });
-}
+  await pack(process.argv.slice(2));
 
-/**
- * 编译所有的js
- * @param {Array} builds 配置数组
- */
-async function build(builds) {
-  const npmDir = releaseDir();
-  await remove(npmDir);
-  logger.info(`directory ${relative(process.cwd(), npmDir)} has been removed`);
-
-  const total = builds.length;
-  for (let i = 0; i < total; i++) {
-    try {
-      await buildSrc(builds[i]);
-    } catch (e) {
-      logger.error(e);
-      break;
-    }
-  }
-
-  apiNames
-    .forEach((dir) => {
-      dir.startsWith('_') || dir === 'index' || console.log('-', dir);
-    });
   await cp().catch((err) => {
     logger.error(err);
   });
 }
 
-build(builds);
+build();
