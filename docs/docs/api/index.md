@@ -20,7 +20,7 @@ assert(1 !== 1, 'assertion error');
 ### getEasyHash
 
 - getEasyHash(value)
-  - `value' `<any>`
+  - `value` `<any>`
 
 - Returns
   - `<String>` returns an easy hash value
@@ -852,6 +852,63 @@ flattenDeep(arr2)
 
 ```
 
+### forEach
+
+- forEach(arr, callback[, context])
+  - `arr` `<Array>`
+  - `callback` `<Function>`
+  - `context` `<any>` Optional
+
+```js
+let i = 0;
+forEach([1, 2, 3], function(num) {
+  if (num === 1) {
+    return false;
+  }
+  i++;
+});
+// i === 0
+
+```
+
+### forSlice
+
+- forSlice(arr, callback[, context])
+  - `arr` `<Array>`
+  - `callback` `<Function>`
+  - `context` `<any>` Optional
+
+- forSlice(arr, start, callback[, context])
+  - `arr` `<Array>`
+  - `start` `<Number>`
+  - `callback` `<Function>`
+  - `context` `<any>` Optional
+
+- forSlice(arr, start, end, callback[, context])
+  - `arr` `<Array>`
+  - `start` `<Number>`
+  - `end` `<Number>`
+  - `callback` `<Function>`
+  - `context` `<any>` Optional
+
+```js
+let i = 0;
+forSlice([1, 2, 3, 4, 5], 1, function(num) {
+  if (num === 3) {
+    return false;
+  }
+  i++;
+});
+// i === 1
+
+i = 0;
+forSlice([1, 2, 3, 4, 5], 1, -1, function(num) {
+  i++;
+});
+// i === 3
+
+```
+
 ### remove
 
 - remove(arr, value)
@@ -887,6 +944,124 @@ removeAt(arr, 2)
 
 removeAt(arr, 9)
 // => null
+
+```
+
+## String Methods
+
+### camelize
+
+- camelize(value)
+  - `value` `<String>`
+
+- Returns
+  - `<String>`
+
+```js
+camelize('-value')
+// => 'Value'
+
+camelize('data-value')
+// =>  'dataValue'
+
+camelize('data-------value')
+// => 'dataValue'
+
+camelize('data-attr-value')
+// => 'dataAttrValue'
+
+camelize('data--attr--value')
+// => 'dataAttrValue'
+
+camelize('data_value')
+// => 'dataValue'
+
+camelize('data_______value')
+// => 'dataValue'
+
+camelize('data_attr_value')
+// => 'dataAttrValue'
+
+camelize('data__attr__value')
+// => 'dataAttrValue'
+
+camelize('data value')
+// => 'dataValue'
+
+camelize('data       value')
+// => 'dataValue'
+
+camelize('data attr value')
+// => 'dataAttrValue'
+
+camelize('data  attr  value')
+// => 'dataAttrValue'
+
+camelize('data.value')
+// => 'dataValue'
+
+camelize('data.......value')
+// => 'dataValue'
+
+camelize('data.attr.value')
+// => 'dataAttrValue'
+
+camelize('data..attr..value')
+// => 'dataAttrValue'
+
+```
+
+### capitalize
+
+- capitalize(value)
+  - `value` `<String>`
+
+- Returns
+  - `<String>`
+
+```js
+capitalize('value')
+// => 'Value'
+
+```
+
+### formatString
+
+- formatString(val, obj)
+  - `val` `<String>`
+  - `obj` `<Object>`
+
+- formatString(val, arg[, arg2, arg3])
+  - `val` `<String>`
+  - `arg` `<String|Number|Boolean>`
+
+```js
+formatString('共{0}条记录', 2)
+// => '共2条记录'
+
+formatString('共{ page }条记录', {})
+// => '共{ page }条记录'
+
+formatString('共{ page }条记录', { page: 2 })
+// => '共2条记录'
+
+```
+
+### joinPath
+
+- joinPath(base, arg[, arg2, arg3])
+  - `base` `<String>`
+  - `arg` `<String|Number|Boolean>`
+
+```js
+joinPath('https://www.baidu.com', 'path1')
+// => 'https://www.baidu.com/path1'
+
+joinPath('https://www.baidu.com/', 'path1')
+// => 'https://www.baidu.com/path1'
+
+joinPath('https://www.baidu.com', 'path1', 'path2)
+// => 'https://www.baidu.com/path1/path2'
 
 ```
 

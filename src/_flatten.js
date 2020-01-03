@@ -1,10 +1,10 @@
-import loop from './_loop';
+import iterate from './_iterate';
 import append from './_append';
 
 const { isArray } = Array;
 
 export default function flatten(arr, result, depth) {
-  loop(arr, 0, arr.length, (n) => {
+  iterate(arr, 0, arr.length, (n) => {
     if (depth > 0) {
       if (isArray(n)) {
         flatten(n, result, --depth);
@@ -13,7 +13,7 @@ export default function flatten(arr, result, depth) {
       }
     } else {
       if (isArray(n)) {
-        loop(n, 0, n.length, (m) => {
+        iterate(n, 0, n.length, (m) => {
           append(result, m);
         });
       } else {

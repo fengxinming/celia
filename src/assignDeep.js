@@ -1,7 +1,7 @@
 
 import isNil from './isNil';
 import isObject from './isObject';
-import loop from './_loop';
+import iterate from './_iterate';
 import forOwn from './_forOwn';
 
 function assign(target, nextSource) {
@@ -19,7 +19,7 @@ export default function (target) {
     throw new TypeError('Cannot convert undefined or null to object');
   }
   const to = Object(target);
-  loop(arguments, 1, arguments.length, (nextSource) => {
+  iterate(arguments, 1, arguments.length, (nextSource) => {
     assign(to, nextSource);
   });
   return to;

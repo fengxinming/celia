@@ -42,7 +42,7 @@ window.ydoc_plugin_search_json = {
         {
           "title": "getEasyHash",
           "url": "/api/index.html#lang-methods-geteasyhash",
-          "content": "getEasyHash\ngetEasyHash(value)\n\nvalue'`\n\n\n\nReturns\n\n returns an easy hash value\n\n\ngetEasyHash('abc')// => 'sabc'\n\ngetEasyHash(1)\n// => 'n1'\n\ngetEasyHash({})\n// => 'o1'\n\n"
+          "content": "getEasyHash\ngetEasyHash(value)\n\nvalue \n\n\n\nReturns\n\n returns an easy hash value\n\n\ngetEasyHash('abc')// => 'sabc'\n\ngetEasyHash(1)\n// => 'n1'\n\ngetEasyHash({})\n// => 'o1'\n\n"
         },
         {
           "title": "isAbsoluteURL",
@@ -250,6 +250,16 @@ window.ydoc_plugin_search_json = {
           "content": "flattenDeep\nflattenDeep(arr)\n\narr \n\n\n\nReturns\n\n\n\n\nconst arr1 = [1, [2], [], 3, 4, 5];flattenDeep(arr1)\n// => [1, 2, 3, 4, 5]\n\nconst arr2 = [1, [2, [1, 2, [2, 3]], 3], [], 3, [[1, 2], [[1, 2, 3], 3], [1, 2]], 4, 5];\nflattenDeep(arr2)\n// => [1, 2, 1, 2, 2, 3, 3, 3, 1, 2, 1, 2, 3, 3, 1, 2, 4, 5]\n\n"
         },
         {
+          "title": "forEach",
+          "url": "/api/index.html#array-methods-foreach",
+          "content": "forEachforEach(arr, callback[, context])\n\narr \ncallback \ncontext  Optional\n\n\nlet i = 0;forEach([1, 2, 3], function(num) {\n  if (num === 1) {\n    return false;\n  }\n  i++;\n});\n// i === 0\n\n"
+        },
+        {
+          "title": "forSlice",
+          "url": "/api/index.html#array-methods-forslice",
+          "content": "forSlice\nforSlice(arr, callback[, context])\n\narr \ncallback \ncontext  Optional\n\n\n\nforSlice(arr, start, callback[, context])\n\narr \nstart \ncallback \ncontext  Optional\n\n\n\nforSlice(arr, start, end, callback[, context])\n\narr \nstart \nend \ncallback \ncontext  Optional\n\n\nlet i = 0;forSlice([1, 2, 3, 4, 5], 1, function(num) {\n  if (num === 3) {\n    return false;\n  }\n  i++;\n});\n// i === 1\n\ni = 0;\nforSlice([1, 2, 3, 4, 5], 1, -1, function(num) {\n  i++;\n});\n// i === 3\n\n"
+        },
+        {
           "title": "remove",
           "url": "/api/index.html#array-methods-remove",
           "content": "remove\nremove(arr, value)\n\narr \nvalue \n\n\n\nReturns\n\n returns something being removed\n\n\nconst arr = [1, 2, 3, 4, 5];remove(arr, 2)\n// => 2\n\nremove(arr, 9)\n// => null\n\n"
@@ -258,6 +268,31 @@ window.ydoc_plugin_search_json = {
           "title": "removeAt",
           "url": "/api/index.html#array-methods-removeat",
           "content": "removeAt\nremoveAt(arr, index)\n\narr \nindex \n\n\n\nReturns\n\n returns something being removed\n\n\nconst arr = [1, 2, 3, 4, 5];removeAt(arr, 2)\n// => 3\n\nremoveAt(arr, 9)\n// => null\n\n"
+        },
+        {
+          "title": "String Methods",
+          "url": "/api/index.html#string-methods",
+          "content": "String Methods"
+        },
+        {
+          "title": "camelize",
+          "url": "/api/index.html#string-methods-camelize",
+          "content": "camelize\ncamelize(value)\n\nvalue \n\n\n\nReturns\n\n\n\n\ncamelize('-value')// => 'Value'\n\ncamelize('data-value')\n// =>  'dataValue'\n\ncamelize('data-------value')\n// => 'dataValue'\n\ncamelize('data-attr-value')\n// => 'dataAttrValue'\n\ncamelize('data--attr--value')\n// => 'dataAttrValue'\n\ncamelize('data_value')\n// => 'dataValue'\n\ncamelize('data_______value')\n// => 'dataValue'\n\ncamelize('data_attr_value')\n// => 'dataAttrValue'\n\ncamelize('data__attr__value')\n// => 'dataAttrValue'\n\ncamelize('data value')\n// => 'dataValue'\n\ncamelize('data       value')\n// => 'dataValue'\n\ncamelize('data attr value')\n// => 'dataAttrValue'\n\ncamelize('data  attr  value')\n// => 'dataAttrValue'\n\ncamelize('data.value')\n// => 'dataValue'\n\ncamelize('data.......value')\n// => 'dataValue'\n\ncamelize('data.attr.value')\n// => 'dataAttrValue'\n\ncamelize('data..attr..value')\n// => 'dataAttrValue'\n\n"
+        },
+        {
+          "title": "capitalize",
+          "url": "/api/index.html#string-methods-capitalize",
+          "content": "capitalize\ncapitalize(value)\n\nvalue \n\n\n\nReturns\n\n\n\n\ncapitalize('value')// => 'Value'\n\n"
+        },
+        {
+          "title": "formatString",
+          "url": "/api/index.html#string-methods-formatstring",
+          "content": "formatString\nformatString(val, obj)\n\nval \nobj \n\n\n\nformatString(val, arg[, arg2, arg3])\n\nval \narg \n\n\nformatString('共{0}条记录', 2)// => '共2条记录'\n\nformatString('共{ page }条记录', {})\n// => '共{ page }条记录'\n\nformatString('共{ page }条记录', { page: 2 })\n// => '共2条记录'\n\n"
+        },
+        {
+          "title": "joinPath",
+          "url": "/api/index.html#string-methods-joinpath",
+          "content": "joinPathjoinPath(base, arg[, arg2, arg3])\n\nbase \narg \n\n\njoinPath('https://www.baidu.com', 'path1')// => 'https://www.baidu.com/path1'\n\njoinPath('https://www.baidu.com/', 'path1')\n// => 'https://www.baidu.com/path1'\n\njoinPath('https://www.baidu.com', 'path1', 'path2)\n// => 'https://www.baidu.com/path1/path2'\n\n"
         },
         {
           "title": "Function Methods",
