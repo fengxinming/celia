@@ -1,11 +1,10 @@
-import flat from '../src/flatten';
-import flattenDeep from '../src/flattenDeep';
-import remove from '../src/remove';
-import removeAt from '../src/removeAt';
-import forEach from '../src/forEach';
-import forSlice from '../src/forSlice';
+import flat from '../src/array/flat';
+import deepFlat from '../src/array/deepFlat';
+import remove from '../src/array/remove';
+import removeAt from '../src/array/removeAt';
+import forEach from '../src/array/forEach';
 
-it('测试 flatten 方法', () => {
+it('测试 flat 方法', () => {
   const arr1 = [1, [2], [], 3, 4, 5];
   expect(flat(arr1)).toEqual([1, 2, 3, 4, 5]);
   expect(flat(null).length).toBe(0);
@@ -14,13 +13,13 @@ it('测试 flatten 方法', () => {
   expect(flat(arr2)).toEqual([1, 2, 3, 2, 3, 4, [1, 2, 3], [3, 4, 5], 1, 3, 4]);
 });
 
-it('测试 flattenDeep 方法', () => {
+it('测试 deepFlat 方法', () => {
   const arr1 = [1, [2], [], 3, 4, 5];
-  expect(flattenDeep(arr1)).toEqual([1, 2, 3, 4, 5]);
+  expect(deepFlat(arr1)).toEqual([1, 2, 3, 4, 5]);
 
   const arr2 = [1, [2, [1, 2, [2, 3]], 3], [], 3, [[1, 2], [[1, 2, 3], 3], [1, 2]], 4, 5];
-  expect(flattenDeep(arr2)).toEqual([1, 2, 1, 2, 2, 3, 3, 3, 1, 2, 1, 2, 3, 3, 1, 2, 4, 5]);
-  expect(flattenDeep(null).length).toBe(0);
+  expect(deepFlat(arr2)).toEqual([1, 2, 1, 2, 2, 3, 3, 3, 1, 2, 1, 2, 3, 3, 1, 2, 4, 5]);
+  expect(deepFlat(null).length).toBe(0);
 });
 
 it('测试 remove 方法', () => {
@@ -42,66 +41,62 @@ it('测试 forEach 方法', () => {
 
   const arr = [1, 2, 3, 4];
   let i = 1;
-  const ctx = {};
   forEach(arr, () => (i++));
   expect(i).toBe(5);
+
   i = 1;
-  forEach(arr, function () {
+  forEach(arr, () => {
     if (i === 1) {
-      expect(this).toBe(ctx);
       return false;
     }
     i++;
-  }, ctx);
+  });
   expect(i).toBe(1);
-});
 
-it('测试 forSlice 方法', () => {
-  let i = 0;
-  const arr = [1, 2, 3, 4];
-  forSlice(null, () => {
+  i = 0;
+  forEach(null, () => {
     i++;
   });
   expect(i).toBe(0);
 
   i = 0;
-  forSlice(arr, 0, () => {
+  forEach(arr, 0, () => {
     i++;
   });
   expect(i).toBe(4);
 
   i = 0;
-  forSlice(arr, 0, 2, () => {
+  forEach(arr, 0, 2, () => {
     i++;
   });
   expect(i).toBe(2);
 
   i = 0;
-  forSlice(arr, 0, 0, () => {
+  forEach(arr, 0, 0, () => {
     i++;
   });
   expect(i).toBe(0);
 
   i = 0;
-  forSlice(arr, 0, -1, () => {
+  forEach(arr, 0, -1, () => {
     i++;
   });
   expect(i).toBe(3);
 
   i = 0;
-  forSlice(arr, 0, -5, () => {
+  forEach(arr, 0, -5, () => {
     i++;
   });
   expect(i).toBe(0);
 
   i = 0;
-  forSlice(arr, null, 0, () => {
+  forEach(arr, null, 0, () => {
     i++;
   });
   expect(i).toBe(0);
 
   i = 0;
-  forSlice(arr, () => {
+  forEach(arr, () => {
     i++;
   });
   expect(i).toBe(4);

@@ -1,7 +1,7 @@
-import camelize from '../src/camelize';
-import capitalize from '../src/capitalize';
-import joinPath from '../src/joinPath';
-import formatString from '../src/formatString';
+import camelize from '../src/string/camelize';
+import capitalize from '../src/string/capitalize';
+import pathJoin from '../src/string/pathJoin';
+import stringFormat from '../src/string/stringFormat';
 
 it('测试 camelize 方法', () => {
 
@@ -37,18 +37,17 @@ it('测试 capitalize 方法', () => {
   expect(capitalize('value')).toBe('Value');
 });
 
-it('测试 joinPath 方法', () => {
-  expect(joinPath()).toBe('.');
-  expect(joinPath('https://www.baidu.com', 'path1')).toBe('https://www.baidu.com/path1');
-  expect(joinPath('https://www.baidu.com/', 'path1')).toBe('https://www.baidu.com/path1');
-  expect(joinPath('https://www.baidu.com/', '/path1')).toBe('https://www.baidu.com/path1');
-  expect(joinPath('https://www.baidu.com', null, '/path1')).toBe('https://www.baidu.com/path1');
-  expect(joinPath('https://www.baidu.com', null, undefined)).toBe('https://www.baidu.com');
+it('测试 pathJoin 方法', () => {
+  expect(pathJoin()).toBe('.');
+  expect(pathJoin('https://www.baidu.com', 'path1')).toBe('https://www.baidu.com/path1');
+  expect(pathJoin('https://www.baidu.com/', 'path1')).toBe('https://www.baidu.com/path1');
+  expect(pathJoin('https://www.baidu.com/', '/path1')).toBe('https://www.baidu.com/path1');
+  expect(pathJoin('https://www.baidu.com', null, '/path1')).toBe('https://www.baidu.com/path1');
+  expect(pathJoin('https://www.baidu.com', null, undefined)).toBe('https://www.baidu.com');
 });
 
-it('测试 formatString 方法', () => {
-  expect(formatString('共{0}条记录', 2)).toBe('共2条记录');
-  expect(formatString('共{ page }条记录', {})).toBe('共{ page }条记录');
-  expect(formatString('共{ page }条记录', { page: 2 })).toBe('共2条记录');
-  expect(formatString(null)).toBe(null);
+it('测试 stringFormat 方法', () => {
+  expect(stringFormat('共{ page }条记录', {})).toBe('共{ page }条记录');
+  expect(stringFormat('共{ page }条记录', { page: 2 })).toBe('共2条记录');
+  expect(stringFormat(null)).toBe(null);
 });

@@ -17,7 +17,7 @@
 ### In a browser
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/celia/iife.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/celia/celia.min.js"></script>
 <script>
   // window.celia
   celia.each
