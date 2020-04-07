@@ -1,4 +1,4 @@
-/* celia.js v7.0.0-beta.0 (c) 2018-2020 Jesse Feng Released under the MIT License. */
+/* celia.js v7.0.0-beta.1 (c) 2018-2020 Jesse Feng Released under the MIT License. */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -50,10 +50,12 @@ var isBoolean = require('./isBoolean.js');
 var isFalsy = require('./isFalsy.js');
 var _isInteger = require('./_isInteger.js');
 var isInteger = require('./isInteger.js');
+var isLeapYear = require('./isLeapYear.js');
 var isPlainObject = require('./isPlainObject.js');
 var isPromiseLike = require('./isPromiseLike.js');
 var isString = require('./isString.js');
 var isUndefined = require('./isUndefined.js');
+var isValidDate = require('./isValidDate.js');
 var isWindow = require('./isWindow.js');
 var forOwn = require('./forOwn.js');
 var alias = require('./alias.js');
@@ -118,10 +120,12 @@ exports.isBoolean = isBoolean;
 exports.isFalsy = isFalsy;
 exports._isInteger = _isInteger;
 exports.isInteger = isInteger;
+exports.isLeapYear = isLeapYear;
 exports.isPlainObject = isPlainObject;
 exports.isPromiseLike = isPromiseLike;
 exports.isString = isString;
 exports.isUndefined = isUndefined;
+exports.isValidDate = isValidDate;
 exports.isWindow = isWindow;
 exports.forOwn = forOwn;
 exports.alias = alias;

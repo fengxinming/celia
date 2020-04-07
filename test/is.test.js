@@ -1,3 +1,4 @@
+import moment from 'moment';
 import _isInteger from '../src/is/_isInteger';
 import isAbsoluteURL from '../src/is/isAbsoluteURL';
 import isArrayLike from '../src/is/isArrayLike';
@@ -6,6 +7,7 @@ import isBoolean from '../src/is/isBoolean';
 import isDate from '../src/is/isDate';
 import isFalsy from '../src/is/isFalsy';
 import isFunction from '../src/is/isFunction';
+import isLeapYear from '../src/is/isLeapYear';
 import isNil from '../src/is/isNil';
 import isNumber from '../src/is/isNumber';
 import isObject from '../src/is/isObject';
@@ -14,6 +16,7 @@ import isPromiseLike from '../src/is/isPromiseLike';
 import isRegExp from '../src/is/isRegExp';
 import isString from '../src/is/isString';
 import isUndefined from '../src/is/isUndefined';
+import isValidDate from '../src/is/isValidDate';
 import isWindow from '../src/is/isWindow';
 
 const { isInteger } = Number;
@@ -76,6 +79,27 @@ it('测试 isFunction 方法', () => {
   expect(isFunction({})).toBe(false);
 });
 
+it('测试 isLeapYear 方法', () => {
+  const date2 = moment([2019, 1, 2]);
+
+  expect(isLeapYear(2019)).toBe(date2.isLeapYear());
+
+  date2.year(2000);
+  expect(isLeapYear(2000)).toBe(date2.isLeapYear());
+
+  date2.year(1000);
+  expect(isLeapYear(1000)).toBe(date2.isLeapYear());
+
+  date2.year(1024);
+  expect(isLeapYear(1024)).toBe(date2.isLeapYear());
+
+  date2.year(2018);
+  expect(isLeapYear(2018)).toBe(date2.isLeapYear());
+
+  date2.year(1997);
+  expect(isLeapYear(1997)).toBe(date2.isLeapYear());
+});
+
 it('测试 isNil 方法', () => {
   expect(isNil(null)).toBe(true);
   expect(isNil(undefined)).toBe(true);
@@ -126,6 +150,13 @@ it('测试 isString 方法', () => {
 it('测试 isUndefined 方法', () => {
   expect(isUndefined(null)).toBe(false);
   expect(isUndefined(undefined)).toBe(true);
+});
+
+it('测试 isValidDate 方法', () => {
+  const date1 = new Date(NaN);
+  const date2 = moment(NaN);
+
+  expect(isValidDate(date1)).toBe(date2.isValid());
 });
 
 it('测试 isWindow 方法', () => {

@@ -423,6 +423,20 @@ isInteger(Infinity)
 
 ```
 
+### isLeapYear
+
+- isLeapYear(value)
+  - `value` `<any>` 
+
+- Returns
+  - `<Boolean>`
+
+```js
+isLeapYear(1997)
+// => false
+
+```
+
 ### isNil
 
 - isNil(value)
@@ -591,6 +605,29 @@ isUndefined(null)
 // => false
 
 isUndefined(undefined)
+// => true
+
+```
+
+### isValidDate
+
+- isValidDate(value)
+  - `value` `<any>` 
+
+- Returns
+  - `<Boolean>`
+
+```js
+isValidDate(null)
+// => false
+
+isValidDate(undefined)
+// => false
+
+isValidDate(new Date(NaN))
+// => false
+
+isValidDate(new Date())
 // => true
 
 ```
