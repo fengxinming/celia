@@ -1,9 +1,11 @@
-/* celia.js v7.0.0-beta.1 (c) 2018-2020 Jesse Feng Released under the MIT License. */
+/* celia.js v7.0.0 (c) 2018-2020 Jesse Feng Released under the MIT License. */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var assert = require('./assert.js');
+var className = require('./className.js');
+var classNames = require('./classNames.js');
 var isNil = require('./isNil.js');
 var isFunction = require('./isFunction.js');
 var isNumber = require('./isNumber.js');
@@ -74,6 +76,8 @@ var stringFormat = require('./stringFormat.js');
 
 
 exports.assert = assert;
+exports.className = className;
+exports.classNames = classNames;
 exports.isNil = isNil;
 exports.isFunction = isFunction;
 exports.isNumber = isNumber;

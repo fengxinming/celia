@@ -10,6 +10,8 @@ import sleep from '../src/sleep';
 import toString from '../src/toString';
 import transform from '../src/transform';
 import uid from '../src/uid';
+import className from '../src/className';
+import classNames from '../src/classNames';
 
 it('测试 _forNumber 方法', () => {
 
@@ -237,4 +239,14 @@ it('测试 uid 方法', () => {
   const b = {};
   expect(uid(a)).not.toBe(uid(b));
   expect(uid(a)).toBe(uid(a));
+});
+
+it('测试 className 方法', () => {
+  expect(className({ class1: false, class2: true })).toBe('class2');
+  expect(className(['class3', 'class4'])).toBe('class3 class4');
+  expect(className('class5')).toBe('class5');
+});
+
+it('测试 classNames 方法', () => {
+  expect(classNames({ class1: false, class2: true }, ['class3', 'class4'], 'class5')).toBe('class2 class3 class4 class5');
 });
