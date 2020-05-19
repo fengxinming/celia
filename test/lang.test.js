@@ -242,11 +242,13 @@ it('测试 uid 方法', () => {
 });
 
 it('测试 className 方法', () => {
-  expect(className({ class1: false, class2: true })).toBe('class2');
+  expect(className({ class1: false, class2: true, '': true })).toBe('class2');
+  expect(className([{ class2: true }, [], null, '', 'class3', 'class4'])).toBe('class2 class3 class4');
   expect(className(['class3', 'class4'])).toBe('class3 class4');
   expect(className('class5')).toBe('class5');
+  expect(className([])).toBe('');
 });
 
 it('测试 classNames 方法', () => {
-  expect(classNames({ class1: false, class2: true }, ['class3', 'class4'], 'class5')).toBe('class2 class3 class4 class5');
+  expect(classNames({ class1: false, class2: true }, '', ['class3', 'class4'], 'class5')).toBe('class2 class3 class4 class5');
 });
