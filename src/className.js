@@ -14,10 +14,13 @@ function className(arg) {
         }
       });
       return classes.join(' ');
+    } else if (typeof arg === 'string') {
+      return arg.trim();
     } else {
       return arg;
     }
   }
+  return '';
 }
 
 function classNames(args) {
