@@ -1,6 +1,12 @@
 import each from './each';
-import map from './_map';
+import isNil from './is/isNil';
+import append from './array/_append';
 
-export default function (elems, callback, context) {
-  return map(each, elems, callback, context);
+export default function (elems, callback) {
+  const ret = [];
+  each(elems, (elem, key) => {
+    elem = callback(elem, key);
+    !isNil(elem) && append(ret, elem);
+  });
+  return ret;
 }

@@ -1,6 +1,6 @@
-import isObject from './isObject';
-import assign from './assign';
-import forOwn from './_forOwn';
+import isObject from './is/isObject';
+import assign from './object/assign';
+import forOwn from './object/_forOwn';
 
 function copy(value) {
   return isObject(value)

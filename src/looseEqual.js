@@ -1,6 +1,6 @@
-import isObject from './isObject';
-import isDate from './isDate';
-import isRegExp from './isRegExp';
+import isObject from './is/isObject';
+import isDate from './is/isDate';
+import isRegExp from './is/isRegExp';
 
 const { isArray } = Array;
 export default function looseEqual(a, b) {

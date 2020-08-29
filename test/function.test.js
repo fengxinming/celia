@@ -1,8 +1,8 @@
 import sleep from '../src/sleep';
-import beforeCall from '../src/beforeCall';
-import afterCall from '../src/afterCall';
-import aroundCall from '../src/aroundCall';
-import debounce from '../src/debounce';
+import beforeCall from '../src/fn/beforeCall';
+import afterCall from '../src/fn/afterCall';
+import aroundCall from '../src/fn/aroundCall';
+import debounce from '../src/fn/debounce';
 import A from './A';
 
 it('测试 beforeCall 方法', () => {
@@ -37,7 +37,7 @@ it('测试 aroundCall 方法', () => {
   const a = new A();
   expect(a.counter).toBe(0);
 
-  aroundCall(a, 'increment', function (fn, args) {
+  aroundCall(a, 'increment', function (args, fn) {
     this.counter = 2;
     fn.apply(this, args);
     this.counter = 2;
