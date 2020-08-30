@@ -1,16 +1,19 @@
 {
   "name": "celia",
-  "version": "7.0.1",
+  "version": "8.0.0",
+  "private": true,
   "description": "A modern JavaScript utility library delivering modularity, performance, and extras.",
-  "main": "index.js",
-  "module": "es/index.js",
-  "unpkg": "celia.js",
-  "jsdelivr": "celia.js",
   "scripts": {
-    "build": "rollup -c",
-    "test": "jest --detectOpenHandles --config jest.config.js",
-    "gh-pages": "git subtree push --prefix=gh-pages origin gh-pages",
-    "release": "npm publish dist"
+    "build:object": "pnpm run build --filter celia.object",
+    "build:is": "pnpm run build --filter celia.is",
+    "build:classnames": "pnpm run build --filter celia.classnames",
+    "test:object": "pnpm run test --filter celia.object",
+    "test:is": "pnpm run test --filter celia.is",
+    "test:classnames": "pnpm run test --filter celia.classnames",
+    "release:object": "npm run build:object && pnpm run release --filter celia.object",
+    "release:is": "npm run build:is && pnpm run release --filter celia.is",
+    "release:classnames": "npm run build:classnames && pnpm run release --filter celia.classnames",
+    "gh-pages": "git subtree push --prefix=gh-pages origin gh-pages"
   },
   "repository": {
     "type": "git",
@@ -24,7 +27,7 @@
   "author": "Jesse Feng",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fengxinming/celia/issues"
+    "url": "https://github.com/fengxinming/celia.issues"
   },
   "homepage": "https://github.com/fengxinming/celia#readme",
   "devDependencies": {
@@ -32,10 +35,10 @@
     "@babel/preset-env": "^7.9.0",
     "babel-jest": "^25.1.0",
     "clrsole": "^3.0.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.7.0",
     "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "fs-extra": "^9.0.0",

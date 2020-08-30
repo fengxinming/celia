@@ -1,0 +1,31 @@
+{
+  "name": "celia.object",
+  "version": "2.0.1",
+  "description": "object utilities.",
+  "main": "index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest --detectOpenHandles --config jest.config.js",
+    "release": "npm publish dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengxinming/celia.git"
+  },
+  "keywords": [
+    "celia",
+    "lodash",
+    "underscore",
+    "util"
+  ],
+  "author": "Jesse Feng <fxm0016@126.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fengxinming/celia.issues"
+  },
+  "homepage": "https://github.com/fengxinming/celia#readme",
+  "dependencies": {
+    "celia.is": "^1.0.0"
+  }
+}

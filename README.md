@@ -46,10 +46,10 @@ import { assign, each, getUid, hasOwn, isArrayLike, isUndefined, isWindow, loose
 
 // modularity
 import each from 'celia/each';
-import isArrayLike from 'celia/isArrayLike';
-import isAsyncFunction from 'celia/isAsyncFunction';
-import isDate from 'celia/isDate';
-import isFalsy from 'celia/isFalsy';
+import isArrayLike from 'celia.isArrayLike';
+import isAsyncFunction from 'celia.isAsyncFunction';
+import isDate from 'celia.isDate';
+import isFalsy from 'celia.isFalsy';
 import looseEqual from 'celia/looseEqual';
 import sleep from 'celia/sleep';
 // ...
@@ -59,10 +59,10 @@ import sleep from 'celia/sleep';
 const { assign, each, getUid, hasOwn, isArrayLike, isUndefined, isWindow, looseEqual, map, noop, sleep, toString, type } = require('celia');
 // or
 const each = require('celia/each');
-const isArrayLike = require('celia/isArrayLike');
-const isAsyncFunction = require('celia/isAsyncFunction');
-const isDate = require('celia/isDate');
-const isFalsy = require('celia/isFalsy');
+const isArrayLike = require('celia.isArrayLike');
+const isAsyncFunction = require('celia.isAsyncFunction');
+const isDate = require('celia.isDate');
+const isFalsy = require('celia.isFalsy');
 const looseEqual = require('celia/looseEqual');
 const sleep = require('celia/sleep');
 // ...
