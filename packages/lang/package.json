@@ -1,9 +1,11 @@
 {
-  "name": "celia.classnames",
-  "version": "1.0.1",
-  "description": "A simple JavaScript utility for conditionally joining classNames together.",
+  "name": "celia.lang",
+  "version": "1.0.0",
+  "description": "lang utilities.",
+  "jsnext:main": "es/index.js",
   "main": "index.js",
-  "module": "index.esm.js",
+  "module": "es/index.js",
+  "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
     "test": "jest --detectOpenHandles --config jest.config.js",
@@ -24,9 +26,5 @@
   "bugs": {
     "url": "https://github.com/fengxinming/celia.issues"
   },
-  "homepage": "https://github.com/fengxinming/celia#readme",
-  "dependencies": {
-    "celia.is": "^1.0.1",
-    "celia.object": "^2.0.1"
-  }
+  "homepage": "https://github.com/fengxinming/celia#readme"
 }

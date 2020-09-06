@@ -1,11 +1,5 @@
-const falseLike = {
-  false: true,
-  null: true,
-  undefined: true,
-  0: true,
-  NaN: true,
-  '': true
-};
+const FALSY = [false, null, undefined, 0, ''];
+
 export default function (bool) {
-  return !!falseLike[bool];
+  return FALSY.indexOf(bool) !== -1 || !bool;
 }

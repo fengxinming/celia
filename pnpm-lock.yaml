@@ -40,6 +40,30 @@ importers:
       rollup-plugin-empty: ^1.0.0
       rollup-plugin-match: ^1.0.0
       rollup-plugin-terser: ^5.3.0
+  packages/array:
+    dependencies:
+      celia.is: 'link:../is/dist'
+    specifiers:
+      celia.is: ^1.0.1
+  packages/classnames:
+    dependencies:
+      celia.is: 'link:../is/dist'
+      celia.object: 'link:../object/dist'
+    specifiers:
+      celia.is: ^1.0.1
+      celia.object: ^2.0.1
+  packages/is/dist:
+    specifiers: {}
+  packages/object:
+    dependencies:
+      celia.is: 'link:../is'
+    specifiers:
+      celia.is: ^1.0.0
+  packages/object/dist:
+    dependencies:
+      celia.is: 'link:../../is'
+    specifiers:
+      celia.is: ~1.0.0
 lockfileVersion: 5.1
 packages:
   /@babel/code-frame/7.10.4:
@@ -2564,15 +2588,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
-  /fsevents/2.1.2:
-    dev: true
-    engines:
-      node: ^8.16.0 || ^10.6.0 || >=11.0.0
-    optional: true
-    os:
-      - darwin
-    resolution:
-      integrity: sha512-R4wDiBwZ0KzpgOWetKDug1FZcYhqYnUYKtfZYt4mD5SBz76q0KR4Q9o7GIPamsVPGmW3EYPPJ0dOOjvx32ldZA==
   /function-bind/1.1.1:
     dev: true
     resolution:

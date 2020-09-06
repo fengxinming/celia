@@ -19,8 +19,13 @@ npm install celia.object --save
 
 * alias
 * assign
+* assignDeep
+* cloneLoose
 * deepAssign
 * forIn
 * forOwn
 * get
+* looseClone
 * set
+* transform
+* uid

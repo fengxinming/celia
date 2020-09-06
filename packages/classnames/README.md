@@ -17,26 +17,57 @@ npm install celia.classnames --save
 
 ## Api
 
-* classnames()
-* classnames.concat()
+* classnames( arg )
+* classnames.concat( arg1, arg2, ...args )
 
 ## Usage
 
 ```js
 import classnames from 'celia.classnames';
 
-classnames({ class1: false, class2: true })
-classnames([{ class2: true }, [], null, '', 'class3', 'class4'])
-classnames(['class3', 'class4'])
-classnames('class5')
-classnames([])
+classnames([]); 
+// ''
+
+classnames(''); 
+// ''
+
+classnames(null); 
+// ''
+
+classnames({
+  class1: false,
+  class2: true
+}); 
+// 'class2'
+
+classnames([
+  { class2: true },
+  [],
+  null,
+  '',
+  true,
+  false,
+  'class3',
+  'class4'
+]);
+// 'class2 class3 class4'
+
+classnames([
+  'class3',
+  'class4'
+]);
+// 'class3 class4'
+
+classnames('class5');
+// 'class5'
 
 classnames.concat(
-  { class1: false, class2: true }, 
-  '', 
-  true, 
-  ['class3', 'class4'], 
+  { class1: false, class2: true },
+  '',
+  true,
+  ['class3', 'class4'],
   'class5'
-)
+);
+// 'class2 class3 class4 class5'
 
 ```

@@ -4,7 +4,10 @@ import deepAssign from '../src/deepAssign';
 import forIn from '../src/forIn';
 import forOwn from '../src/forOwn';
 import get from '../src/get';
+import looseClone from '../src/looseClone';
 import set from '../src/set';
+import transform from '../src/transform';
+import uid from '../src/uid';
 import A from './A';
 
 it('测试 _assign 方法', () => {
@@ -189,4 +192,90 @@ it('测试 set 方法', () => {
   set(b, 'a.b');
   expect(b).toBe(null);
 
+});
+
+it('测试 transform 方法', () => {
+  const obj = { a: 1, b: 2 };
+  const newObj = transform(obj, (newObj, value, key) => {
+    newObj[key] = value + 1;
+  }, {});
+  expect(newObj).toEqual({
+    a: 2,
+    b: 3
+  });
+
+  const arr = [1, 2];
+  const newArr = transform(arr, (newArr, value, key) => {
+    newArr[key] = value + 1;
+  }, []);
+  expect(newArr).toEqual([2, 3]);
+});
+
+it('测试 uid 方法', () => {
+  const a = {};
+  const b = {};
+  expect(uid(a)).not.toBe(uid(b));
+  expect(uid(a)).toBe(uid(a));
+});
+
+describe('测试 looseClone 方法', () => {
+  it('浅复制', () => {
+    const a = { a: 1 };
+    const b = looseClone(a);
+    expect(a).not.toBe(b);
+    expect(a).toEqual(
+      expect.objectContaining({
+        a: 1
+      })
+    );
+
+    const c = 1;
+    expect(looseClone(c)).toBe(c);
+  });
+
+  it('深复制', () => {
+
+    const d = { a: { aa: { aaa: 1 } }, b: { bb: 2 }, arr: ['a', 'b'], arr2: [1, 2, 3] };
+    const cp = looseClone(d, true);
+    expect(d).not.toBe(cp);
+    expect(d.a).not.toBe(cp.a);
+    expect(d.b).not.toBe(cp.b);
+    expect(cp).toEqual(
+      expect.objectContaining({
+        a: {
+          aa: {
+            aaa: 1
+          }
+        },
+        arr: ['a', 'b'],
+        arr2: [1, 2, 3],
+        b: {
+          bb: 2
+        }
+      })
+    );
+  });
+
+  it('深复制2', () => {
+    const e = { a: 1, b: { bb: 1111 }, c: { cc: { ccc: 1 } }, d: { dd: 2 }, arr2: ['a', 'b'] };
+    const cp2 = looseClone(e, true);
+    expect(e).not.toBe(cp2);
+    expect(cp2).toEqual(
+      expect.objectContaining({
+        a: 1,
+        arr2: ['a', 'b'],
+        b: {
+          bb: 1111
+        },
+        c: {
+          cc: {
+            ccc: 1
+          }
+        },
+        d: {
+          dd: 2
+        }
+      })
+    );
+  });
 });

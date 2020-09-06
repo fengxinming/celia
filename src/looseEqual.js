@@ -3,6 +3,7 @@ import isDate from './is/isDate';
 import isRegExp from './is/isRegExp';
 
 const { isArray } = Array;
+const { keys } = Object;
 export default function looseEqual(a, b) {
   if (a === b) {
     return true;
@@ -17,8 +18,8 @@ export default function looseEqual(a, b) {
     } else if (isRegExp(a) && isRegExp(b)) { // 正则
       return a.toString() === b.toString();
     } else { // 对象
-      const keysA = Object.keys(a);
-      const keysB = Object.keys(b);
+      const keysA = keys(a);
+      const keysB = keys(b);
       return keysA.length === keysB.length && keysA.every((key) => {
         return looseEqual(a[key], b[key]);
       });

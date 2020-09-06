@@ -1,42 +1,47 @@
 import forOwn from 'celia.object/forOwn';
+import isArrayLike from 'celia.is/isArrayLike';
 
-const { isArray } = Array;
-
-function classname(arg) {
+function classnames(arg) {
   if (arg) {
-    if (isArray(arg)) {
-      return arg.length ? classnames(arg) : '';
-    } else if (typeof arg === 'object') {
-      const classes = [];
-      forOwn(arg, (val, key) => {
-        if (val) {
-          classes[classes.length] = key;
-        }
-      });
-      return classes.join(' ');
-    } else if (typeof arg === 'string') {
-      return arg.trim();
-    } else {
+    const argType = typeof arg;
+    if (argType === 'string' || argType === 'number') {
       return arg;
+    } else if (isArrayLike(arg)) {
+      return forArray(arg);
+    } else if (typeof arg === 'object') {
+      return forObject(arg);
     }
   }
   return '';
 }
 
-function classnames(args) {
-  const classes = [];
-  for (let i = 0, len = args.length; i < len; i++) {
-    const arg = args[i];
-    const str = classname(arg);
-    if (str) {
-      classes[classes.length] = str;
+function forArray(args) {
+  const len = args.length;
+  if (len > 0) {
+    const classes = [];
+    for (let i = 0; i < len; i++) {
+      const str = classnames(args[i]);
+      if (str) {
+        classes[classes.length] = str;
+      }
     }
+    return classes.join(' ');
   }
+  return '';
+}
+
+function forObject(arg) {
+  const classes = [];
+  forOwn(arg, (val, key) => {
+    if (val) {
+      classes[classes.length] = key;
+    }
+  });
   return classes.join(' ');
 }
 
-classname.concat = function () {
-  return classnames(arguments);
+classnames.concat = function () {
+  return forArray(arguments);
 };
 
-export default classname;
+export default classnames;
