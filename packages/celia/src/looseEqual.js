@@ -14,7 +14,7 @@ export default function looseEqual(a, b) {
         return looseEqual(e, b[i]);
       });
     } else if (isDate(a) && isDate(b)) { // 判断日期
-      return +a === +b;
+      return Number(a) === Number(b);
     } else if (isRegExp(a) && isRegExp(b)) { // 正则
       return a.toString() === b.toString();
     } else { // 对象

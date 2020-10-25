@@ -1,6 +1,6 @@
 import isArrayLike from 'celia.is/isArrayLike';
-import forEach from './_forEach';
-import append from './_append';
+import forEach from 'celia.array/_forEach';
+import append from 'celia.array/_append';
 
 export default function flatten(arr, result, depth) {
   forEach(arr, 0, arr.length, (n) => {

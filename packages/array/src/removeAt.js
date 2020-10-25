@@ -1,4 +1,4 @@
-import removeAt from './_removeAt';
+import removeAt from 'celia.array/_removeAt';
 
 const { isArray } = Array;
 export default function (elems, index) {

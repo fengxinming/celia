@@ -1,6 +1,6 @@
 import isNil from 'celia.is/isNil';
 import isObject from 'celia.is/isObject';
-import forOwn from './forOwn';
+import forOwn from 'celia.object/forOwn';
 
 function assign(target, nextSource) {
   let copy;

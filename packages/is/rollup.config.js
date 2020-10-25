@@ -1,5 +1,5 @@
-'use strict';
-
+const path = require('path');
+const alias = require('@rollup/plugin-alias');
 const match = require('rollup-plugin-match');
 const empty = require('rollup-plugin-empty');
 const combine = require('rollup-plugin-combine');
@@ -14,6 +14,12 @@ module.exports = {
     empty({
       silent: false,
       dir: 'dist'
+    }),
+    alias({
+      entries: [{
+        find: /^celia\.([a-zA-Z]+)/,
+        replacement: `${path.join(__dirname, '..')}/$1/src`
+      }]
     }),
     match(),
     combine({

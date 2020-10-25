@@ -1,1 +1,1 @@
-export { default } from './deepFlat';
+export { default } from 'celia.array/deepFlat';

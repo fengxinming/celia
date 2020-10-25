@@ -1,1 +1,1 @@
-export { default } from './looseClone';
+export { default } from 'celia.object/looseClone';

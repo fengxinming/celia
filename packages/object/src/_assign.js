@@ -1,5 +1,5 @@
 import isNil from 'celia.is/isNil';
-import forOwn from './forOwn';
+import forOwn from 'celia.object/forOwn';
 
 export default function (target) {
   if (isNil(target)) {

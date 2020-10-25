@@ -1,6 +1,6 @@
 import isNil from 'celia.is/isNil';
 import isString from 'celia.is/isString';
-import ore from './_ore';
+import ore from 'celia.object/_ore';
 
 const {
   PROP_NAME_RE,

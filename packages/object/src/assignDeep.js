@@ -1,1 +1,1 @@
-export { default } from './deepAssign';
+export { default } from 'celia.object/deepAssign';

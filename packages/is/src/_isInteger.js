@@ -1,4 +1,4 @@
-import isNumber from './isNumber';
+import isNumber from 'celia.is/isNumber';
 
 export default function (value) {
   return isNumber(value) &&

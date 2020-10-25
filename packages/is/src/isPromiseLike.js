@@ -1,4 +1,4 @@
-import isFunction from './isFunction';
+import isFunction from 'celia.is/isFunction';
 
 export default function (value) {
   return !!value &&

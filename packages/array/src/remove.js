@@ -1,4 +1,4 @@
-import remove from './_remove';
+import remove from 'celia.array/_remove';
 
 const { isArray } = Array;
 export default function (elems, value) {

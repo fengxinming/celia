@@ -1,5 +1,5 @@
 import isObject from 'celia.is/isObject';
-import forOwn from './forOwn';
+import forOwn from 'celia.object/forOwn';
 
 const { isArray } = Array;
 

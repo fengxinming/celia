@@ -1,4 +1,4 @@
-import flatten from './_flatten';
+import flatten from 'celia.array/_flatten';
 
 export default function (arr, depth) {
   if (arr) {

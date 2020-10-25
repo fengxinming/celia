@@ -1,6 +1,6 @@
 import isFunction from 'celia.is/isFunction';
-import _forEach from './_forEach';
-import transIndex from './_transIndex';
+import _forEach from 'celia.array/_forEach';
+import transIndex from 'celia.array/_transIndex';
 
 export default function (value, start, end, iterator) {
   if (value) {

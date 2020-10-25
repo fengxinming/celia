@@ -1,0 +1,50 @@
+{
+  "name": "celia",
+  "version": "8.0.0",
+  "description": "A modern JavaScript utility library delivering modularity, performance, and extras.",
+  "main": "celia.cjs.js",
+  "module": "celia.esm.js",
+  "unpkg": "celia.js",
+  "jsdelivr": "celia.js",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest --detectOpenHandles --config jest.config.js",
+    "gh-pages": "git subtree push --prefix=gh-pages origin gh-pages",
+    "release": "npm publish dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengxinming/celia.git"
+  },
+  "keywords": [
+    "util",
+    "lodash",
+    "underscore"
+  ],
+  "author": "Jesse Feng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fengxinming/celia/issues"
+  },
+  "homepage": "https://github.com/fengxinming/celia#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "celia.array": "^1.0.2",
+    "celia.is": "^1.0.1",
+    "celia.object": "^2.0.2"
+  }
+}
