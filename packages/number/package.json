@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/fengxinming/celia.issues"
   },
-  "homepage": "https://github.com/fengxinming/celia#readme"
+  "homepage": "https://github.com/fengxinming/celia#readme",
+  "dependencies": {
+    "celia.is": "^1.0.1"
+  }
 }

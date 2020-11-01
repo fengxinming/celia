@@ -7,7 +7,7 @@ const copy = require('rollup-plugin-copy');
 const importEs6 = require('../../plugins/rollup-plugin-import-es6');
 const pkg = require('./package.json');
 
-const banner = `/* ${pkg.name}.js v${pkg.version} (c) 2020-${new Date().getFullYear()} Jesse Feng Released under the MIT License. */`;
+const banner = `/* ${pkg.name} v${pkg.version}. */`;
 
 module.exports = {
   input: 'src/*.js',

@@ -10,34 +10,30 @@ const match = require('rollup-plugin-match');
 const combine = require('rollup-plugin-combine');
 const { terser } = require('rollup-plugin-terser');
 const copy = require('rollup-plugin-copy');
+const importEs6 = require('../../plugins/rollup-plugin-import-es6');
 const pkg = require('./package.json');
 
 const banner = `/* ${pkg.name}.js v${pkg.version} (c) 2018-${new Date().getFullYear()} Jesse Feng Released under the MIT License. */`;
-
-function importEs6() {
-  return {
-    name: 'import-es6',
-    renderChunk(code, chunk, options) {
-      if (['es', 'esm'].indexOf(options.format) >-1) {
-        chunk.imports = chunk.imports.map((mod) => {
-          return mod.replace(/^(\S+)\/(\S+)$/, '$1/es/$2');
-        });
-        return code.replace(/'(\S+)\/(\S+)'/g, '\'$1/es/$2\'');
-      }
-    }
-  };
-}
 
 function getInput() {
   return [
     '../array/src/*.js',
     '../is/src/*.js',
+    '../lang/src/*.js',
+    '../number/src/*.js',
     '../object/src/*.js',
+    './src/*.js'
   ];
 }
 
 function getReplacements() {
-  return ['array', 'is', 'object'].reduce((prev, mod)=> {
+  return [
+    'array',
+    'is', 
+    'lang',
+    'number',
+    'object'
+  ].reduce((prev, mod)=> {
     const dir = path.join(__dirname, '..', mod).replace(/\\/g, '/');
     prev[`${dir}/src`] = JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf-8')).name;
     return prev;

@@ -3,19 +3,26 @@
   "private": true,
   "description": "A modern JavaScript utility library delivering modularity, performance, and extras.",
   "scripts": {
-    "build:celia": "pnpm run build --filter celia",
     "build:array": "pnpm run build --filter celia.array",
+    "build:celia": "pnpm run build --filter celia",
     "build:classnames": "pnpm run build --filter celia.classnames",
     "build:is": "pnpm run build --filter celia.is",
+    "build:lang": "pnpm run build --filter celia.lang",
+    "build:number": "pnpm run build --filter celia.number",
     "build:object": "pnpm run build --filter celia.object",
     "test:array": "pnpm run test --filter celia.array",
     "test:classnames": "pnpm run test --filter celia.classnames",
     "test:is": "pnpm run test --filter celia.is",
+    "test:lang": "pnpm run test --filter celia.lang",
+    "test:number": "pnpm run test --filter celia.number",
     "test:object": "pnpm run test --filter celia.object",
-    "release:array": "npm run build:array && pnpm run release --filter celia.array",
-    "release:classnames": "npm run build:classnames && pnpm run release --filter celia.classnames",
+    "release:array": "pnpm run release --filter celia.array",
+    "release:celia": "pnpm run release --filter celia",
+    "release:classnames": "pnpm run release --filter celia.classnames",
     "release:is": "npm run build:is && pnpm run release --filter celia.is",
-    "release:object": "npm run build:object && pnpm run release --filter celia.object",
+    "release:lang": "pnpm run release --filter celia.lang",
+    "release:number": "pnpm run release --filter celia.number",
+    "release:object": "pnpm run release --filter celia.object",
     "gh-pages": "git subtree push --prefix=gh-pages origin gh-pages"
   },
   "repository": {
@@ -67,10 +74,6 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
-      "git add"
-    ],
-    "*.md": [
-      "prettier --single-quote --write",
       "git add"
     ]
   }
