@@ -9,7 +9,7 @@
   "scripts": {
     "build": "rollup -c",
     "test": "jest --detectOpenHandles --config jest.config.js",
-    "release": "npm publish dist"
+    "release": "npm run build && npm publish dist"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,11 @@
   "bugs": {
     "url": "https://github.com/fengxinming/celia.issues"
   },
-  "homepage": "https://github.com/fengxinming/celia#readme"
+  "homepage": "https://github.com/fengxinming/celia#readme",
+  "dependencies": {
+    "celia.array": "^1.0.3",
+    "celia.is": "^1.0.1",
+    "celia.number": "^1.0.0",
+    "celia.object": "^2.0.3"
+  }
 }

@@ -1,4 +1,4 @@
-'use strict';
+
 
 module.exports = {
   roots: [
@@ -16,5 +16,8 @@ module.exports = {
   transform: {
     '^.+\\.js$': 'babel-jest'
   },
-  transformIgnorePatterns: ['/node_modules/']
+  transformIgnorePatterns: ['/node_modules/'],
+  moduleNameMapper: {
+    '^celia\\.(\\w+)/(.+)$': '<rootDir>/../$1/src/$2'
+  }
 };

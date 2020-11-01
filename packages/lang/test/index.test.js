@@ -1,166 +1,124 @@
-import moment from 'moment';
-import _isInteger from '../src/_isInteger';
-import isAbsoluteURL from '../src/isAbsoluteURL';
-import isArrayLike from '../src/isArrayLike';
-import isAsyncFunction from '../src/isAsyncFunction';
-import isBoolean from '../src/isBoolean';
-import isDate from '../src/isDate';
-import isFalsy from '../src/isFalsy';
-import isFunction from '../src/isFunction';
-import isLeapYear from '../src/isLeapYear';
-import isNil from '../src/isNil';
-import isNumber from '../src/isNumber';
-import isObject from '../src/isObject';
-import isPlainObject from '../src/isPlainObject';
-import isPromiseLike from '../src/isPromiseLike';
-import isRegExp from '../src/isRegExp';
-import isString from '../src/isString';
-import isUndefined from '../src/isUndefined';
-import isValidDate from '../src/isValidDate';
-import isWindow from '../src/isWindow';
+import assert from '../src/assert';
+import each from '../src/each';
+import easyHash from '../src/easyHash';
+import looseEqual from '../src/looseEqual';
+import map from '../src/map';
+import sleep from '../src/sleep';
+import toString from '../src/toString';
 
-const { isInteger } = Number;
-it('测试 _isInteger 方法', () => {
-  // 兼容版本
-  expect(_isInteger(2)).toBe(isInteger(2));
-  expect(_isInteger(-2)).toBe(isInteger(-2));
-  expect(_isInteger(1.23)).toBe(isInteger(1.23));
-  expect(_isInteger(-1.23)).toBe(isInteger(-1.23));
-  expect(_isInteger(null)).toBe(isInteger(null));
-  expect(_isInteger(undefined)).toBe(isInteger(undefined));
-  expect(_isInteger('2')).toBe(isInteger('2'));
-  expect(_isInteger(Infinity)).toBe(isInteger(Infinity));
+it('测试 assert 方法', () => {
+  expect(() => {
+    assert(false, 'assertionError');
+  }).toThrow();
+  expect(assert(true, 'assertionError')).toBeUndefined();
 });
 
-it('测试 isAbsoluteURL 方法', () => {
-  expect(isAbsoluteURL('/src/isAbsoluteURL.js')).toBe(false);
-  expect(isAbsoluteURL('https://github.com')).toBe(true);
+it('测试 easyHash 方法', () => {
+  expect(easyHash('abc')).toBe('sabc');
+  expect(easyHash(1)).toBe('n1');
+  expect(easyHash({})).toBe('o1');
 });
 
-it('测试 isArrayLike 方法', () => {
-  expect(isArrayLike('123')).toBe(true);
-  expect(isArrayLike(() => { })).toBe(false);
-  expect(isArrayLike([])).toBe(true);
-  expect(isArrayLike([1, 2, 3])).toBe(true);
-  expect(isArrayLike({
-    0: 1,
-    length: 1
-  })).toBe(true);
+it('测试 looseEqual 方法', () => {
+  expect(looseEqual(null, undefined)).toBe(false);
+  expect(looseEqual(null, null)).toBe(true);
+  expect(looseEqual({ a: 1, b: 2 }, { a: 1, b: 2 })).toBe(true);
+  expect(looseEqual([1, 2], [1, 2])).toBe(true);
+  expect(looseEqual(/\d+/, /\d+/)).toBe(true);
+  expect(looseEqual(new Date(2019, 0, 1, 9, 9, 9), new Date(2019, 0, 1, 9, 9, 9))).toBe(true);
+  expect(looseEqual(it, it)).toBe(true);
 });
 
-it('测试 isAsyncFunction 方法', () => {
-  expect(isAsyncFunction(async () => { })).toBe(true);
-  expect(isAsyncFunction(() => { })).toBe(false);
+it('测试 sleep 方法', () => {
+  expect(sleep(1000)).resolves.toBeUndefined();
 });
 
-it('测试 isBoolean 方法', () => {
-  expect(isBoolean(() => { })).toBe(false);
-  expect(isBoolean(true)).toBe(true);
+it('测试 toString 方法', () => {
+  expect(toString({})).toBe('[object Object]');
+  expect(toString([])).toBe('[object Array]');
 });
 
-it('测试 isDate 方法', () => {
-  expect(isDate(new Date())).toBe(true);
-  expect(isDate({})).toBe(false);
+describe('测试 each 方法', () => {
+
+  it('遍历空对象', () => {
+    let i = 0;
+    each(null, () => i++);
+    expect(i).toBe(0);
+  });
+
+  it('遍历数组', () => {
+    let i = 0;
+    each([1, 2], () => i++);
+    expect(i).toBe(2);
+
+    i = 0;
+    each([1, 2], () => {
+      i++;
+      if (i === 1) {
+        return false;
+      }
+    });
+    expect(i).toBe(1);
+  });
+
+  it('遍历数字', () => {
+    let i = 0;
+    each(10, () => i++);
+    expect(i).toBe(10);
+
+    i = 0;
+    each(10, () => {
+      i++;
+      if (i === 2) {
+        return false;
+      }
+    });
+    expect(i).toBe(2);
+
+  });
+
+  it('遍历类数组', () => {
+    let i = 0;
+    each({
+      0: 1,
+      1: 2,
+      length: 2
+    }, () => i++);
+    expect(i).toBe(2);
+
+  });
+
+  it('遍历对象', () => {
+    let i = 0;
+    each({
+      a: 'a',
+      b: 'b'
+    }, () => i++);
+    expect(i).toBe(2);
+
+    i = 0;
+    each({
+      a: 'a',
+      b: 'b'
+    }, () => {
+      return false;
+    });
+    expect(i).toBe(0);
+  });
+
 });
 
-it('测试 isFalsy 方法', () => {
-  expect(isFalsy(false)).toBe(true);
-  expect(isFalsy(null)).toBe(true);
-  expect(isFalsy(undefined)).toBe(true);
-  expect(isFalsy(0)).toBe(true);
-  expect(isFalsy(NaN)).toBe(true);
-  expect(isFalsy('')).toBe(true);
-  expect(isFalsy({})).toBe(false);
-});
-
-it('测试 isFunction 方法', () => {
-  expect(isFunction(async () => { })).toBe(true);
-  expect(isFunction(() => { })).toBe(true);
-  expect(isFunction({})).toBe(false);
-});
-
-it('测试 isLeapYear 方法', () => {
-  const date2 = moment([2019, 1, 2]);
-
-  expect(isLeapYear(2019)).toBe(date2.isLeapYear());
-
-  date2.year(2000);
-  expect(isLeapYear(2000)).toBe(date2.isLeapYear());
-
-  date2.year(1000);
-  expect(isLeapYear(1000)).toBe(date2.isLeapYear());
-
-  date2.year(1024);
-  expect(isLeapYear(1024)).toBe(date2.isLeapYear());
-
-  date2.year(2018);
-  expect(isLeapYear(2018)).toBe(date2.isLeapYear());
-
-  date2.year(1997);
-  expect(isLeapYear(1997)).toBe(date2.isLeapYear());
-});
-
-it('测试 isNil 方法', () => {
-  expect(isNil(null)).toBe(true);
-  expect(isNil(undefined)).toBe(true);
-  expect(isNil({})).toBe(false);
-});
-
-it('测试 isNumber 方法', () => {
-  expect(isNumber(1)).toBe(true);
-  expect(isNumber(undefined)).toBe(false);
-  expect(isNumber({})).toBe(false);
-});
-
-it('测试 isObject 方法', () => {
-  expect(isObject(1)).toBe(false);
-  expect(isObject(undefined)).toBe(false);
-  expect(isObject({})).toBe(true);
-});
-
-it('测试 isPlainObject 方法', () => {
-  expect(isPlainObject(new Date())).toBe(false);
-  expect(isPlainObject({})).toBe(true);
-});
-
-it('测试 isPromiseLike 方法', () => {
-  expect(isPromiseLike(null)).toBe(false);
-  expect(isPromiseLike(undefined)).toBe(false);
-  expect(isPromiseLike({})).toBe(false);
-  expect(isPromiseLike(new Promise(() => { }))).toBe(true);
-  expect(isPromiseLike({ then: () => { }, catch: () => { } })).toBe(true);
-});
-
-it('测试 isRegExp 方法', () => {
-  expect(isRegExp(null)).toBe(false);
-  expect(isRegExp(undefined)).toBe(false);
-  expect(isRegExp({})).toBe(false);
-  expect(isRegExp(Object.create(null))).toBe(false);
-  expect(isRegExp(/\d+/)).toBe(true);
-});
-
-it('测试 isString 方法', () => {
-  expect(isString(null)).toBe(false);
-  expect(isString({})).toBe(false);
-  expect(isString(1)).toBe(false);
-  expect(isString(true)).toBe(false);
-  expect(isString('')).toBe(true);
-});
-
-it('测试 isUndefined 方法', () => {
-  expect(isUndefined(null)).toBe(false);
-  expect(isUndefined(undefined)).toBe(true);
-});
-
-it('测试 isValidDate 方法', () => {
-  const date1 = new Date(NaN);
-  const date2 = moment(NaN);
-
-  expect(isValidDate(date1)).toBe(date2.isValid());
-});
-
-it('测试 isWindow 方法', () => {
-  expect(isWindow(null)).toBe(false);
-  expect(isWindow(undefined)).toBe(false);
-  expect(isWindow(window)).toBe(true);
+it('测试 map 方法', () => {
+  let arr1 = [1, 2, 3, 4, 5];
+  expect(map(arr1, n => n + 1)).toEqual(
+    expect.arrayContaining([2, 3, 4, 5, 6])
+  );
+  arr1 = [1, null, 2, undefined, 3, 4, 5];
+  expect(map(arr1, n => n && (n + 1))).toEqual(
+    expect.arrayContaining([2, 3, 4, 5, 6])
+  );
+  const obj1 = { a: 1, b: 2 };
+  expect(map(obj1, n => n + 1)).toEqual(
+    expect.arrayContaining([2, 3])
+  );
 });
