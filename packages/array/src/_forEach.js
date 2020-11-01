@@ -4,4 +4,4 @@ export default function (value, start, end, iterator) {
       break;
     }
   }
-};
+}

@@ -1,4 +1,4 @@
-const toString = Object.prototype.toString;
+const { toString } = Object.prototype;
 
 export default function (value) {
   return toString.call(value);

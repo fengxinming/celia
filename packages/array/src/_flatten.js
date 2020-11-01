@@ -10,14 +10,12 @@ export default function flatten(arr, result, depth) {
       } else {
         append(result, n);
       }
+    } else if (isArrayLike(n)) {
+      forEach(n, 0, n.length, (m) => {
+        append(result, m);
+      });
     } else {
-      if (isArrayLike(n)) {
-        forEach(n, 0, n.length, (m) => {
-          append(result, m);
-        });
-      } else {
-        append(result, n);
-      }
+      append(result, n);
     }
   });
   return result;

@@ -6,9 +6,11 @@ function classnames(arg) {
     const argType = typeof arg;
     if (argType === 'string' || argType === 'number') {
       return arg;
-    } else if (isArrayLike(arg)) {
+    }
+    if (isArrayLike(arg)) {
       return forArray(arg);
-    } else if (typeof arg === 'object') {
+    }
+    if (typeof arg === 'object') {
       return forObject(arg);
     }
   }
@@ -41,6 +43,7 @@ function forObject(arg) {
 }
 
 classnames.concat = function () {
+  // eslint-disable-next-line prefer-rest-params
   return forArray(arguments);
 };
 

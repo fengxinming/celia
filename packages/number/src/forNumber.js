@@ -7,4 +7,4 @@ export default function (value, iterator) {
   }
 
   _forNumber(value, iterator);
-};
+}

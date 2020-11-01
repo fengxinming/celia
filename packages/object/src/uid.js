@@ -7,8 +7,8 @@ export default function (obj) {
     uid = ++uidCounter;
     Object.defineProperty(obj, UID_PROPERTY, {
       configurable: true,
-      value: uidCounter
+      value: uidCounter,
     });
   }
   return uid;
-};
+}
