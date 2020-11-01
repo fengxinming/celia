@@ -1,6 +1,6 @@
 {
   "name": "celia.array",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "array utilities.",
   "jsnext:main": "es/index.js",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "scripts": {
     "build": "rollup -c",
     "test": "jest --detectOpenHandles --config jest.config.js",
-    "release": "npm publish dist"
+    "release": "npm run build && npm publish dist"
   },
   "repository": {
     "type": "git",

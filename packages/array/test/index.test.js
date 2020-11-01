@@ -1,11 +1,14 @@
 import flat from '../src/flat';
 import deepFlat from '../src/deepFlat';
+import flatten from '../src/_flatten';
 import remove from '../src/remove';
 import removeAt from '../src/removeAt';
 import forEach from '../src/forEach';
 
 it('测试 flat 方法', () => {
   const arr1 = [1, [2], [], 3, 4, 5];
+  expect(flatten(arr1, [], 1)).toEqual([1, 2, 3, 4, 5]);
+  expect(flatten(arr1, [])).toEqual([1, 2, 3, 4, 5]);
   expect(flat(arr1)).toEqual([1, 2, 3, 4, 5]);
   expect(flat(null).length).toBe(0);
 
@@ -15,10 +18,11 @@ it('测试 flat 方法', () => {
 
 it('测试 deepFlat 方法', () => {
   const arr1 = [1, [2], [], 3, 4, 5];
-  expect(deepFlat(arr1)).toEqual([1, 2, 3, 4, 5]);
+  expect(flatten(arr1, [], Infinity)).toEqual([1, 2, 3, 4, 5]);
+  expect(flat(arr1, Infinity)).toEqual([1, 2, 3, 4, 5]);
 
   const arr2 = [1, [2, [1, 2, [2, 3]], 3], [], 3, [[1, 2], [[1, 2, 3], 3], [1, 2]], 4, 5];
-  expect(deepFlat(arr2)).toEqual([1, 2, 1, 2, 2, 3, 3, 3, 1, 2, 1, 2, 3, 3, 1, 2, 4, 5]);
+  expect(flatten(arr2, [], Infinity)).toEqual([1, 2, 1, 2, 2, 3, 3, 3, 1, 2, 1, 2, 3, 3, 1, 2, 4, 5]);
   expect(deepFlat(null).length).toBe(0);
 });
 
