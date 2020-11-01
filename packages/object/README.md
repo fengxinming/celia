@@ -25,6 +25,7 @@ npm install celia.object --save
 * forIn
 * forOwn
 * get
+* hasOwn
 * looseClone
 * set
 * transform

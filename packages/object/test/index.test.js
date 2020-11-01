@@ -8,6 +8,7 @@ import looseClone from '../src/looseClone';
 import set from '../src/set';
 import transform from '../src/transform';
 import uid from '../src/uid';
+import hasOwn from '../src/hasOwn';
 import A from './A';
 
 it('测试 _assign 方法', () => {
@@ -28,6 +29,13 @@ it('测试 _assign 方法', () => {
   assign(a, null);
   expect(a.a).toBe(1);
 });
+
+it('测试 hasOwn 方法', () => {
+  const obj = { aaa: 111 };
+  expect(hasOwn(obj, 'test')).toBe(false);
+  expect(hasOwn(obj, 'aaa')).toBe(true);
+});
+
 
 it('测试 forIn 方法', () => {
   const obj = { 1: 1, 2: 2, 3: 3 };

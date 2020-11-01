@@ -4,12 +4,16 @@ const match = require('rollup-plugin-match');
 const empty = require('rollup-plugin-empty');
 const combine = require('rollup-plugin-combine');
 const copy = require('rollup-plugin-copy');
+const importEs6 = require('../../plugins/rollup-plugin-import-es6');
 const pkg = require('./package.json');
 
-const banner = `/* ${pkg.name}.js v${pkg.version} */`;
+const banner = `/* ${pkg.name} v${pkg.version} */`;
 
 module.exports = {
   input: 'src/*.js',
+  external(resolveId) {
+    return /^celia\.(is)/.test(resolveId);
+  },
   plugins: [
     empty({
       silent: false,
@@ -22,6 +26,7 @@ module.exports = {
       }]
     }),
     match(),
+    importEs6(),
     combine({
       outputDir: true
     }),

@@ -1,6 +1,6 @@
 {
   "name": "celia.object",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "object utilities.",
   "jsnext:main": "es/index.js",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "scripts": {
     "build": "rollup -c",
     "test": "jest --detectOpenHandles --config jest.config.js",
-    "release": "npm publish dist"
+    "release": "npm run build && npm publish dist"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,6 @@
   },
   "homepage": "https://github.com/fengxinming/celia#readme",
   "dependencies": {
-    "celia.is": "^1.0.0"
+    "celia.is": "^1.0.1"
   }
 }

@@ -10,6 +10,4 @@ export default function (object, iterator) {
       break;
     };
   }
-
-  return object;
 };

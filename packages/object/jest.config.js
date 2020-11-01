@@ -1,4 +1,4 @@
-'use strict';
+
 
 module.exports = {
   roots: [
@@ -18,6 +18,6 @@ module.exports = {
   },
   transformIgnorePatterns: ['/node_modules/'],
   moduleNameMapper: {
-    '^celia.is/(.*)$': '<rootDir>/../is/src/$1'
+    '^celia\\.(\\w+)/(.+)$': '<rootDir>/../$1/src/$2'
   }
 };
