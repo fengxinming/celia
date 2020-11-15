@@ -1,6 +1,6 @@
 {
   "name": "celia",
-  "version": "8.0.0-beta.1",
+  "version": "8.0.0-beta.2",
   "description": "A modern JavaScript utility library delivering modularity, performance, and extras.",
   "main": "index.cjs.js",
   "module": "index.esm.js",
@@ -50,6 +50,7 @@
     "celia.is": "^1.0.1",
     "celia.lang": "^1.0.0",
     "celia.number": "^1.0.0",
-    "celia.object": "^2.0.3"
+    "celia.object": "^2.0.3",
+    "celia.string": "^1.0.0"
   }
 }

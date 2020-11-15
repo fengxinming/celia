@@ -1,5 +1,5 @@
-import iterate from '../array/_iterate';
-import isNil from '../is/isNil';
+import isNil from 'celia.is/isNil';
+import iterate from 'celia.array/_forEach';
 
 export default function (basePath) {
   const len = arguments.length;
@@ -9,6 +9,7 @@ export default function (basePath) {
 
   let str = '';
 
+  // eslint-disable-next-line prefer-rest-params
   iterate(arguments, 1, len, (arg) => {
     if (arg) {
       str += '/';

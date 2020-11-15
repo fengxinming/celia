@@ -1,14 +1,24 @@
 const path = require('path');
 const fs = require('fs');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const buble = require('@rollup/plugin-buble');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const commonjs = require('@rollup/plugin-commonjs');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const alias = require('@rollup/plugin-alias');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const replace = require('@rollup/plugin-replace');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const empty = require('rollup-plugin-empty');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const match = require('rollup-plugin-match');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const combine = require('rollup-plugin-combine');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { terser } = require('rollup-plugin-terser');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const copy = require('rollup-plugin-copy');
 const importEs6 = require('../../plugins/rollup-plugin-import-es6');
 const pkg = require('./package.json');
@@ -22,6 +32,7 @@ function getInput() {
     '../lang/src/*.js',
     '../number/src/*.js',
     '../object/src/*.js',
+    '../string/src/*.js',
     './src/*.js'
   ];
 }
@@ -29,11 +40,12 @@ function getInput() {
 function getReplacements() {
   return [
     'array',
-    'is', 
+    'is',
     'lang',
     'number',
-    'object'
-  ].reduce((prev, mod)=> {
+    'object',
+    'string'
+  ].reduce((prev, mod) => {
     const dir = path.join(__dirname, '..', mod).replace(/\\/g, '/');
     prev[`${dir}/src`] = JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf-8')).name;
     return prev;
@@ -76,7 +88,7 @@ module.exports = [{
     empty({
       silent: false,
       dir: 'dist'
-    }), 
+    }),
     importEs6()
   ],
   output: [{

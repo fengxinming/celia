@@ -10,12 +10,14 @@
     "build:lang": "pnpm run build --filter celia.lang",
     "build:number": "pnpm run build --filter celia.number",
     "build:object": "pnpm run build --filter celia.object",
+    "build:string": "pnpm run build --filter celia.string",
     "test:array": "pnpm run test --filter celia.array",
     "test:classnames": "pnpm run test --filter celia.classnames",
     "test:is": "pnpm run test --filter celia.is",
     "test:lang": "pnpm run test --filter celia.lang",
     "test:number": "pnpm run test --filter celia.number",
     "test:object": "pnpm run test --filter celia.object",
+    "test:string": "pnpm run test --filter celia.string",
     "release:array": "pnpm run release --filter celia.array",
     "release:celia": "pnpm run release --filter celia",
     "release:classnames": "pnpm run release --filter celia.classnames",
@@ -23,6 +25,7 @@
     "release:lang": "pnpm run release --filter celia.lang",
     "release:number": "pnpm run release --filter celia.number",
     "release:object": "pnpm run release --filter celia.object",
+    "release:string": "pnpm run release --filter celia.string",
     "gh-pages": "git subtree push --prefix=gh-pages origin gh-pages"
   },
   "repository": {
