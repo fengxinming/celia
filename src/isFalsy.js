@@ -1,5 +1,5 @@
-const FALSY = [false, null, undefined, 0, ''];
+const FALSY = ['false', 'null', 'undefined', '0'];
 
-export default function (bool) {
-  return FALSY.indexOf(bool) !== -1 || !bool;
+export default function isFalsy(bool) {
+  return !bool || FALSY.indexOf(bool) !== -1;
 }
