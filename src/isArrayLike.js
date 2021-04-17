@@ -1,6 +1,6 @@
-import isFunction from 'celia.is/isFunction';
-import isNumber from 'celia.is/isNumber';
+import isFunction from './isFunction';
+import isNumber from './isNumber';
 
-export default function (value) {
+export default function isArrayLike(value) {
   return !!value && isNumber(value.length) && !isFunction(value);
 }
