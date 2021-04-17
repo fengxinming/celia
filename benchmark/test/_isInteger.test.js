@@ -1,4 +1,4 @@
-const _isInteger = require('../../dist/_isInteger');
+const isInteger2 = require('../../dist/isInteger2');
 
 const { isInteger } = Number;
 
@@ -15,14 +15,14 @@ module.exports = {
     isInteger(Infinity);
   },
 
-  '【_isInteger】': function () {
-    _isInteger(2);
-    _isInteger(-2);
-    _isInteger(1.23);
-    _isInteger(-1.23);
-    _isInteger(null);
-    _isInteger(undefined);
-    _isInteger('2');
-    _isInteger(Infinity);
-  },
+  '【isInteger2】': function () {
+    isInteger2(2);
+    isInteger2(-2);
+    isInteger2(1.23);
+    isInteger2(-1.23);
+    isInteger2(null);
+    isInteger2(undefined);
+    isInteger2('2');
+    isInteger2(Infinity);
+  }
 };

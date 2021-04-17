@@ -1,4 +1,4 @@
-const _isNaN = require('../../dist/_isNaN');
+const isNaN2 = require('../../dist/isNaN2');
 
 const { isNaN } = Number;
 
@@ -11,8 +11,8 @@ module.exports = {
   },
 
   '【isNaN】': function () {
-    _isNaN('100F');
-    _isNaN(NaN);
-    _isNaN('NaN');
-  },
+    isNaN2('100F');
+    isNaN2(NaN);
+    isNaN2('NaN');
+  }
 };

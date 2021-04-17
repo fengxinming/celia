@@ -2,18 +2,18 @@ const isDate = require('../../dist/isDate');
 
 const { toString } = Object.prototype;
 
-function _isDate(value) {
+function isDate2(value) {
   return toString.call(value) === '[object RegExp]';
 }
 // 测试 max
 module.exports = {
   '【isDate#toString】': function () {
-    _isDate(new Date());
-    _isDate({});
+    isDate2(new Date());
+    isDate2({});
   },
 
   '【isDate#instanceof】': function () {
     isDate(new Date());
     isDate({});
-  },
+  }
 };
