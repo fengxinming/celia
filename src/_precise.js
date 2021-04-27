@@ -1,5 +1,5 @@
-import isNumber from '@ali/iot-cloud-loose-is/es/isNumber';
-import isInteger from '@ali/iot-cloud-loose-is/es/isInteger';
+import isNumber from './isNumber';
+import isInteger from './isInteger';
 
 const { abs, pow } = Math;
 
