@@ -1,7 +1,6 @@
-import camelize from '../src/string/camelize';
-import capitalize from '../src/string/capitalize';
-import pathJoin from '../src/string/pathJoin';
-import stringFormat from '../src/string/stringFormat';
+import camelize from '../src/str/camelize';
+import capitalize from '../src/str/capitalize';
+import pathJoin from '../src/str/pathJoin';
 
 it('测试 camelize 方法', () => {
 
@@ -44,10 +43,4 @@ it('测试 pathJoin 方法', () => {
   expect(pathJoin('https://www.baidu.com/', '/path1')).toBe('https://www.baidu.com/path1');
   expect(pathJoin('https://www.baidu.com', null, '/path1')).toBe('https://www.baidu.com/path1');
   expect(pathJoin('https://www.baidu.com', null, undefined)).toBe('https://www.baidu.com');
-});
-
-it('测试 stringFormat 方法', () => {
-  expect(stringFormat('共{ page }条记录', {})).toBe('共{ page }条记录');
-  expect(stringFormat('共{ page }条记录', { page: 2 })).toBe('共2条记录');
-  expect(stringFormat(null)).toBe(null);
 });

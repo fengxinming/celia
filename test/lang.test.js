@@ -1,36 +1,11 @@
-import forNumber from '../src/_forNumber';
-import assert from '../src/assert';
-import each from '../src/each';
-import easyHash from '../src/easyHash';
-import hasOwn from '../src/hasOwn';
-import looseClone from '../src/looseClone';
-import looseEqual from '../src/looseEqual';
-import map from '../src/map';
-import sleep from '../src/sleep';
-import toString from '../src/toString';
-import transform from '../src/transform';
-import uid from '../src/uid';
-import className from '../src/className';
-import classNames from '../src/classNames';
-
-it('测试 _forNumber 方法', () => {
-
-  let i = 0;
-  forNumber(5, () => {
-    i++;
-  });
-  expect(i).toBe(5);
-
-  i = 0;
-  forNumber(5, () => {
-    if (i === 2) {
-      return false;
-    }
-    i++;
-  });
-  expect(i).toBe(2);
-
-});
+import assert from '../src/other/assert';
+import each from '../src/other/each';
+import easyHash from '../src/other/easyHash';
+import looseEqual from '../src/other/looseEqual';
+import map from '../src/other/map';
+import sleep from '../src/other/sleep';
+import toString from '../src/other/toString';
+import debounce from '../src/other/debounce';
 
 it('测试 assert 方法', () => {
   expect(() => {
@@ -43,74 +18,6 @@ it('测试 easyHash 方法', () => {
   expect(easyHash('abc')).toBe('sabc');
   expect(easyHash(1)).toBe('n1');
   expect(easyHash({})).toBe('o1');
-});
-
-it('测试 hasOwn 方法', () => {
-  const obj = { aaa: 111 };
-  expect(hasOwn(obj, 'test')).toBe(false);
-  expect(hasOwn(obj, 'aaa')).toBe(true);
-});
-
-describe('测试 looseClone 方法', () => {
-  it('浅复制', () => {
-    const a = { a: 1 };
-    const b = looseClone(a);
-    expect(a).not.toBe(b);
-    expect(a).toEqual(
-      expect.objectContaining({
-        a: 1
-      })
-    );
-
-    const c = 1;
-    expect(looseClone(c)).toBe(c);
-  });
-
-  it('深复制', () => {
-
-    const d = { a: { aa: { aaa: 1 } }, b: { bb: 2 }, arr: ['a', 'b'], arr2: [1, 2, 3] };
-    const cp = looseClone(d, true);
-    expect(d).not.toBe(cp);
-    expect(d.a).not.toBe(cp.a);
-    expect(d.b).not.toBe(cp.b);
-    expect(cp).toEqual(
-      expect.objectContaining({
-        a: {
-          aa: {
-            aaa: 1
-          }
-        },
-        arr: ['a', 'b'],
-        arr2: [1, 2, 3],
-        b: {
-          bb: 2
-        }
-      })
-    );
-  });
-
-  it('深复制2', () => {
-    const e = { a: 1, b: { bb: 1111 }, c: { cc: { ccc: 1 } }, d: { dd: 2 }, arr2: ['a', 'b'] };
-    const cp2 = looseClone(e, true);
-    expect(e).not.toBe(cp2);
-    expect(cp2).toEqual(
-      expect.objectContaining({
-        a: 1,
-        arr2: ['a', 'b'],
-        b: {
-          bb: 1111
-        },
-        c: {
-          cc: {
-            ccc: 1
-          }
-        },
-        d: {
-          dd: 2
-        }
-      })
-    );
-  });
 });
 
 it('测试 looseEqual 方法', () => {
@@ -204,51 +111,30 @@ describe('测试 each 方法', () => {
 
 it('测试 map 方法', () => {
   let arr1 = [1, 2, 3, 4, 5];
-  expect(map(arr1, n => n + 1)).toEqual(
+  expect(map(arr1, (n) => n + 1)).toEqual(
     expect.arrayContaining([2, 3, 4, 5, 6])
   );
   arr1 = [1, null, 2, undefined, 3, 4, 5];
-  expect(map(arr1, n => n && (n + 1))).toEqual(
+  expect(map(arr1, (n) => n && (n + 1))).toEqual(
     expect.arrayContaining([2, 3, 4, 5, 6])
   );
   const obj1 = { a: 1, b: 2 };
-  expect(map(obj1, n => n + 1)).toEqual(
+  expect(map(obj1, (n) => n + 1)).toEqual(
     expect.arrayContaining([2, 3])
   );
 });
 
-it('测试 transform 方法', () => {
-  const obj = { a: 1, b: 2 };
-  const newObj = transform(obj, (newObj, value, key) => {
-    newObj[key] = value + 1;
-  }, {});
-  expect(newObj).toEqual({
-    a: 2,
-    b: 3
-  });
+it('测试 debounce 方法', async () => {
 
-  const arr = [1, 2];
-  const newArr = transform(arr, (newArr, value, key) => {
-    newArr[key] = value + 1;
-  }, []);
-  expect(newArr).toEqual([2, 3]);
-});
-
-it('测试 uid 方法', () => {
-  const a = {};
-  const b = {};
-  expect(uid(a)).not.toBe(uid(b));
-  expect(uid(a)).toBe(uid(a));
-});
-
-it('测试 className 方法', () => {
-  expect(className({ class1: false, class2: true })).toBe('class2');
-  expect(className([{ class2: true }, [], null, '', 'class3', 'class4'])).toBe('class2 class3 class4');
-  expect(className(['class3', 'class4'])).toBe('class3 class4');
-  expect(className('class5')).toBe('class5');
-  expect(className([])).toBe('');
-});
-
-it('测试 classNames 方法', () => {
-  expect(classNames({ class1: false, class2: true }, '', true, ['class3', 'class4'], 'class5')).toBe('class2 true class3 class4 class5');
+  let i = 0;
+  const counter = debounce(() => {
+    i++;
+  }, 200);
+  counter();
+  await sleep(100);
+  counter();
+  await sleep(100);
+  counter();
+  await sleep(200);
+  await expect(i).toBe(1);
 });

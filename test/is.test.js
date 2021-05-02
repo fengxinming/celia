@@ -1,5 +1,5 @@
 import moment from 'moment';
-import _isInteger from '../src/is/_isInteger';
+import _isInteger from '../src/_isInteger';
 import isAbsoluteURL from '../src/is/isAbsoluteURL';
 import isArrayLike from '../src/is/isArrayLike';
 import isAsyncFunction from '../src/is/isAsyncFunction';
@@ -39,7 +39,7 @@ it('测试 isAbsoluteURL 方法', () => {
 
 it('测试 isArrayLike 方法', () => {
   expect(isArrayLike('123')).toBe(true);
-  expect(isArrayLike(() => { })).toBe(false);
+  expect(isArrayLike(() => { /** */ })).toBe(false);
   expect(isArrayLike([])).toBe(true);
   expect(isArrayLike([1, 2, 3])).toBe(true);
   expect(isArrayLike({
@@ -49,12 +49,12 @@ it('测试 isArrayLike 方法', () => {
 });
 
 it('测试 isAsyncFunction 方法', () => {
-  expect(isAsyncFunction(async () => { })).toBe(true);
-  expect(isAsyncFunction(() => { })).toBe(false);
+  expect(isAsyncFunction(async () => { /** */ })).toBe(true);
+  expect(isAsyncFunction(() => { /** */ })).toBe(false);
 });
 
 it('测试 isBoolean 方法', () => {
-  expect(isBoolean(() => { })).toBe(false);
+  expect(isBoolean(() => { /** */ })).toBe(false);
   expect(isBoolean(true)).toBe(true);
 });
 
@@ -74,8 +74,8 @@ it('测试 isFalsy 方法', () => {
 });
 
 it('测试 isFunction 方法', () => {
-  expect(isFunction(async () => { })).toBe(true);
-  expect(isFunction(() => { })).toBe(true);
+  expect(isFunction(async () => { /** */ })).toBe(true);
+  expect(isFunction(() => { /** */ })).toBe(true);
   expect(isFunction({})).toBe(false);
 });
 
@@ -127,8 +127,8 @@ it('测试 isPromiseLike 方法', () => {
   expect(isPromiseLike(null)).toBe(false);
   expect(isPromiseLike(undefined)).toBe(false);
   expect(isPromiseLike({})).toBe(false);
-  expect(isPromiseLike(new Promise(() => { }))).toBe(true);
-  expect(isPromiseLike({ then: () => { }, catch: () => { } })).toBe(true);
+  expect(isPromiseLike(new Promise(() => { /** */ }))).toBe(true);
+  expect(isPromiseLike({ then: () => { /** */ }, catch: () => { /** */ } })).toBe(true);
 });
 
 it('测试 isRegExp 方法', () => {

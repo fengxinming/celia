@@ -1,4 +1,4 @@
-import isNumber from './isNumber';
+import isNumber from './is/isNumber';
 
 export default function _isInteger(value) {
   return isNumber(value)

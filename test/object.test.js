@@ -1,10 +1,11 @@
-import alias from '../src/object/alias';
-import assign from '../src/object/_assign';
-import deepAssign from '../src/object/deepAssign';
-import forIn from '../src/object/forIn';
-import forOwn from '../src/object/forOwn';
-import get from '../src/object/get';
-import set from '../src/object/set';
+import assign from '../src/_assign';
+import deepAssign from '../src/obj/deepAssign';
+import forOwn from '../src/obj/forOwn';
+import get from '../src/obj/get';
+import set from '../src/obj/set';
+import uid from '../src/obj/uid';
+import transform from '../src/obj/transform';
+import looseClone from '../src/obj/looseClone';
 import A from './A';
 
 it('测试 _assign 方法', () => {
@@ -26,24 +27,6 @@ it('测试 _assign 方法', () => {
   expect(a.a).toBe(1);
 });
 
-it('测试 forIn 方法', () => {
-  const obj = { 1: 1, 2: 2, 3: 3 };
-  let i = 0;
-  forIn(obj, () => {
-    i++;
-    if (i === 2) {
-      return false;
-    }
-  });
-  expect(i).toBe(2);
-
-  i = 0;
-  forIn(null, () => {
-    i++;
-  });
-  expect(i).toBe(0);
-});
-
 it('测试 forOwn 方法', () => {
   const instance = new A();
   let i = 0;
@@ -60,19 +43,6 @@ it('测试 forOwn 方法', () => {
     i++;
   });
   expect(i).toBe(0);
-});
-
-it('测试 alias 方法', () => {
-  alias();
-
-  const obj1 = { a: 1, b: 2 };
-  alias(obj1, {
-    a: 'c',
-    b: ['e', 'f']
-  });
-
-  expect(obj1.c).toBe(1);
-  expect(obj1.e).toBe(2);
 });
 
 it('测试 deepAssign 方法', () => {
@@ -180,4 +150,90 @@ it('测试 set 方法', () => {
   set(b, 'a.b');
   expect(b).toBe(null);
 
+});
+
+it('测试 uid 方法', () => {
+  const a = {};
+  const b = {};
+  expect(uid(a)).not.toBe(uid(b));
+  expect(uid(a)).toBe(uid(a));
+});
+
+it('测试 transform 方法', () => {
+  const obj = { a: 1, b: 2 };
+  const newObj = transform(obj, (newObj, value, key) => {
+    newObj[key] = value + 1;
+  }, {});
+  expect(newObj).toEqual({
+    a: 2,
+    b: 3
+  });
+
+  const arr = [1, 2];
+  const newArr = transform(arr, (newArr, value, key) => {
+    newArr[key] = value + 1;
+  }, []);
+  expect(newArr).toEqual([2, 3]);
+});
+
+describe('测试 looseClone 方法', () => {
+  it('浅复制', () => {
+    const a = { a: 1 };
+    const b = looseClone(a);
+    expect(a).not.toBe(b);
+    expect(a).toEqual(
+      expect.objectContaining({
+        a: 1
+      })
+    );
+
+    const c = 1;
+    expect(looseClone(c)).toBe(c);
+  });
+
+  it('深复制', () => {
+
+    const d = { a: { aa: { aaa: 1 } }, b: { bb: 2 }, arr: ['a', 'b'], arr2: [1, 2, 3] };
+    const cp = looseClone(d, true);
+    expect(d).not.toBe(cp);
+    expect(d.a).not.toBe(cp.a);
+    expect(d.b).not.toBe(cp.b);
+    expect(cp).toEqual(
+      expect.objectContaining({
+        a: {
+          aa: {
+            aaa: 1
+          }
+        },
+        arr: ['a', 'b'],
+        arr2: [1, 2, 3],
+        b: {
+          bb: 2
+        }
+      })
+    );
+  });
+
+  it('深复制2', () => {
+    const e = { a: 1, b: { bb: 1111 }, c: { cc: { ccc: 1 } }, d: { dd: 2 }, arr2: ['a', 'b'] };
+    const cp2 = looseClone(e, true);
+    expect(e).not.toBe(cp2);
+    expect(cp2).toEqual(
+      expect.objectContaining({
+        a: 1,
+        arr2: ['a', 'b'],
+        b: {
+          bb: 1111
+        },
+        c: {
+          cc: {
+            ccc: 1
+          }
+        },
+        d: {
+          dd: 2
+        }
+      })
+    );
+  });
 });

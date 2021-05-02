@@ -1,5 +1,5 @@
-import isNumber from './isNumber';
-import isInteger from './isInteger';
+import isNumber from './is/isNumber';
+import isInteger from './is/isInteger';
 
 const { abs, pow } = Math;
 
