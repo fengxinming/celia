@@ -1,4 +1,4 @@
-const isNaN2 = require('../../dist/isNaN2');
+const isNaN2 = require('../dist/_isNaN');
 
 const { isNaN } = Number;
 

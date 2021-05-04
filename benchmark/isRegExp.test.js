@@ -1,4 +1,4 @@
-const isRegExp = require('../../dist/isRegExp');
+const isRegExp = require('../dist/isRegExp');
 
 const { toString } = Object.prototype;
 
@@ -21,5 +21,5 @@ module.exports = {
     isRegExp({});
     isRegExp(Object.create(null));
     isRegExp(/\d+/);
-  },
+  }
 };

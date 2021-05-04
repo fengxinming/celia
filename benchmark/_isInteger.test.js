@@ -1,4 +1,4 @@
-const isInteger2 = require('../../dist/isInteger2');
+const isInteger2 = require('../dist/_isInteger');
 
 const { isInteger } = Number;
 

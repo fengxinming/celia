@@ -1,4 +1,4 @@
-const isDate = require('../../dist/isDate');
+const isDate = require('../dist/isDate');
 
 const { toString } = Object.prototype;
 
