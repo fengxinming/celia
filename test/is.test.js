@@ -5,6 +5,7 @@ import isArrayLike from '../src/is/isArrayLike';
 import isAsyncFunction from '../src/is/isAsyncFunction';
 import isBoolean from '../src/is/isBoolean';
 import isDate from '../src/is/isDate';
+import isError from '../src/is/isError';
 import isFalsy from '../src/is/isFalsy';
 import isFunction from '../src/is/isFunction';
 import isLeapYear from '../src/is/isLeapYear';
@@ -61,6 +62,11 @@ it('测试 isBoolean 方法', () => {
 it('测试 isDate 方法', () => {
   expect(isDate(new Date())).toBe(true);
   expect(isDate({})).toBe(false);
+});
+
+it('测试 isError 方法', () => {
+  expect(isError(new Error('I am error'))).toBe(true);
+  expect(isError({})).toBe(false);
 });
 
 it('测试 isFalsy 方法', () => {
