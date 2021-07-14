@@ -6,6 +6,8 @@ import set from '../src/obj/set';
 import uid from '../src/obj/uid';
 import transform from '../src/obj/transform';
 import looseClone from '../src/obj/looseClone';
+import objectWithoutProperties from '../src/obj/objectWithoutProperties';
+import emptyOwn from '../src/obj/emptyOwn';
 import A from './A';
 
 it('测试 _assign 方法', () => {
@@ -235,5 +237,37 @@ describe('测试 looseClone 方法', () => {
         }
       })
     );
+  });
+  
+  it('测试 objectWithoutProperties', () => {
+    const obj = {
+      a: 1,
+      b: 2,
+      c: 3
+    };
+    expect(objectWithoutProperties(null)).toEqual({});
+    expect(objectWithoutProperties(obj)).toEqual(obj);
+    expect(objectWithoutProperties(obj, ['a', 'b'])).toEqual({
+      c: 3
+    });
+  });
+
+  it('测试 emptyOwn', () => {
+    const obj = {
+      a: 1,
+      b: 2,
+      c: 3
+    };
+    Object.defineProperty(obj, 'd', {
+      enumerable: true,
+      configurable: false,
+      writable: false,
+      value: 4
+    });
+    // eslint-disable-next-line no-proto
+    obj.__proto__.e = 5;
+    expect(emptyOwn(null)).toBe(null);
+    expect(emptyOwn(obj, ['a'])).toEqual({ a: 1, d: 4 });
+    expect(emptyOwn(obj)).toEqual({ d: 4 });
   });
 });
