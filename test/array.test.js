@@ -34,72 +34,95 @@ it('测试 removeAt 方法', () => {
 });
 
 it('测试 forEach 方法', () => {
-  forEach(null, () => {
-    //
-  });
-
-  const arr = [1, 2, 3, 4];
-  let i = 1;
-  forEach(arr, () => (i++));
+  let i = 0;
+  expect(forEach([1, 2, 3, 4, 5], () => {
+    i++;
+  })).toBe(true);
   expect(i).toBe(5);
 
-  i = 1;
-  forEach(arr, () => {
-    if (i === 1) {
-      return false;
-    }
-    i++;
-  });
-  expect(i).toBe(1);
-
   i = 0;
-  forEach(null, () => {
-    i++;
-  });
-  expect(i).toBe(0);
-
-  i = 0;
-  forEach(arr, 0, () => {
-    i++;
-  });
-  expect(i).toBe(4);
-
-  i = 0;
-  forEach(arr, 0, 2, () => {
-    i++;
-  });
-  expect(i).toBe(2);
-
-  i = 0;
-  forEach(arr, 0, 0, () => {
-    i++;
-  });
-  expect(i).toBe(0);
-
-  i = 0;
-  forEach(arr, null, 0, () => {
-    i++;
-  });
-  expect(i).toBe(0);
-
-  i = 0;
-  forEach(arr, () => {
-    i++;
-  });
-  expect(i).toBe(4);
-
-  i = 0;
-  forEach(5, () => {
+  forEach([1, 2, 3, 4, 5], 0, 5, () => {
     i++;
   });
   expect(i).toBe(5);
 
   i = 0;
-  forEach(5, () => {
-    if (i === 2) {
+  forEach([1, 2, 3, 4, 5], 2, () => {
+    i++;
+  });
+  expect(i).toBe(3);
+
+  i = 0;
+  forEach([1, 2, 3, 4, 5], 1, 3, () => {
+    i++;
+  });
+  expect(i).toBe(2);
+
+  i = 0;
+  forEach([1, 2, 3, 4, 5], null, () => {
+    i++;
+  });
+  expect(i).toBe(5);
+
+  i = 0;
+  expect(forEach([1, 2, 3, 4, 5], null, null, (val, index) => {
+    if (index === 2) {
+      return false;
+    }
+    i++;
+  })).toBe(true);
+  expect(i).toBe(2);
+
+  i = 0;
+  expect(forEach(null, () => {
+    i++;
+  })).toBe(false);
+  expect(i).toBe(0);
+
+  i = 0;
+  forEach([1, 2, 3, 4, 5]);
+  expect(i).toBe(0);
+
+  i = 0;
+  forEach(5, (val) => {
+    if (val === 3) {
       return false;
     }
     i++;
   });
   expect(i).toBe(2);
+
+  i = 0;
+  forEach(5, 2, () => {
+    i++;
+  });
+  expect(i).toBe(4);
+
+  i = 0;
+  forEach(5, 2, 4, () => {
+    i++;
+  });
+  expect(i).toBe(3);
+
+  i = 0;
+  forEach(5, 1, 10, () => {
+    i++;
+  });
+  expect(i).toBe(5);
+
+  i = 0;
+  forEach(5, null, null, () => {
+    i++;
+  });
+  expect(i).toBe(5);
+
+  i = 0;
+  forEach(5, null, () => {
+    i++;
+  });
+  expect(i).toBe(5);
+
+  i = 0;
+  forEach(5);
+  expect(i).toBe(0);
 });

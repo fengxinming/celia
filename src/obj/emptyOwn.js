@@ -1,4 +1,4 @@
-import createHasOwn from './_createHasOwn';
+import createHasOwn from '../_createHasOwn';
 
 const { isArray } = Array;
 

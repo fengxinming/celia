@@ -10,7 +10,7 @@ export default function (basePath) {
   let str = '';
   // eslint-disable-next-line prefer-rest-params
   const args = arguments;
-  loop(args, 1, len, (arg) => {
+  loop(1, len, (arg) => {
     arg = args[arg];
     if (arg) {
       str += '/';

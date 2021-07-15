@@ -1,4 +1,4 @@
-import _forOwn from './_forOwn';
+import _forOwn from '../_forOwn';
 
 const { isArray } = Array;
 

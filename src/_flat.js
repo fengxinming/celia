@@ -6,7 +6,7 @@ function append(arr, obj) {
 }
 
 export default function flatten(arr, result, depth) {
-  loop(arr, 0, arr.length - 1, (n) => {
+  loop(0, arr.length, (n) => {
     n = arr[n];
     if (depth > 0) {
       if (isArrayLike(n)) {
@@ -17,7 +17,7 @@ export default function flatten(arr, result, depth) {
       }
     }
     else if (isArrayLike(n)) {
-      loop(n, 0, n.length - 1, (m) => {
+      loop(0, n.length, (m) => {
         m = n[m];
         append(result, m);
       });

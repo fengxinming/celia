@@ -238,7 +238,7 @@ describe('测试 looseClone 方法', () => {
       })
     );
   });
-  
+
   it('测试 objectWithoutProperties', () => {
     const obj = {
       a: 1,
